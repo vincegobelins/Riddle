@@ -67,6 +67,62 @@ body {
   }
 }
 
+/* Transition */
+
+.ng-leave {
+  animation: my_fade_animation 0.5s linear;
+  -webkit-animation: my_fade_animation 0.5s linear;
+}
+
+.ng-enter {
+  animation: my_fade_inverse_animation 0.5s linear;
+  -webkit-animation: my_fade_inverse_animation 0.5s linear;
+}
+
+@keyframes my_fade_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes my_fade_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@keyframes my_fade_inverse_animation {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@-webkit-keyframes my_fade_inverse_animation {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+h1 {
+  color: red;
+}
+
+.fadein,
+.fadeout {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {

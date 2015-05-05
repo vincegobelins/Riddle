@@ -7,9 +7,12 @@
 </div>
 
 <div class="row marketing">
-  <li ng-repeat="reponse in reponses" ng-animate=" 'animate' ">
-      <a class="btn btn-lg btn-regular" ng-href="#/">{{reponse}}<span class="glyphicon"></span></a>
+  <li ng-repeat="answer in answers" ng-hide="answerMode" class="fadeout">
+      <a class="btn btn-lg btn-regular" ng-click="checkAnswer(answer)">{{answer}}<span class="glyphicon"></span></a>
   </li>
+</div>
 
+<div class="jumbotron fadein fadeout" ng-show="answerMode">
+  <p>{{solution}}</p>
   <a class="btn btn-lg btn-success" ng-click="nextQuestion()">Question suivante<span class="glyphicon glyphicon-ok"></span></a>
 </div>

@@ -10,18 +10,6 @@
 angular.module('RiddleApp')
   .controller('QuestionsCtrl', ['$scope','$http', function($scope, $http) {
 
-        // téléchargement du json
-    /*
-      $http.get('json/exam1.json').success (function(data) {
-        $scope.examData = data;
-
-        var question = data["questions"][0];
-
-        $scope.title = question["titre"];
-        $scope.question = question["question"];
-        $scope.reponses = question["reponses"];
-      });*/
-
       var init, data, getQuestion;
 
 
@@ -41,16 +29,30 @@ angular.module('RiddleApp')
 
             $scope.title = question["titre"];
             $scope.question = question["question"];
-            $scope.reponses = question["reponses"];
+            $scope.answers = question["reponses"];
+            $scope.answerOk = question["reponseok"];
+            $scope.solution = question["solution"];
       },
 
 
         $scope.nextQuestion = function() {
 
+          $scope.answerMode = false;
           $scope.id++;
           getQuestion();
 
-        }
+        },
+
+
+        $scope.checkAnswer = function(answer) {
+
+          if(answer == $scope.answerOk) {
+              $scope.answerMode = true;
+          } else {
+              $scope.answerMode = false;
+          }
+
+        };
 
       init();
   }]

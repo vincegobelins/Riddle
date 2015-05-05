@@ -9,7 +9,8 @@
       "question": "Quelle pièce , aménagée sous les combles d'un toit en pente, doit son nom à un architecte du XVII ème siècle ?",
       "reponses": ["La mansarde", "Les combles"],
       "reponseok":"La mansarde",
-      "reponsejoueur":""
+      "reponsejoueur":"",
+      "solution":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
     },
     {
       "id": 2,
@@ -17,7 +18,8 @@
       "question": "Dans un château fort, quelle tour principale constituait le dernier retranchement de la garnison ?",
       "reponses": ["Le donjon", "Le grenier"],
       "reponseok":"Le donjon",
-      "reponsejoueur":""
+      "reponsejoueur":"",
+      "solution":"2orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "question": "A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?",
       "reponses": ["Un beffroi", "Un sous-toit"],
       "reponseok":"Un sous-toit",
-      "reponsejoueur":""
+      "reponsejoueur":"",
+      "solution":"3orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
     },
     {
       "id": 4,
@@ -33,7 +36,8 @@
       "question": "Comment appelle-t-on la colonnade qui décore la façade d'un édifice ?",
       "reponses": ["Un pillier", "Un péristyle"],
       "reponseok":"Un péristyle",
-      "reponsejoueur":""
+      "reponsejoueur":"",
+      "solution":"orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
     },
     {
       "id": 5,
@@ -41,7 +45,8 @@
       "question": "Dans l'architecture romaine, quelle grande pièce, placée derrière le vestibule, commande la distribution de la maison ?",
       "reponses": ["L'alcôve", "L'atrium"],
       "reponseok":"L'atrium",
-      "reponsejoueur":""
+      "reponsejoueur":"",
+      "solution":"orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
     }
   ]
 }
