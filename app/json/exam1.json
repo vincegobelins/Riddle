@@ -1,0 +1,47 @@
+{
+  "nom": "L'architecture au XVIeme siècle",
+  "matiere": "architecture",
+  "date":"12/07/2015",
+  "questions": [
+    {
+      "id": 1,
+      "titre": "Question 1",
+      "question": "Quelle pièce , aménagée sous les combles d'un toit en pente, doit son nom à un architecte du XVII ème siècle ?",
+      "reponses": ["La mansarde", "Les combles"],
+      "reponseok":"La mansarde",
+      "reponsejoueur":""
+    },
+    {
+      "id": 2,
+      "titre": "Question 2",
+      "question": "Dans un château fort, quelle tour principale constituait le dernier retranchement de la garnison ?",
+      "reponses": ["Le donjon", "Le grenier"],
+      "reponseok":"Le donjon",
+      "reponsejoueur":""
+    },
+    {
+      "id": 3,
+      "titre": "Question 3",
+      "question": "A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?",
+      "reponses": ["Un beffroi", "Un sous-toit"],
+      "reponseok":"Un sous-toit",
+      "reponsejoueur":""
+    },
+    {
+      "id": 4,
+      "titre": "Question 4",
+      "question": "Comment appelle-t-on la colonnade qui décore la façade d'un édifice ?",
+      "reponses": ["Un pillier", "Un péristyle"],
+      "reponseok":"Un péristyle",
+      "reponsejoueur":""
+    },
+    {
+      "id": 5,
+      "titre": "Question 5",
+      "question": "Dans l'architecture romaine, quelle grande pièce, placée derrière le vestibule, commande la distribution de la maison ?",
+      "reponses": ["L'alcôve", "L'atrium"],
+      "reponseok":"L'atrium",
+      "reponsejoueur":""
+    }
+  ]
+}

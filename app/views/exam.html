@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h1>{{title}}</h1>
+  <p><a class="btn btn-lg btn-success" ng-href="#/">Jouer !<span class="glyphicon glyphicon-ok"></span></a></p>
+</div>
+
+<div class="row marketing">
+  <h4>Questions</h4>
+
+    <li ng-repeat="question in questions">
+        <h4>{{question.titre}}</h4>
+        <p>
+          {{question.question}}
+        </p>
+    </li>
+
+</div>
