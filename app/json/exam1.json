@@ -1,52 +1,123 @@
 {
-  "nom": "L'architecture au XVIeme siècle",
-  "matiere": "architecture",
-  "date":"12/07/2015",
-  "questions": [
-    {
-      "id": 1,
-      "titre": "Question 1",
-      "question": "Quelle pièce , aménagée sous les combles d'un toit en pente, doit son nom à un architecte du XVII ème siècle ?",
-      "reponses": ["La mansarde", "Les combles"],
-      "reponseok":"La mansarde",
-      "reponsejoueur":"",
-      "solution":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+  "users": {
+      "iduser": 1,
+      "nom": "Scherbatsky"
+  },
+  "exams": {
+    "exam1": {
+      "idexam": 1,
+      "nom": "L'architecture au XVIeme siècle",
+      "matiere": "architecture",
+      "date": "12/07/2015",
+      "questions": [
+        {
+          "idquizz": 1,
+          "titre": "Question 1",
+          "autheur": "Jean Dupont",
+          "question": "Quelle pièce , aménagée sous les combles d'un toit en pente, doit son nom à un architecte du XVII ème siècle ?",
+          "reponses": [
+            "La mansarde",
+            "Les combles"
+          ],
+          "reponseok": "La mansarde",
+          "solution": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        },
+        {
+          "idquizz": 2,
+          "titre": "Question 2",
+          "autheur": "Eric Ballai",
+          "question": "Dans un château fort, quelle tour principale constituait le dernier retranchement de la garnison ?",
+          "reponses": [
+            "Le donjon",
+            "Le grenier"
+          ],
+          "reponseok": "Le donjon",
+          "solution": "2orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        },
+        {
+          "idquizz": 3,
+          "titre": "Question 3",
+          "autheur": "Elise Scherbatsky",
+          "question": "A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?",
+          "reponses": [
+            "Un beffroi",
+            "Un sous-toit"
+          ],
+          "reponseok": "Un sous-toit",
+          "solution": "3orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        },
+        {
+          "idquizz": 4,
+          "titre": "Question 4",
+          "autheur": "Elodie Coucoi",
+          "question": "Comment appelle-t-on la colonnade qui décore la façade d'un édifice ?",
+          "reponses": [
+            "Un pillier",
+            "Un péristyle"
+          ],
+          "reponseok": "Un péristyle",
+          "solution": "orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        },
+        {
+          "idquizz": 5,
+          "titre": "Question 5",
+          "autheur": "Edgar Allan",
+          "question": "Dans l'architecture romaine, quelle grande pièce, placée derrière le vestibule, commande la distribution de la maison ?",
+          "reponses": [
+            "L'alcôve",
+            "L'atrium"
+          ],
+          "reponseok": "L'atrium",
+          "solution": "orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        }
+      ]
     },
-    {
-      "id": 2,
-      "titre": "Question 2",
-      "question": "Dans un château fort, quelle tour principale constituait le dernier retranchement de la garnison ?",
-      "reponses": ["Le donjon", "Le grenier"],
-      "reponseok":"Le donjon",
-      "reponsejoueur":"",
-      "solution":"2orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
-    },
-    {
-      "id": 3,
-      "titre": "Question 3",
-      "question": "A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?",
-      "reponses": ["Un beffroi", "Un sous-toit"],
-      "reponseok":"Un sous-toit",
-      "reponsejoueur":"",
-      "solution":"3orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
-    },
-    {
-      "id": 4,
-      "titre": "Question 4",
-      "question": "Comment appelle-t-on la colonnade qui décore la façade d'un édifice ?",
-      "reponses": ["Un pillier", "Un péristyle"],
-      "reponseok":"Un péristyle",
-      "reponsejoueur":"",
-      "solution":"orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
-    },
-    {
-      "id": 5,
-      "titre": "Question 5",
-      "question": "Dans l'architecture romaine, quelle grande pièce, placée derrière le vestibule, commande la distribution de la maison ?",
-      "reponses": ["L'alcôve", "L'atrium"],
-      "reponseok":"L'atrium",
-      "reponsejoueur":"",
-      "solution":"orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+    "exam2": {
+      "idexam": 2,
+      "nom": "Communication des entreprises",
+      "matiere": "Communication",
+      "date": "1/07/2015",
+      "questions": [
+        {
+          "idquizz": 1,
+          "titre": "Question 1",
+          "autheur": "Jean Dupont",
+          "question": "Une bonne stratégie de communication c'est ? ",
+          "reponses": [
+            "une carte de visite et une présence sur les pages jaunes",
+            "un site internet, un dépliant, une carte de visite, les pages jaunes... ",
+            "des actions en cohérence avec mes objectifs de développement"
+          ],
+          "reponseok": "des actions en cohérence avec mes objectifs de développement",
+          "solution": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        },
+        {
+          "idquizz": 2,
+          "titre": "Question 2",
+          "autheur": "Emilie Scherbatsky",
+          "question": "On appelle marketing direct :",
+          "reponses": [
+            "la mise en valeur d’offres promotionnelles en boutique",
+            "l’envoi d’un message personnalisé à un groupe de personnes qualifiées",
+            "l’achat d’espace publicitaire dans la presse locale"
+          ],
+          "reponseok": "la mise en valeur d’offres promotionnelles en boutique",
+          "solution": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        },
+        {
+          "idquizz": 3,
+          "titre": "Question 3",
+          "autheur": "Allan Edgar",
+          "question": "Le marketing direct est particulièrement adapté pour ",
+          "reponses": [
+            "prospecter de nouveaux clients",
+            "fidéliser une clientèle existante ",
+            "réagir rapidement à une action de la concurrence"
+          ],
+          "reponseok": "prospecter de nouveaux clients",
+          "solution": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu augue quis nisi aliquam dapibus quis vel purus. Morbi vitae efficitur diam. Curabitur aliquam arcu sapien, elementum eleifend massa elementum ac."
+        }
+      ]
     }
-  ]
+  }
 }

@@ -8,10 +8,26 @@
  * Controller of the RiddleApp
  */
 angular.module('RiddleApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, $firebaseArray, config) {
+
+    var init, getExams;
+    var bdd;
+
+    init = function() {
+
+      bdd = config.BDD;
+      getExams();
+
+    }
+
+    getExams = function() {
+
+      var query = bdd+"exams";
+      var result = new Firebase(query);
+      $scope.exams = $firebaseArray(result);
+
+    }
+
+    init();
+
   });

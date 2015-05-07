@@ -8,16 +8,27 @@
  * Controller of the RiddleApp
  */
 angular.module('RiddleApp')
-  .controller('ExamCtrl', ['$scope','$http', function($scope, $http) {
+  .controller('ExamCtrl', function($scope, $routeParams, $firebaseObject, config) {
 
-    $scope.question = 'premiere examen';
+    var init, getExam;
+    var param, bdd;
 
-    // téléchargement du json
-    $http.get('json/exam1.json').success (function(data) {
-      $scope.examData = data;
-      $scope.title = data["nom"];
-      $scope.question = data["questions"];
-      console.log(data["questions"]);
-    });
-  }]
+    init = function(){
+
+      $scope.param = $routeParams['param'];
+      bdd = config.BDD;
+      getExam();
+
+    }
+
+    getExam = function(){
+
+      var query = bdd+"exams/"+$scope.param;
+      var result = new Firebase(query);
+      $scope.exam = $firebaseObject(result);
+
+    }
+
+    init();
+  }
 );

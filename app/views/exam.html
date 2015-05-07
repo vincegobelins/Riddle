@@ -1,6 +1,8 @@
 <div class="jumbotron">
-  <h1>{{title}}</h1>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Jouer !<span class="glyphicon glyphicon-ok"></span></a></p>
+  <h1>{{exam.nom}}</h1>
+  <h2>{{exam.matiere}}</h2>
+  <p>{{exam.date}}</p>
+  <p><a class="btn btn-lg btn-success" ng-href="#/questions/{{param}}">Jouer !<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
 <div class="row marketing">

@@ -15,8 +15,12 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'firebase'
   ])
+  .constant("config", {
+    "BDD": "https://torrid-inferno-6220.firebaseio.com/"
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -27,11 +31,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/questions', {
+      .when('/questions/:param', {
         templateUrl: 'views/questions.html',
         controller: 'QuestionsCtrl'
       })
-      .when('/exam', {
+      .when('/exam/:param', {
         templateUrl: 'views/exam.html',
         controller: 'ExamCtrl'
       })
