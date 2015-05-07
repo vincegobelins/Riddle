@@ -39,6 +39,10 @@ angular
         templateUrl: 'views/exam.html',
         controller: 'ExamCtrl'
       })
+      .when('/exam/:param/generator/', {
+        templateUrl: 'views/generator.html',
+        controller: 'GeneratorCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
