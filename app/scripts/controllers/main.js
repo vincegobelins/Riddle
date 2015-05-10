@@ -8,23 +8,19 @@
  * Controller of the RiddleApp
  */
 angular.module('RiddleApp')
-  .controller('MainCtrl', function ($scope, $firebaseArray, config) {
+  .controller('MainCtrl', function ($scope, riddleFactory) {
 
     var init, getExams;
-    var bdd;
 
     init = function() {
 
-      bdd = config.BDD;
       getExams();
 
     }
 
     getExams = function() {
 
-      var query = bdd+"exams";
-      var result = new Firebase(query);
-      $scope.exams = $firebaseArray(result);
+      $scope.exams = riddleFactory.getExams();
 
     }
 

@@ -8,7 +8,7 @@
  * Controller of the RiddleApp
  */
 angular.module('RiddleApp')
-  .controller('ExamCtrl', function($scope, $routeParams, $firebaseObject, config) {
+  .controller('ExamCtrl', function($scope, $routeParams, riddleFactory) {
 
     var init, getExam;
     var param, bdd;
@@ -16,16 +16,13 @@ angular.module('RiddleApp')
     init = function(){
 
       $scope.param = $routeParams['param'];
-      bdd = config.BDD;
       getExam();
 
     }
 
     getExam = function(){
 
-      var query = bdd+"exams/"+$scope.param;
-      var result = new Firebase(query);
-      $scope.exam = $firebaseObject(result);
+      $scope.exam = riddleFactory.getExam($scope.param);
 
     }
 

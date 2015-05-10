@@ -8,94 +8,151 @@
  * Controller of the RiddleApp
  */
 angular.module('RiddleApp')
-  .controller('QuestionsCtrl', function ($scope, $routeParams, $firebaseArray, config) {
+  .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory) {
 
-    var init, getQuestions, getQuestion, getRandomIdQuestion, getRandomInt;
-    var bdd, data;
+    var init, getQuestions, getQuestion, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
+    var data, answered;
+
+    /**
+     * Inisialize some data
+     * @return {void}
+     */
 
     init = function () {
-      $scope.data = [];
 
-      // chercher les données dans la base
-      // boucler sur les résultats
-      /*
-       var question = {
-       id : '',
-       questions: [],
-       utilisateurs: []
-       };
-
-       $scope.data.push(question);
-
-
-       $http.get('json/exam1.json').success (function(dataExam) {
-
-       $scope.id = 0;
-       data = dataExam;
-       getQuestion();
-
-       });*/
+      answered = [];
 
       $scope.param = $routeParams['param'];
-      $scope.id = 0;
-
-      bdd = config.BDD;
+      $scope.quizzPosition = 0;
 
       getQuestions();
 
-
     },
+
+    /**
+     * Get all questions or by chapter
+     * @param {number|void} chapter Chapter id
+     * @return {void}
+     * @todo
+     */
 
     getQuestions = function () {
 
-        var query = bdd+"exams/" + $scope.param + "/questions";
-        var result = new Firebase(query);
-        data = $firebaseArray(result);
+          data = riddleFactory.getQuestions($scope.param);
 
-        data.$loaded().then(function () {
+          data.$loaded().then(function () {
 
+          $scope.quizzLength = data.length;
           getQuestion();
 
         });
 
     },
 
+    /**
+     * Scope a new question
+     */
+
     getQuestion = function () {
 
-        var questionId = getRandomIdQuestion();
-        var question = data[questionId];
+          $scope.quizzPosition++;
 
-        $scope.title = question["titre"];
-        $scope.question = question["question"];
-        $scope.answers = question["reponses"];
-        $scope.answerOk = question["reponseok"];
-        $scope.solution = question["solution"];
+          var questionId = getRandomIdQuestion();
+          var question = data[questionId];
+
+          $scope.title = question["titre"];
+          $scope.question = question["question"];
+          $scope.answers = question["reponses"];
+          $scope.answerOk = question["reponseok"];
+          $scope.solution = question["solution"];
+
     },
+
+    /**
+     * Get a random question column
+     * @return {integer}
+     */
 
     getRandomIdQuestion = function (){
 
-        var usedId;
-        var randomId = getRandomInt(0, data.length-1);
-        return randomId;
+        var randomCol = getRandomInt(0, data.length-1);
+        var questionId = data[randomCol]["$id"];
+
+        while (checkAnsweredQuestion(questionId)==true) {
+          randomCol = getRandomInt(0, data.length-1);
+          questionId = data[randomCol]["$id"];
+        }
+
+        addAnsweredQuestion(questionId);
+
+        return randomCol;
 
     },
 
+    /**
+     * Stock the id of answered question in array
+     * @param {number} id Question id
+     * @return {void}
+     */
+
+     addAnsweredQuestion = function(id){
+
+       answered.push(id);
+       console.log(answered);
+
+     },
+
+    /**
+     * Check if the question is already answered by id
+     * @param {number} id Question id
+     * @return {Boolean}
+     */
+
+    checkAnsweredQuestion = function(id){
+
+        var i, isAnswered;
+
+        isAnswered = false;
+
+        for (i=0; i<answered.length; i++){
+            if(answered[i] == id) {
+              isAnswered = true;
+            }
+        }
+
+        return isAnswered;
+    },
+
+    /**
+     * Get a random int inside an interval
+     * @param {number} min
+     * @param {number} max
+     * @return {integer}
+     */
 
     getRandomInt = function(min, max) {
 
       return Math.floor(Math.random() * (max - min + 1)) + min;
 
-    }
+    },
 
+    /**
+     * Scope the next question
+     */
 
     $scope.nextQuestion = function () {
 
+      if($scope.quizzPosition < $scope.quizzLength) {
         $scope.answerMode = false;
-        $scope.id++;
         getQuestion();
+      }
 
     },
 
+    /**
+     * Check if answer is true
+     * @param {String} answer
+     */
 
     $scope.checkAnswer = function (answer) {
 
