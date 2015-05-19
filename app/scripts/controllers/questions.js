@@ -143,6 +143,8 @@ angular.module('RiddleApp')
 
     $scope.nextQuestion = function () {
 
+      count = 0;
+
       if($scope.quizzPosition < $scope.quizzLength) {
         $scope.answerMode = false;
         getQuestion();
@@ -156,8 +158,6 @@ angular.module('RiddleApp')
      */
 
     $scope.checkAnswer = function (answer) {
-
-        count = 0;
 
         if (answer == $scope.answerOk) {
           $scope.answerMode = true;

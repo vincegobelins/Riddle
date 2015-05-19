@@ -58,7 +58,7 @@
         </div>
         <ul class="list-tabs">
           <a href="" ng-click="filters = ''">
-            <li class="item-tabs active">
+            <li class="item-tabs" ng-class="{active: filters == ''}">
               <i class="fa fa-file-text"></i> Questions
             </li>
           </a>
@@ -68,7 +68,7 @@
             </li>
           </a>
           <a href="" ng-click="filters.autheur = 'simplelogin:22'">
-            <li class="item-tabs">
+            <li class="item-tabs" ng-class="{active: filters.autheur == 'simplelogin:22'}">
               <i class="fa fa-comment"></i> Mes questions (10)
             </li>
           </a>
@@ -91,68 +91,11 @@
           <tbody>
 
           <tr ng-repeat="question in questions| filter: { question : query, chapter : partie.id } | filter : filters" class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span>{{question.question}}</a></td>
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon" ng-class="{iconko: question.user_reponse == 'false', iconok: question.user_reponse == 'true'}"></span>{{question.question}}</a></td>
             <td class="table-cell table-cell-vote">15</td>
             <td class="table-cell table-cell-note">20</td>
           </tr>
 
-          </tbody>
-        </table>
-
-        <table class="table" cellspacing="0" cellpadding="0">
-          <thead>
-          <tr class="table-head">
-            <td class="table-cell table-cell-question">
-              <div class="table-cell-question-wrapper">
-                      <span class="highlight">Chapitre A :
-                      </span> Les chateaux fort
-              </div>
-            </td>
-            <td class="table-cell table-cell-vote"><i class="fa fa-thumbs-up"></i> Vote</td>
-            <td class="table-cell table-cell-note"><i class="fa fa-comments"></i> Notes</td>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span>A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-          <tr class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
           </tbody>
         </table>
       </div>

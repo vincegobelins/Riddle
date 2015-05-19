@@ -10,17 +10,17 @@
 angular.module('RiddleApp')
   .controller('ExamCtrl', function($scope, $routeParams, riddleFactory) {
 
-    var init, exam, getExam, getQuestions, initCanvas, renderCanvas, buildTower, moveTowerUp, moveTowerDown, setEventListener;
+    var init, exam, getExam, getQuestions, initCanvas, renderCanvas, buildTower, moveTowerUp, moveTowerDown, getStatistics, getChapterStatistics, setEventListener;
     var param, velocity, distance, canvas, canvasIso, context, blocArray;
 
     init = function(){
 
       $scope.param = $routeParams['param'];
       $scope.auth = riddleFactory.getAuth();
-      getExam();
 
       velocity = 0; distance = 0;
 
+      getExam();
       getQuestions();
 
       initCanvas();
@@ -47,8 +47,6 @@ angular.module('RiddleApp')
 
         $scope.exam = exam;
         $scope.parties = $scope.exam["parties"];
-        console.log($scope.exam);
-        console.log($scope.parties);
 
       });
 
@@ -84,12 +82,17 @@ angular.module('RiddleApp')
                 }
               }
 
+              // init every variable and method which need loaded questions from database
+              console.log("question chargés");
+              $scope.questions = questions;
+              $scope.filters = { };
               console.log(questions);
 
+              // @todo cette fonction doit être appelé en verifiant que exam est chargé également
+              var statistics = getStatistics();
+              blocArray = buildTower(statistics);
             });
 
-          $scope.questions = questions;
-          $scope.filters = { };
 
         });
 
@@ -106,8 +109,6 @@ angular.module('RiddleApp')
       canvas = document.getElementById("stats");
       context = canvas.getContext("2d");
 
-      blocArray = buildTower();
-
     },
 
     /**
@@ -120,8 +121,8 @@ angular.module('RiddleApp')
       var Color  = Isomer.Color;
 
       var white = new Color(255, 255, 255, 0.5);
-      var red2 = new Color(200, 85, 60, 0.5);
-      var red = new Color(150, 85, 62, 0.5);
+      var red2 = new Color(200, 85, 60);
+      var red = new Color(150, 85, 62);
       var green = new Color(100, 142, 60, 0.5);
 
       var Point  = Isomer.Point;
@@ -139,34 +140,35 @@ angular.module('RiddleApp')
 
         //  iso.add(blocArray[1].translate(-2, 2, test), red2);
 
-        for (var i=0; i<blocArray.length; i++) {
+        if (blocArray){
 
-          var color;
+          for (var i=0; i<blocArray.length; i++) {
 
-          if(i&1){
-            color = red2
+            var color;
+
+            if(i&1){
+              color = white;
+            }
+            else {
+              color = red2;
+
+              context.strokeStyle = 'white';
+              context.beginPath();
+              context.moveTo(400, (1200/(blocArray.length/2)*i/2+200)-distance*100);
+              context.lineTo(690, (1200/(blocArray.length/2)*i/2+200)-distance*100);
+              context.stroke();
+              context.fillStyle = "white";
+              context.font = "bold 70px Gotham Rounded Bold";
+              context.fillText("CHAPITRE "+(i), 700 + distance * 100, ( 1200 / ( blocArray.length / 2 ) * i/2 + 200)-distance* 100);
+              context.font = "bold 30px Gotham Rounded Light";
+              context.fillText("REUSSITE :", 700 + distance *100, (1200 / ( blocArray.length / 2 ) * i/2 + 240 ) - distance * 100);
+              context.fillStyle = "#f26744";
+              context.font = "bold 100px Gotham Rounded Light";
+              context.fillText("50%", 900+distance*100, (1200/(blocArray.length/2)*i/2+280)-distance*100);
+            }
+
+            canvasIso.add(blocArray[i].translate(0, 0, distance*i), color);
           }
-          else {
-            color = white;
-          }
-
-          canvasIso.add(blocArray[i].translate(0, 0, distance*i), color);
-        }
-
-        for (var i=0; i<blocArray.length/2; i++) {
-          context.strokeStyle = 'white';
-          context.beginPath();
-          context.moveTo(400, (1200/(blocArray.length/2)*i+200)-distance*100);
-          context.lineTo(690, (1200/(blocArray.length/2)*i+200)-distance*100);
-          context.stroke();
-          context.fillStyle = "white";
-          context.font = "bold 70px Gotham Rounded Bold";
-          context.fillText("CHAPITRE "+i, 700+distance*100, (1200/(blocArray.length/2)*i+200)-distance*100);
-          context.font = "bold 30px Gotham Rounded Light";
-          context.fillText("REUSSITE :", 700+distance*100, (1200/(blocArray.length/2)*i+240)-distance*100);
-          context.fillStyle = "#f26744";
-          context.font = "bold 100px Gotham Rounded Light";
-          context.fillText("50%", 900+distance*100, (1200/(blocArray.length/2)*i+280)-distance*100);
         }
 
         console.log("refresh");
@@ -178,7 +180,7 @@ angular.module('RiddleApp')
      * @return {Array}
      */
 
-    buildTower = function() {
+    buildTower = function(statistics) {
 
       var Point  = Isomer.Point;
       var Shape  = Isomer.Shape;
@@ -190,18 +192,19 @@ angular.module('RiddleApp')
       yOrigin = 2;
       width= 2;
 
-      var lenght = 3;
-      var blocHeight = 14/lenght;
+      var lenght = statistics.length;
+      var questionsLenght = 9;
+      var buildingHeight = 14;
       var offset  = 0;
 
       for (var i=0; i<lenght; i++) {
 
-        var blocOkHeight = blocHeight/2;
+        var blocOkHeight = (statistics[i]["answerLength"]) * buildingHeight / questionsLenght;
         var bloc = Shape.Prism(new Point(xOrigin, yOrigin, offset), width, width, blocOkHeight);
         blocArray.push(bloc);
         offset = offset + blocOkHeight;
 
-        var blocKoHeight = blocHeight/2;
+        var blocKoHeight = ((statistics[i]["questionLength"]) - (statistics[i]["answerLength"])) * buildingHeight / questionsLenght;
         var bloc = Shape.Prism(new Point(xOrigin, yOrigin, offset), width, width, blocKoHeight);
         blocArray.push(bloc);
         offset = offset + blocKoHeight;
@@ -237,6 +240,55 @@ angular.module('RiddleApp')
     moveTowerDown = function(){
       velocity = -0.05;
     }
+
+    /**
+     * Get statistic
+     * @return {Array} Array of percentage about user performance
+     */
+
+    getStatistics = function(){
+
+      var statistics = [];
+
+      for(var i = 0; i<$scope.exam["parties"].length; i++){
+        statistics[i] = getChapterStatistics($scope.exam["parties"][i]["id"]);
+      }
+
+      return statistics;
+
+    }
+
+    /**
+     * Get numbers of question in particular chapter
+     * @param {String} Chapter id
+     * @return {Array} Array with total number of questions and total number of good answers
+     */
+
+    getChapterStatistics = function(chapterId){
+
+      var questionLength = 0;
+      var answerLength = 0;
+
+      for(var i = 0; i<$scope.questions.length; i++){
+        if($scope.questions[i]["chapter"] == chapterId) {
+          questionLength++;
+          if($scope.questions[i]["user_reponse"]=="true"){
+            answerLength++;
+          }
+        }
+      }
+
+      var chapterStatistics = {
+          "questionLength": questionLength,
+          "answerLength": answerLength
+      };
+
+      return chapterStatistics;
+
+    }
+
+
+
 
     init();
 
