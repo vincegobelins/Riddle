@@ -8,6 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -20,6 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <!--
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -42,15 +44,15 @@
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/questions">Questions</a></li>
               <li><a ng-href="#/exam">Examen d'architecture</a></li>
+              <li><a ng-href="#/exam">Bonjour {{user}}</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+    -->
 
-    <div class="container">
     <div ng-view=""></div>
-    </div>
 
     <div class="footer">
       <div class="container">
@@ -71,6 +73,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/isomer/dist/isomer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

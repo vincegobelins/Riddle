@@ -1,9 +1,170 @@
+<section id="header">
+  <div class="wrapper-header-left col-lg-4">
+    <div class="bloc-header-left">
+      <span class="surtitle-header">Contrôle</span>
+      <h1 class="title-header">Architecture</h1>
+    </div>
+  </div>
+  <div class="wrapper-header-center col-lg-4">
+    <div class="bloc-header-center">
+      <div class="bloc-indications">
+        <ul class="list-indications">
+          <li class="item-indication">
+            <i class="fa fa-users"></i> Droit promo 2012
+          </li>
+          <li class="item-indication">
+            <i class="fa fa-calendar-o"></i> 12 avril 2015
+          </li>
+          <li class="item-indication">
+            <i class="fa fa-clock-o"></i> 2h
+          </li>
+        </ul>
+        <p class="text-indication">L'Architecture désigne l'ensemble des connaissances et des techniques de cet art de concevoir et de construire des structures complexes,
+          englobant les édifices terrestres, les espaces et les paysages.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-header-right col-lg-4">
+    <div class="bloc-header-right">
+    </div>
+  </div>
+  </div>
+</section>
+
+<aside id="sidebar">
+  <div class="wrapper-sidebar col-lg-4">
+    <div class="bloc-sidebar">
+      <h2 class="title-sidebar">Mes résultats</h2>
+      <div class="bloc-stats">
+        <canvas width="1200" height="1400" id="stats"></canvas>
+      </div>
+      <div class="bloc-cta">
+        <a class="cta" ng-href="#/questions/{{param}}"><i class="fa fa-refresh"></i> Rejouer</a>
+        <a class="cta" ng-href="#/exam/{{param}}/generator/"><i class="fa fa-plus"></i> Questionner</a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<article id="content">
+  <div class="wrapper-content col-lg-8">
+    <div class="bloc-content">
+      <div class="bloc-tabs">
+        <div class="bloc-search">
+          <a href="#" class="search-submit"><i class="fa fa-search"></i></a>
+          <div id="wrapper-search-input" class="wrapper-search-input">
+            <input ng-model="query" class="search-input" type="text" placeholder="Que voulez vous trouver ?"/>
+          </div>
+        </div>
+        <ul class="list-tabs">
+          <a href="" ng-click="filters = ''">
+            <li class="item-tabs active">
+              <i class="fa fa-file-text"></i> Questions
+            </li>
+          </a>
+          <a href="#">
+            <li class="item-tabs">
+              <i class="fa fa-heart"></i> Mes favoris
+            </li>
+          </a>
+          <a href="" ng-click="filters.autheur = 'simplelogin:22'">
+            <li class="item-tabs">
+              <i class="fa fa-comment"></i> Mes questions (10)
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="bloc-table">
+        <table ng-repeat="partie in parties" class="table" cellspacing="0" cellpadding="0">
+          <thead>
+          <tr class="table-head">
+            <td class="table-cell table-cell-question">
+              <div class="table-cell-question-wrapper">
+                      <span class="highlight">Chapitre {{$index+1}} :
+                      </span> {{partie.titre}}
+              </div>
+            </td>
+            <td class="table-cell table-cell-vote"><i class="fa fa-thumbs-up"></i> Vote</td>
+            <td class="table-cell table-cell-note"><i class="fa fa-comments"></i> Notes</td>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr ng-repeat="question in questions| filter: { question : query, chapter : partie.id } | filter : filters" class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span>{{question.question}}</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <table class="table" cellspacing="0" cellpadding="0">
+          <thead>
+          <tr class="table-head">
+            <td class="table-cell table-cell-question">
+              <div class="table-cell-question-wrapper">
+                      <span class="highlight">Chapitre A :
+                      </span> Les chateaux fort
+              </div>
+            </td>
+            <td class="table-cell table-cell-vote"><i class="fa fa-thumbs-up"></i> Vote</td>
+            <td class="table-cell table-cell-note"><i class="fa fa-comments"></i> Notes</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span>A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          <tr class="table-line">
+            <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+            <td class="table-cell table-cell-vote">15</td>
+            <td class="table-cell table-cell-note">20</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+</main>
+
 <div class="jumbotron">
   <h1>{{exam.nom}}</h1>
   <h2>{{exam.matiere}}</h2>
   <p>{{exam.date}}</p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/questions/{{param}}">Jouer<span class="glyphicon glyphicon-ok"></span></a></p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/exam/{{param}}/generator/">Soumettre<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
 <div class="row marketing">

@@ -11,7 +11,7 @@ angular.module('RiddleApp')
   .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory) {
 
     var init, getQuestions, getQuestion, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
-    var data, answered;
+    var data, answered, count;
 
     /**
      * Inisialize some data
@@ -22,6 +22,7 @@ angular.module('RiddleApp')
 
       answered = [];
 
+      $scope.user = riddleFactory.getAuth();
       $scope.param = $routeParams['param'];
       $scope.quizzPosition = 0;
 
@@ -76,14 +77,14 @@ angular.module('RiddleApp')
     getRandomIdQuestion = function (){
 
         var randomCol = getRandomInt(0, data.length-1);
-        var questionId = data[randomCol]["$id"];
+        $scope.questionId = data[randomCol]["$id"];
 
-        while (checkAnsweredQuestion(questionId)==true) {
+        while (checkAnsweredQuestion($scope.questionId)==true) {
           randomCol = getRandomInt(0, data.length-1);
-          questionId = data[randomCol]["$id"];
+          $scope.questionId = data[randomCol]["$id"];
         }
 
-        addAnsweredQuestion(questionId);
+        addAnsweredQuestion($scope.questionId);
 
         return randomCol;
 
@@ -156,11 +157,25 @@ angular.module('RiddleApp')
 
     $scope.checkAnswer = function (answer) {
 
+        count = 0;
+
         if (answer == $scope.answerOk) {
           $scope.answerMode = true;
+
+          // create an array in bdd to record results
+          if( count == 0 ) {
+            riddleFactory.setUserQuestion($scope.user, $scope.param, $scope.questionId, 'true');
+          }
+          else {
+            riddleFactory.setUserQuestion($scope.user, $scope.param, $scope.questionId, 'false');
+          }
+
+
         } else {
           $scope.answerMode = false;
         }
+
+        count++;
 
     };
 

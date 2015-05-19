@@ -1,17 +1,16 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-// bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+@import "compass/css3/box-shadow";
+@import "variables.scss";
 
 body {
-  padding: 0;
+  margin: 0; padding: 0;
+  font-size: 10px; font-family: $font-style-1; font-family: $font-style-1;
+}
+
+ul {
+  list-style-type: none;
+  margin : 0; padding: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -22,17 +21,302 @@ body {
   padding-right: 15px;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
+/*
+##############################
+# Header                     #
+##############################
+*/
 
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+#header {
+  @extend .clearfix;
+  position:fixed; z-index: 3;
+  display: block;
+  height : $header-height;
+  background: $color-bg-1;
+}
+
+.wrapper-header-left {
+
+  .bloc-header-left {
+    padding : $width-1/2 $width-1;
+  }
+
+  .title-header {
+    display: block;
+    margin: 0;
+    font-family: $font-style-2; color: $color-white; font-size: 4em; text-transform: uppercase;
+
+    &:before {
+      content: "- ";
+    }
+  }
+
+  .surtitle-header {
+    display: block;
+    font-family: $font-style-1; color: $color-text-1; font-size: 3em; text-transform: uppercase;
+  }
+}
+
+.wrapper-header-center {
+
+  .bloc-header-center {
+    padding : $width-1/2 $width-1;
+  }
+  .fa {
+    color: $color-white;
+  }
+
+  .list-indications {
+    @extend .clearfix;
+    display: block;
+    margin: 0;
+   }
+
+  .item-indication {
+    margin: 0 2em 1em 0;
+    float: left;
+    font-family: $font-style-1; color: $color-text-1; font-size: 1.5em; text-transform: uppercase;
+  }
+
+  .text-indication {
+    display: block;
+    font-family: $font-style-2; color: $color-white; font-size: 1.4em;
+  }
+
+}
+
+/*
+##############################
+# Sidebar                    #
+##############################
+*/
+
+#sidebar {
+  padding-top: $header-height;
+}
+
+.wrapper-sidebar {
+  position: fixed;
+  background: $color-bg-2;
+}
+
+.bloc-sidebar {
+  padding : $width-1/2 $width-1;
+  text-align: center;
+}
+
+.title-sidebar {
+  font-family: $font-style-2; color: $color-text-2; font-size: 2.8em; text-transform: uppercase;
+  text-align: center;
+}
+
+#stats {
+  width: 100%;
+}
+
+.cta {
+  @extend .transition;
+  display: inline-block;
+  width: 35%;
+  padding: .5em; margin: 1em;
+  border: 3px solid $color-bg-1;
+  font-family: $font-style-2; color: $color-text-2; font-size: 2em; text-decoration: none;
+  background: $color-bg-2;
+  @include border-radius(7px, 7px);
+
+  .fa {
+    color: $color-white;
+  }
+
+  &:hover {
+    color: $color-white;
+    background: $color-bg-1;
+    @include border-radius(0px, 0px);
+  }
+}
+
+/*
+##############################
+# Main content               #
+##############################
+*/
+
+.wrapper-content {
+  margin-left: percentage(4/12);
+}
+
+.bloc-content {
+  position: relative;
+}
+
+/* Tabs */
+
+.bloc-tabs {
+  @extend .clearfix;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  background: $color-bg-3;
+}
+
+.item-tabs {
+  @extend .transition;
+  display: block;
+  float: left;
+  padding: 1em 0;
+  width: 25%;
+  font-family: $font-style-2; color: $color-text-1; font-size: 2em; text-transform: uppercase; text-align: center;
+
+  &.active {
+    color: $color-text-2;
+    background: $color-white;
+  }
+
+  &:hover {
+    @include box-shadow($color-bg-2 0px -5px 0px 0px inset);
+  }
+}
+
+/* Search */
+.bloc-search {
+
+  .wrapper-search-input {
+    @extend .transition;
+    position: absolute; z-index: 1;
+    right: 0;
+    width: 0%;
+
+    &.active {
+      width: 100%;
+    }
+  }
+
+  .search-input {
+    box-sizing: border-box;
+    width: 100%;
+    border: none; outline: none;
+    padding: 1em 3.5em;
+    font-family: $font-style-2; color: $color-text-1; font-size: 2em;
+  }
+
+  .search-submit {
+    @extend .transition;
+    position: absolute; z-index: 2; right: 0;
+    display: block;
+    width: 10%;
+    padding: 1em 0;
+    font-family: $font-style-2; color: $color-text-1; font-size: 2em; text-align: center;
+
+    &:hover  {
+      background: $color-bg-3;
+    }
+  }
+}
+
+/* Table */
+
+.table {
+  border: 0;
+  width: 100%;
+  padding: $width-1 0 0 0;
+  font-family: $font-style-2; color: $color-text-1; font-size: 1.4em;
+
+  a {
+    font-family: $font-style-2; color: $color-text-1; text-decoration: none;
+  }
+}
+
+.table-head {
+
+  text-transform: uppercase;
+
+  .table-cell {
+    padding: 1em 0;
+    border-bottom: 1px solid $color-bg-1;
+  }
+
+  .table-cell-question {
+    display: block;
+    padding: 1em 0; margin-left: $width-1;
+
+    &.active {
+
+      &:before {
+        background: url('design/sprite.png')-80px 0;
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 20px; height: 20px;
+      margin-left: -2em; margin-top: 0.25em;
+      background: url('design/sprite.png')-60px 0;
+    }
+  }
+
+  .table-cell-question-wrapper {
+    font-family: $font-style-2; color: $color-text-2; font-size: 1.5em;
+
+    .highlight {
+      font-family: $font-style-1; color: $color-text-1;
+    }
+  }
+
+  .table-cell-note, .table-cell-vote {
+    text-align: center;
+  }
+}
+
+.table-line {
+
+  @extend .transition;
+
+  a {
+    @extend .transition;
+  }
+
+  &:nth-child(2n+2) {
+   background-color: $color-bg-3;
+  }
+
+  &:hover {
+    background-color: $color-bg-1;
+    color: $color-white;
+
+    a {
+      color: $color-white;
+    }
+  }
+
+  .table-cell {
+    padding: 1em 0;
+  }
+
+  .table-cell-question,  {
+    padding: 1em $width-1;
+  }
+
+  .table-cell-note, .table-cell-vote {
+    text-align: center;
+  }
+}
+
+/* Icon */
+
+.icon {
+  display: inline-block;
+  width: 20px; height: 20px;
+  margin-right: 1em;
+  &.icon-ko {
+    background: url('design/sprite.png')0 0;
+  }
+  &.icon-waitforit {
+    background: url('design/sprite.png')-20px 0;
+  }
+  &.icon-ok {
+    background: url('design/sprite.png')-40px 0;
   }
 }
 
@@ -97,10 +381,6 @@ body {
 @-webkit-keyframes my_fade_inverse_animation {
   from { opacity:0; }
   to { opacity:1; }
-}
-
-h1 {
-  color: red;
 }
 
 .fadein,
