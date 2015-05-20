@@ -1,4 +1,4 @@
-<section id="header">
+<section id="exam-header">
   <div class="wrapper-header-left col-lg-4">
     <div class="bloc-header-left">
       <span class="surtitle-header">Contrôle</span>
@@ -10,13 +10,13 @@
       <div class="bloc-indications">
         <ul class="list-indications">
           <li class="item-indication">
-            <i class="fa fa-users"></i> Droit promo 2012
+            <span class="icon icon-users"></span> Droit promo 2012
           </li>
           <li class="item-indication">
-            <i class="fa fa-calendar-o"></i> 12 avril 2015
+            <span class="icon icon-calendar"></span> 12 avril 2015
           </li>
           <li class="item-indication">
-            <i class="fa fa-clock-o"></i> 2h
+            <span class="icon icon-clock"></span> 2h
           </li>
         </ul>
         <p class="text-indication">L'Architecture désigne l'ensemble des connaissances et des techniques de cet art de concevoir et de construire des structures complexes,
@@ -39,8 +39,8 @@
         <canvas width="1200" height="1400" id="stats"></canvas>
       </div>
       <div class="bloc-cta">
-        <a class="cta" ng-href="#/questions/{{param}}"><i class="fa fa-refresh"></i> Rejouer</a>
-        <a class="cta" ng-href="#/exam/{{param}}/generator/"><i class="fa fa-plus"></i> Questionner</a>
+        <a class="cta" ng-href="#/questions/{{param}}"><span class="icon icon-cycle"></span> Rejouer</a>
+        <a class="cta" ng-href="#/exam/{{param}}/generator/"><span class="icon icon-feather"></span> Questionner</a>
       </div>
     </div>
   </div>
@@ -49,30 +49,32 @@
 <article id="content">
   <div class="wrapper-content col-lg-8">
     <div class="bloc-content">
-      <div class="bloc-tabs">
-        <div class="bloc-search">
-          <a href="#" class="search-submit"><i class="fa fa-search"></i></a>
-          <div id="wrapper-search-input" class="wrapper-search-input">
-            <input ng-model="query" class="search-input" type="text" placeholder="Que voulez vous trouver ?"/>
+      <div class="wrapper-bloc-tabs col-lg-8">
+        <div class="bloc-tabs">
+          <div class="bloc-search">
+            <a href="#" class="search-submit"><i class="fa fa-search"></i></a>
+            <div id="wrapper-search-input" class="wrapper-search-input">
+              <input ng-model="query" class="search-input" type="text" placeholder="Que voulez vous trouver ?"/>
+            </div>
           </div>
+          <ul class="list-tabs">
+            <a href="" ng-click="filters = ''">
+              <li class="item-tabs" ng-class="{active: !filters.autheur}">
+                <span class="icon icon-open-book"></span> Questions
+              </li>
+            </a>
+            <a href="#">
+              <li class="item-tabs">
+                <span class="icon icon-heart"></span> Mes favoris
+              </li>
+            </a>
+            <a href="" ng-click="filters.autheur = 'simplelogin:22'">
+              <li class="item-tabs" ng-class="{active: filters.autheur == 'simplelogin:22'}">
+                <span class="icon icon-chat"></span> Mes questions (10)
+              </li>
+            </a>
+          </ul>
         </div>
-        <ul class="list-tabs">
-          <a href="" ng-click="filters = ''">
-            <li class="item-tabs" ng-class="{active: filters == ''}">
-              <i class="fa fa-file-text"></i> Questions
-            </li>
-          </a>
-          <a href="#">
-            <li class="item-tabs">
-              <i class="fa fa-heart"></i> Mes favoris
-            </li>
-          </a>
-          <a href="" ng-click="filters.autheur = 'simplelogin:22'">
-            <li class="item-tabs" ng-class="{active: filters.autheur == 'simplelogin:22'}">
-              <i class="fa fa-comment"></i> Mes questions (10)
-            </li>
-          </a>
-        </ul>
       </div>
       <div class="bloc-table">
         <table ng-repeat="partie in parties" class="table" cellspacing="0" cellpadding="0">
@@ -84,8 +86,8 @@
                       </span> {{partie.titre}}
               </div>
             </td>
-            <td class="table-cell table-cell-vote"><i class="fa fa-thumbs-up"></i> Vote</td>
-            <td class="table-cell table-cell-note"><i class="fa fa-comments"></i> Notes</td>
+            <td class="table-cell table-cell-vote"><span class="icon icon-thumbs-up"></span> Vote</td>
+            <td class="table-cell table-cell-note"><span class="icon icon-new-message"></span> Commentaires</td>
           </tr>
           </thead>
           <tbody>

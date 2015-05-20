@@ -30,6 +30,13 @@ angular
       }
     });
   }])
+  .controller('AppCtrl', function($scope, $routeParams, riddleFactory) {
+
+    $( ".navigation-icon-wrapper" ).on( "click", function(e) {
+      e.preventDefault();
+      $(this).parent('.navigation-wrapper-slide').toggleClass( 'active' );
+    });
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

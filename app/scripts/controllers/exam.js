@@ -32,6 +32,16 @@ angular.module('RiddleApp')
         $('#wrapper-search-input').toggleClass( 'active' );
       });
 
+      $(window).on( "scroll", function() {
+        if ($(window).scrollTop() == 0)
+          $('.wrapper-bloc-tabs').removeClass( 'sliding' );
+        else {
+          $('.wrapper-bloc-tabs').addClass( 'sliding' );
+        }
+      });
+
+
+
     }
 
     /**
@@ -121,8 +131,8 @@ angular.module('RiddleApp')
       var Color  = Isomer.Color;
 
       var white = new Color(255, 255, 255, 0.5);
-      var red2 = new Color(200, 85, 60);
-      var red = new Color(150, 85, 62);
+      var red2 = new Color(215, 80, 50, 0.5);
+      var red = new Color(150, 85, 62, 0.5);
       var green = new Color(100, 142, 60, 0.5);
 
       var Point  = Isomer.Point;
@@ -168,6 +178,7 @@ angular.module('RiddleApp')
             }
 
             canvasIso.add(blocArray[i].translate(0, 0, distance*i), color);
+
           }
         }
 

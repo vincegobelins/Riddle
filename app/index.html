@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="RiddleApp">
+  <body ng-app="RiddleApp" ng-controller="AppCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -51,6 +51,47 @@
       </div>
     </div>
     -->
+    <header id="header">
+      <div class="header-wrapper">
+        <div class="navigation-wrapper-slide">
+          <div class="wrapper-indications-header">
+            <div class="bloc-indications-header">
+              <p class="title-indications-header">Jean Dupont</p>
+              <p class="tools-indications-header">
+                <a href="">Log Out</a>
+                <a href=""><span class="icon icon-chat"></span></a>
+                <a href=""><span class="icon icon-warning"></span></a>
+                <a href=""><span class="icon icon-help"></span></a>
+              </p>
+            </div>
+          </div>
+          <div class="navigation-icon-wrapper">
+            <div id="navigation-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <nav>
+            <ul class="list-navigation">
+              <li class="item-navigation">
+                <a href=""><span class="icon icon-user"></span>Mon compte</a>
+              </li>
+              <li class="item-navigation">
+                <a href=""><span class="icon icon-archive"></span>Mes domaines</a>
+              </li>
+              <li class="item-navigation">
+                <a href=""><span class="icon icon-tools"></span>Paramètres</a>
+              </li>
+              <li class="item-navigation">
+                <a href=""><span class="icon icon-map"></span>Map</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
 
     <div ng-view=""></div>
 

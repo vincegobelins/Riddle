@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
 @import "compass/css3/box-shadow";
+@import "icon.scss";
 @import "variables.scss";
 
 body {
@@ -29,9 +30,168 @@ ul {
 */
 
 #header {
+  z-index: 4;
+  position: fixed;
+  display: block;
+  height: $width-2; width: 100%;
+  background: $color-white;
+}
+.header-wrapper {
+  @extend .clearfix;
+  display: block;
+}
+
+.navigation-wrapper-slide {
+  @extend .transition;
+  z-index: 5;
+  position: fixed; top: 0; bottom: 0; right : -40em;
+  display: block;
+  width: 35em;
+  background: $color-bg-2;
+
+  &.active {
+    right: 0;
+
+    #navigation-icon {
+
+      span:nth-child(1) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+      }
+
+      span:nth-child(2) {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      span:nth-child(3) {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      span:nth-child(4) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+      }
+
+    }
+  }
+
+  .wrapper-indications-header {
+    position: absolute;
+    width: 100%; height: $width-2;
+    background: $color-bg-3;
+
+    .bloc-indications-header {
+      padding: 1em;
+
+      .title-indications-header {
+        margin: 0;
+        font-family: $font-style-2; color: $color-text-1; font-size: 2.3em; text-decoration: none;
+      }
+
+      .tools-indications-header {
+        margin: 0;
+
+        a {
+          font-family: $font-style-2; color: $color-text-1; font-size: 1.2em; text-decoration: none;
+        }
+      }
+    }
+
+  }
+
+  .list-navigation {
+
+    padding-top: $width-2;
+
+    .item-navigation {
+      a {
+        @extend .transition;
+        display: block;
+        padding: 1em 2em;
+        font-family: $font-style-2; color: $color-white; font-size: 1.5em; text-decoration: none;
+
+        &:hover {
+          color: $color-text-1;
+          background: $color-bg-3;
+        }
+      }
+
+    }
+  }
+}
+
+.navigation-icon-wrapper {
+  z-index: 6;
+  position: fixed; right: 0;
+  display: block;
+  width: $width-2; height: $width-2;
+  background: $color-bg-3;
+}
+/* Icon 1 */
+
+#navigation-icon {
+  @extend .transition;
+  display: block;
+  overflow: hidden;
+  margin: 1.75em auto 0;
+  width: 3.5em; height: 3.5em;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  cursor: pointer;
+}
+
+#navigation-icon span {
+  @extend .transition;
+  display: block;
+  position: absolute; left: 0;
+  width: 100%; height: 5px;
+  background: $color-bg-2;
+  border-radius: 4px;
+  opacity: 1;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+
+  &:nth-child(1) {
+    top: 0px;
+  }
+
+  &:nth-child(2) {
+    top: 12px;
+  }
+
+  &:nth-child(3) {
+    top: 12px;
+  }
+
+  &:nth-child(4) {
+    top: 24px;
+  }
+}
+
+/*
+##############################
+# Exam header                #
+##############################
+*/
+
+#exam-header {
   @extend .clearfix;
   position:fixed; z-index: 3;
   display: block;
+  margin-top:  $width-2;
   height : $header-height;
   background: $color-bg-1;
 }
@@ -63,7 +223,7 @@ ul {
   .bloc-header-center {
     padding : $width-1/2 $width-1;
   }
-  .fa {
+  .icon {
     color: $color-white;
   }
 
@@ -93,7 +253,7 @@ ul {
 */
 
 #sidebar {
-  padding-top: $header-height;
+  padding-top: $header-height +  $width-2;;
 }
 
 .wrapper-sidebar {
@@ -134,7 +294,7 @@ ul {
   background: $color-bg-2;
   @include border-radius(7px, 7px);
 
-  .fa {
+  .icon {
     color: $color-white;
   }
 
@@ -161,11 +321,39 @@ ul {
 
 /* Tabs */
 
+.wrapper-bloc-tabs  {
+  @extend .transition-long;
+  z-index: 1;
+  overflow: hidden;
+  position: fixed;
+  display: block;
+
+  &:after {
+    @extend .transition;
+    @extend .clearfix;
+    content: '';
+    display: block;
+    width: 100%; height: 0em;
+
+    background: rgba(237,237,237,1);
+    background: -moz-linear-gradient(top, rgba(237,237,237,1) 0%, rgba(246,246,246,0.47) 53%, rgba(255,255,255,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(237,237,237,1)), color-stop(53%, rgba(246,246,246,0.47)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(top, rgba(237,237,237,1) 0%, rgba(246,246,246,0.47) 53%, rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(top, rgba(237,237,237,1) 0%, rgba(246,246,246,0.47) 53%, rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient(top, rgba(237,237,237,1) 0%, rgba(246,246,246,0.47) 53%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(to bottom, rgba(237,237,237,1) 0%, rgba(246,246,246,0.47) 53%, rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff', GradientType=0 );
+  }
+
+  &.sliding {
+    &:after {
+      height: 2em;
+    }
+  }
+}
+
 .bloc-tabs {
   @extend .clearfix;
-  overflow: hidden;
-  position: relative;
-  display: block;
   background: $color-bg-3;
 }
 
@@ -175,6 +363,10 @@ ul {
   padding: 1em 0;
   width: 25%;
   font-family: $font-style-2; color: $color-text-1; font-size: 2em; text-transform: uppercase; text-align: center;
+
+  &:hover {
+    color: $color-text-2;
+  }
 
   &.active {
     color: $color-text-2;
