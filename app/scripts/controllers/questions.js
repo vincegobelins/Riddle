@@ -10,8 +10,8 @@
 angular.module('RiddleApp')
   .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory) {
 
-    var init, getQuestions, getQuestion, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
-    var data, answered, count;
+    var init, getExam, getQuestions, getQuestion, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
+    var exam, data, answered, count;
 
     /**
      * Inisialize some data
@@ -26,9 +26,28 @@ angular.module('RiddleApp')
       $scope.param = $routeParams['param'];
       $scope.quizzPosition = 0;
 
+      getExam();
       getQuestions();
 
     },
+
+    /**
+     * Get information relative to exam
+     * @return {void}
+     */
+
+      getExam = function(){
+
+        exam = riddleFactory.getExam($scope.param);
+
+        exam.$loaded().then(function () {
+
+          $scope.exam = exam;
+          $scope.parties = $scope.exam["parties"];
+
+        });
+
+      },
 
     /**
      * Get all questions or by chapter
@@ -146,8 +165,12 @@ angular.module('RiddleApp')
       count = 0;
 
       if($scope.quizzPosition < $scope.quizzLength) {
+
         $scope.answerMode = false;
         getQuestion();
+
+        var percentageProgression = $scope.quizzPosition * 100 / $scope.quizzLength;
+        $( ".line-progression").css('width', percentageProgression+"%")
       }
 
     },

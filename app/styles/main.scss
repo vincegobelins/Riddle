@@ -42,7 +42,7 @@ ul {
 }
 
 .navigation-wrapper-slide {
-  @extend .transition;
+  @extend .elastic-transition;
   z-index: 5;
   position: fixed; top: 0; bottom: 0; right : -40em;
   display: block;
@@ -253,11 +253,8 @@ ul {
 */
 
 #sidebar {
-  padding-top: $header-height +  $width-2;;
-}
 
-.wrapper-sidebar {
-  position: fixed;
+  position: fixed; top: $header-height +  $width-2; bottom: 0;
   background: $color-bg-2;
 
   &:before {
@@ -307,11 +304,44 @@ ul {
 
 /*
 ##############################
+# Sidebar questions          #
+##############################
+*/
+
+.chapitre-sidebar {
+  font-family: $font-style-2; color: $color-white; font-size: 1.5em; text-transform: uppercase;
+}
+
+.wrapper-progression {
+
+
+  display: inline-block;
+  width: 100%;
+  font-family: $font-style-2; color: $color-text-2; font-size: 1.5em; text-transform: uppercase;
+
+  .bloc-progression {
+
+    display: inline-block;
+    width: 50%; height: 1em;
+    background-color: black;
+
+    .line-progression {
+      @extend .elastic-transition;
+      display: block;
+      width: 0%; height: 1em;
+      background-color: $color-bg-1;
+    }
+  }
+}
+
+/*
+##############################
 # Main content               #
 ##############################
 */
 
 .wrapper-content {
+  margin-top: $header-height +  $width-2;
   margin-left: percentage(4/12);
 }
 
@@ -518,36 +548,69 @@ ul {
   }
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+/*
+##############################
+# Question content             #
+##############################
+*/
+
+.question-title-wrapper {
+  padding: $width-1;
+  background: $color-bg-3;
 }
 
-.container-narrow > hr {
-  margin: 30px 0;
+.question-title {
+  margin: 0;
+  font-family: $font-style-2; color: $color-text-1; font-size: 2.7em;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+.wrapper-answer {
+  .list-answer {
+    .item-answer {
+      @extend .transition;
+      padding: 0 $width-1;
+      text-align: center;
+      cursor: pointer;
 
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+      &:nth-child(2n+2) {
+        background-color: $color-bg-3;
+      }
+
+      &:hover {
+        background-color: $color-bg-2;
+
+        .link-item-answer {
+          color: $color-white;
+        }
+      }
+
+      &.hide {
+        height: 0;
+        opacity: 0;
+        .link-item-answer {
+          padding: 0;
+        }
+      }
+
+      &.active {
+        background-color: $color-bg-4;
+
+        .link-item-answer {
+          color: $color-white !important;
+        }
+      }
+
+      .link-item-answer {
+        @extend .transition;
+        display: block;
+        padding: $width-1/4;
+        text-align: center;
+        font-family: $font-style-2; color: $color-text-1; font-size: 2em;
+      }
+    }
   }
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
-}
 
 /* Transition */
 

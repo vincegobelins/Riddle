@@ -1,18 +1,79 @@
-<div class="jumbotron">
-  <h1>{{title}}</h1>
-  <p class="lead">
-    <h4>{{question}}</h4>
-  </p>
-  <p>Question {{quizzPosition}} / {{quizzLength}}</p>
-</div>
+<section id="exam-header">
+  <div class="wrapper-header-left col-lg-4">
+    <div class="bloc-header-left">
+      <span class="surtitle-header">Contrôle</span>
+      <h1 class="title-header">{{exam.nom}}</h1>
+    </div>
+  </div>
+  <div class="wrapper-header-center col-lg-4">
+    <div class="bloc-header-center">
+      <div class="bloc-indications">
+        <ul class="list-indications">
+          <li class="item-indication">
+            <span class="icon icon-users"></span> {{exam.groupe}}
+          </li>
+          <li class="item-indication">
+            <span class="icon icon-calendar"></span> {{exam.date}}
+          </li>
+          <li class="item-indication">
+            <span class="icon icon-clock"></span> {{exam.duree}}
+          </li>
+        </ul>
+        <p class="text-indication">{{exam.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-header-right col-lg-4">
+    <div class="bloc-header-right">
+    </div>
+  </div>
+  </div>
+</section>
 
-<div class="row marketing">
-  <li ng-repeat="answer in answers" ng-hide="answerMode" class="fadeout">
-      <a class="btn btn-lg btn-regular" ng-click="checkAnswer(answer)">{{answer}}<span class="glyphicon"></span></a>
-  </li>
-</div>
+<aside id="sidebar" class="col-lg-4">
+  <div class="wrapper-sidebar">
+    <div class="bloc-sidebar">
+      <p class="chapitre-sidebar">Chapitre 1</p>
+      <h2 class="title-sidebar">Question n°{{quizzPosition}}</h2>
+      <div class="wrapper-progression">
+        {{quizzPosition}} / {{quizzLength}}
+        <div class="bloc-progression">
+          <div class="line-progression">
 
-<div class="jumbotron fadein fadeout" ng-show="answerMode">
-  <p>{{solution}}</p>
-  <a class="btn btn-lg btn-success" ng-click="nextQuestion()">Question suivante<span class="glyphicon glyphicon-ok"></span></a>
-</div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
+    </div>
+  </div>
+</aside>
+
+<article id="content">
+  <div class="wrapper-content col-lg-8">
+    <div class="bloc-content">
+      <div class="question-title-wrapper">
+        <h3 class="question-title">{{question}}</h3>
+      </div>
+
+      <div class="wrapper-answer">
+        <ul class="list-answer">
+          <li ng-repeat="answer in answers" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fadeout">
+            <a class="link-item-answer" ng-click="checkAnswer(answer)">{{answer}}<span class="glyphicon"></span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="jumbotron fadein fadeout" ng-show="answerMode">
+        <p>{{solution}}</p>
+        <a class="btn btn-lg btn-success" ng-click="nextQuestion()">Question suivante<span class="glyphicon glyphicon-ok"></span></a>
+      </div>
+
+
+    </div>
+  </div>
+</article>
+</main>
+

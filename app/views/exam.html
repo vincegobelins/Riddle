@@ -2,7 +2,7 @@
   <div class="wrapper-header-left col-lg-4">
     <div class="bloc-header-left">
       <span class="surtitle-header">Contrôle</span>
-      <h1 class="title-header">Architecture</h1>
+      <h1 class="title-header">{{exam.nom}}</h1>
     </div>
   </div>
   <div class="wrapper-header-center col-lg-4">
@@ -10,17 +10,16 @@
       <div class="bloc-indications">
         <ul class="list-indications">
           <li class="item-indication">
-            <span class="icon icon-users"></span> Droit promo 2012
+            <span class="icon icon-users"></span> {{exam.groupe}}
           </li>
           <li class="item-indication">
-            <span class="icon icon-calendar"></span> 12 avril 2015
+            <span class="icon icon-calendar"></span> {{exam.date}}
           </li>
           <li class="item-indication">
-            <span class="icon icon-clock"></span> 2h
+            <span class="icon icon-clock"></span> {{exam.duree}}
           </li>
         </ul>
-        <p class="text-indication">L'Architecture désigne l'ensemble des connaissances et des techniques de cet art de concevoir et de construire des structures complexes,
-          englobant les édifices terrestres, les espaces et les paysages.</p>
+        <p class="text-indication">{{exam.description}}</p>
       </div>
     </div>
   </div>
@@ -31,8 +30,8 @@
   </div>
 </section>
 
-<aside id="sidebar">
-  <div class="wrapper-sidebar col-lg-4">
+<aside id="sidebar" class="col-lg-4">
+  <div class="wrapper-sidebar">
     <div class="bloc-sidebar">
       <h2 class="title-sidebar">Mes résultats</h2>
       <div class="bloc-stats">
@@ -105,21 +104,3 @@
   </div>
 </article>
 </main>
-
-<div class="jumbotron">
-  <h1>{{exam.nom}}</h1>
-  <h2>{{exam.matiere}}</h2>
-  <p>{{exam.date}}</p>
-</div>
-
-<div class="row marketing">
-  <h4>Questions</h4>
-
-    <li ng-repeat="question in questions">
-        <h4>{{question.titre}}</h4>
-        <p>
-          {{question.question}}
-        </p>
-    </li>
-
-</div>
