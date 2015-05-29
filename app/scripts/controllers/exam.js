@@ -302,7 +302,6 @@ angular.module('RiddleApp')
 
 
     init();
-
     setInterval(renderCanvas, 1000 / 30);
   }
 );

@@ -1,8 +1,14 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
-@import "compass/css3/box-shadow";
-@import "icon.scss";
 @import "variables.scss";
+@import "compass/css3/box-shadow";
+@import "compass/css3/user-interface";
+@import "icon.scss";
+@import "editor.scss";
+
+*:focus {
+  outline: none;
+}
 
 body {
   @extend .transition;
@@ -205,7 +211,7 @@ ul {
   .title-header {
     display: block;
     margin: 0;
-    font-family: $font-style-2; color: $color-white; font-size: 4em; text-transform: uppercase;
+    font-family: $font-style-2; color: $color-white; font-size: 3.8em; text-transform: uppercase;
 
     &:before {
       content: "- ";
@@ -241,6 +247,7 @@ ul {
 
   .text-indication {
     display: block;
+    margin: 0;
     font-family: $font-style-2; color: $color-white; font-size: 1.4em;
   }
 
@@ -536,7 +543,7 @@ ul {
 .icon {
   display: inline-block;
   width: 20px; height: 20px;
-  margin-right: 1em;
+  margin-right: .2em;
   &.iconko {
     background: url('design/sprite.png')0 0;
   }
@@ -562,6 +569,7 @@ ul {
 .question-title {
   margin: 0;
   font-family: $font-style-2; color: $color-text-1; font-size: 2.7em;
+  font-weight: normal;
 }
 
 .wrapper-answer {
@@ -611,6 +619,213 @@ ul {
   }
 }
 
+.wrapper-solution {
+}
+
+.text-solution {
+  padding: $width-1 $width-1;
+  font-family: $font-style-2; color: $color-text-1; font-size: 1.8em; text-align: center;
+}
+
+.item-comment {
+
+  &:before {
+    background-color: $color-border-2;
+    content: "";
+    display: block;
+    height: 0.5em; width: 100%;
+  }
+
+  .header-comment {
+    padding: 1em $width-1;
+    background: $color-bg-3;
+
+    .title-comment {
+      margin: 0;
+      font-family: $font-style-2; color: $color-text-1; font-size: 1.8em;
+    }
+  }
+
+  .wrapper-content-comment {
+    padding: 0 $width-1;
+
+    .text-comment {
+      font-family: $font-style-2; color: $color-text-1; font-size: 1.5em;
+    }
+  }
+}
+
+/*
+##############################
+# Generator content          #
+##############################
+*/
+
+.form-title {
+  padding: 0 $width-1;
+  background: $color-bg-3;
+
+  p {
+    display: inline-block;
+    padding: 0 1em;
+    font-family: $font-style-2; color: $color-text-1; font-size: 2em;
+  }
+}
+
+.form-content {
+  @extend .clearfix;
+  font-family: $font-style-2; color: $color-text-1;
+  padding: 1em $width-1*1.4;
+}
+
+.form-group {
+  position: relative;
+
+  .input-option {
+    display: none;
+  }
+
+  &:last-child {
+    .input-option {
+      display: block;
+    }
+  }
+}
+
+.input-option {
+  @extend .transition;
+  position: absolute;
+  width: 1em; height: 1em;
+  right: 0; top:5px;
+  color: $color-text-2;
+  font-size: 2em; font-family: $font-style-1;
+  border: 2px solid $color-white;
+  @include border-radius(5px, 5px);
+  text-indent: 3px; line-height: 1;
+
+  &:hover {
+    border: 2px solid $color-bg-1;
+  }
+}
+
+
+input[type="text"], textarea {
+
+  @extend .transition;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $color-border-2;
+  padding: .5em; padding: .5em;
+  font-family: $font-style-2; color: $color-text-1; font-size: 1.5em;
+
+  @include input-placeholder {
+    font-style: italic;
+  }
+
+  &:focus {
+    border-bottom: 3px solid $color-bg-2;
+  }
+}
+
+
+.checkbox {
+  float: left;
+  font-size: 1.6em;
+  margin: 0.5em 0;
+  width: 50%;
+}
+
+.fake-radio {
+
+  &:empty {
+
+    ~ label {
+
+      &:before {
+        content: '+' !important;
+        text-indent: 2px; line-height: 1;
+        color: $color-text-2;
+      }
+    }
+  }
+}
+
+.radio {
+
+  &:empty {
+    margin-left: -9999px;
+
+    ~ label {
+      position: relative;
+      float: left;
+      text-indent: 2em; color: $color-text-3;
+      cursor: pointer;
+      -webkit-user-select: none;  -moz-user-select: none;  -ms-user-select: none;  user-select: none;
+
+      &:before {
+        @extend .transition;
+        content: '';
+        position: absolute;
+        display: block;
+        width: 1em; height: 1em;
+        border: 2px solid $color-bg-1;
+        @include border-radius(5px, 5px);
+      }
+    }
+  }
+
+  &:checked {
+
+    ~ label {
+      color: $color-text-2;
+
+      &:before {
+        content:'\2714';
+        line-height: 1em; text-indent: 2px;
+        color: $color-white;
+        background-color: $color-bg-1;
+      }
+    }
+
+  }
+
+
+}
+.wrapper-cta  {
+  padding: 1em 0;
+}
+
+.cta-generator {
+  @extend .transition;
+  display: inline-block;
+  width: 90%;
+  padding: .5em;
+  border: 2px solid $color-bg-1;
+  font-family: $font-style-2; color: $color-text-2;text-decoration: none; font-size: 1.6em; text-align: center;
+  box-sizing: border-box;
+  @include border-radius(7px, 7px);
+
+  .icon {
+    color: $color-text-1;
+    margin-right: 1em;
+  }
+
+  &:hover, &:focus {
+    color: $color-white;
+    background: $color-bg-1;
+    @include border-radius(0px, 0px);
+  }
+}
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+  content:'\2714';
+  line-height: 1em; text-indent: 2px;
+  color: $color-text-1;
+}
+
+input.radio:hover:not(:checked) ~ label {
+  color: $color-text-2;
+}
 
 /* Transition */
 
@@ -686,3 +901,5 @@ ul {
     border-bottom: 0;
   }
 }
+
+@import "responsive.scss";

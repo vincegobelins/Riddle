@@ -29,6 +29,9 @@ angular.module('RiddleApp')
       getExam();
       getQuestions();
 
+      // init zenpen
+      ZenPen.editor.init();
+
     },
 
     /**

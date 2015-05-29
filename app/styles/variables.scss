@@ -1,0 +1,81 @@
+@import "compass/css3";
+
+/* Colors */
+
+$color-white : #fff;
+$color-black : #000;
+
+$color-bg-1 : #f26744; /* orange */
+$color-bg-2 : #2e3039; /* deep blue */
+$color-bg-3 : #f5f0ea; /* light grey */
+$color-bg-4 : #4DCB6D; /* green */
+
+$color-border-1 : #525564; /* drak blue */
+$color-border-2 : #b4b0af; /* grey */
+
+$color-text-1 : #2e3039; /* deep blue */
+$color-text-2 : #f26744; /* orange */
+$color-text-3 : #6f7177; /* grey */
+
+/* Fonts */
+
+@include font-face("Gotham Rounded Bold", font-files("font/GothamRounded-Bold.eot", "font/GothamRounded-Bold.ttf", "font/GothamRounded-Bold.svg", "font/GothamRounded-Bold.woff"));
+@include font-face("Gotham Rounded Light", font-files("font/GothamRounded-Light.eot", "font/GothamRounded-Light.ttf", "font/GothamRounded-Light.svg", "font/GothamRounded-Light.woff"));
+
+$font-style-1 : 'Gotham Rounded Bold';
+$font-style-2 : 'Gotham Rounded Light';
+
+/* Grid */
+
+.col-lg-3 {
+  display: block;
+  float: left;
+  width: percentage(3/12);
+}
+
+.col-lg-4 {
+  display: block;
+  float: left;
+  width: percentage(4/12);
+}
+
+.col-lg-5 {
+  display: block;
+  float: left;
+  width: percentage(5/12);
+}
+
+.col-lg-8 {
+  display: block;
+  float: left;
+  width: percentage(8/12);
+}
+/* Width */
+
+$header-height: 17em;
+$width-1 : 5em;
+$width-2 : 6.5em;
+
+/* Clearfix */
+.clearfix {
+  overflow: auto;
+}
+
+/* Transition */
+.transition {
+   @include transition-property(all);
+   @include transition-duration(.2s);
+   @include transition-timing-function(ease-in-out);
+}
+
+.transition-long {
+  @include transition-property(all);
+  @include transition-duration(.5s);
+  @include transition-timing-function(ease-in-out);
+}
+
+.elastic-transition {
+  @include transition-property(all);
+  @include transition-duration(.5s);
+  @include transition-timing-function(cubic-bezier(.57, 0.4, .2, .98));
+}

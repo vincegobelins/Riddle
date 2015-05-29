@@ -1,0 +1,125 @@
+<section id="exam-header">
+  <div class="wrapper-header-left col-lg-4">
+    <div class="bloc-header-left">
+      <span class="surtitle-header">Contrôle</span>
+      <h1 class="title-header">{{exam.nom}}</h1>
+    </div>
+  </div>
+  <div class="wrapper-header-center col-lg-5">
+    <div class="bloc-header-center">
+      <div class="bloc-indications">
+        <ul class="list-indications">
+          <li class="item-indication">
+            <span class="icon icon-users"></span> {{exam.groupe}}
+          </li>
+          <li class="item-indication">
+            <span class="icon icon-calendar"></span> {{exam.date}}
+          </li>
+          <li class="item-indication">
+            <span class="icon icon-clock"></span> {{exam.duree}}
+          </li>
+        </ul>
+        <p class="text-indication">{{exam.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-header-right col-lg-3">
+    <div class="bloc-header-right">
+    </div>
+  </div>
+  </div>
+</section>
+
+<aside id="sidebar" class="col-lg-4">
+  <div class="wrapper-sidebar">
+    <div class="bloc-sidebar">
+      <p class="chapitre-sidebar">Chapitre 1</p>
+      <h2 class="title-sidebar">Question n°{{quizzPosition}}</h2>
+      <div class="wrapper-progression">
+        {{quizzPosition}} / {{quizzLength}}
+        <div class="bloc-progression">
+          <div class="line-progression">
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
+    </div>
+  </div>
+</aside>
+
+<article id="content">
+  <div class="wrapper-content col-lg-8">
+    <div class="bloc-content">
+
+      <form ng-submit="sendQuestion()">
+        <div class="form-title">
+          <span class="icon iconko"></span><p>Choississez le type de question</p>
+        </div>
+        <div class="form-content">
+          <div class="wrapper-cta col-lg-4">
+            <a ng-click="" class="cta-generator" href="">
+              <span class="icon icon-list"></span>Textuel
+            </a>
+          </div>
+          <div class="wrapper-cta col-lg-4">
+            <a ng-click="" class="cta-generator" href="">
+              <span class="icon icon-image"></span>Image
+            </a>
+          </div>
+          <div class="wrapper-cta col-lg-4">
+            <a ng-click="" class="cta-generator" href="">
+              <span class="icon icon-key"></span>Mot clé
+            </a>
+          </div>
+        </div>
+        <div class="form-title">
+          <span class="icon iconko"></span><p>Séléctionnez le chapitre concerné</p>
+        </div>
+        <div class="form-content">
+          <div class="checkbox" ng-repeat="chapter in chapters">
+              <input type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
+              <label for="input-chapter-{{$index+1}}"><strong>Chapitre {{$index+1}}</strong> : {{chapter.titre}}</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
+            <label for="new">Nouveau chapitre</label>
+          </div>
+        </div>
+        <div class="form-title">
+          <span class="icon iconko"></span><p>Créer votre question</p>
+        </div>
+        <div class="form-content">
+          <div class="form-group">
+            <a href="" class="input-option"><span class="icon icon-image"></span></a>
+            <input placeholder="Titre de la question" type="text" class="form-control input" id="input-title" placeholder="Enter titre">
+          </div>
+          <div class="form-group">
+            <input placeholder="Intitulé de la question" type="text" class="form-control input" id="input-question" placeholder="Enter question">
+          </div>
+          <div class="form-group">
+            <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
+          </div>
+          <div class="form-group">
+            <a href="" class="input-option"><span class="icon icon-image"></span></a>
+            <textarea class="form-control input" id="textarea-solution" rows="3">Explication</textarea>
+          </div>
+          <div class="form-group" ng-repeat="answer in answers">
+            <a ng-click="addAnswer()" class="input-option">+</a>
+            <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <div class="alert alert-info" role="alert">{{callback}}</div>
+
+
+    </div>
+  </div>
+</article>
+</main>
+
+

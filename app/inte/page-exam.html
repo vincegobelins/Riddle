@@ -1,0 +1,254 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <!-- endbuild -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="../libs/isomer.min.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body ng-app="RiddleApp">
+  <header>
+
+  </header>
+  <main>
+    <section id="header">
+      <div class="wrapper-header-left col-lg-4">
+        <div class="bloc-header-left">
+          <span class="surtitle-header">Contrôle</span>
+          <h1 class="title-header">Architecture</h1>
+        </div>
+      </div>
+      <div class="wrapper-header-center col-lg-4">
+        <div class="bloc-header-center">
+          <div class="bloc-indications">
+            <ul class="list-indications">
+              <li class="item-indication">
+                <i class="fa fa-users"></i> Droit promo 2012
+              </li>
+              <li class="item-indication">
+                <i class="fa fa-calendar-o"></i> 12 avril 2015
+              </li>
+              <li class="item-indication">
+                <i class="fa fa-clock-o"></i> 2h
+              </li>
+            </ul>
+            <p class="text-indication">L'Architecture désigne l'ensemble des connaissances et des techniques de cet art de concevoir et de construire des structures complexes,
+              englobant les édifices terrestres, les espaces et les paysages.</p>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-header-right col-lg-4">
+        <div class="bloc-header-right">
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <aside id="sidebar">
+      <div class="wrapper-sidebar col-lg-4">
+        <div class="bloc-sidebar">
+          <h2 class="title-sidebar">Mes résultats</h2>
+          <div class="bloc-stats">
+            <canvas width="800" height="500" id="stats"></canvas>
+          </div>
+          <div class="bloc-cta">
+            <a class="cta" href="#"><i class="fa fa-refresh"></i> Rejouer</a>
+            <a class="cta cta-inverse" href="#"><i class="fa fa-plus"></i> Questionner</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <article id="content">
+      <div class="wrapper-content col-lg-8">
+        <div class="bloc-content">
+          <div class="bloc-tabs">
+            <div class="bloc-search">
+              <a href="#" onClick="$('#wrapper-search-input').css('width', '100%');" class="search-submit"><i class="fa fa-search"></i></a>
+              <div id="wrapper-search-input" class="wrapper-search-input">
+                <input class="search-input" type="text" placeholder="Que voulez vous trouver ?"/>
+              </div>
+            </div>
+            <ul class="list-tabs">
+              <a href="#">
+                <li class="item-tabs active">
+                  <i class="fa fa-file-text"></i> Questions
+                </li>
+              </a>
+              <a href="#">
+                <li class="item-tabs">
+                  <i class="fa fa-heart"></i> Mes favoris
+                </li>
+              </a>
+              <a href="#">
+                <li class="item-tabs">
+                  <i class="fa fa-comment"></i> Mes questions (10)
+                </li>
+              </a>
+            </ul>
+          </div>
+          <div class="bloc-table">
+            <table class="table" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr class="table-head">
+                  <td class="table-cell table-cell-question">
+                    <div class="table-cell-question-wrapper">
+                      <span class="highlight">Chapitre A :
+                      </span> Les chateaux fort
+                    </div>
+                  </td>
+                  <td class="table-cell table-cell-vote"><i class="fa fa-thumbs-up"></i> Vote</td>
+                  <td class="table-cell table-cell-note"><i class="fa fa-comments"></i> Notes</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-line">
+                    <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                    <td class="table-cell table-cell-vote">15</td>
+                    <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span>A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+                <tr class="table-line">
+                  <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                  <td class="table-cell table-cell-vote">15</td>
+                  <td class="table-cell table-cell-note">20</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table" cellspacing="0" cellpadding="0">
+              <thead>
+              <tr class="table-head">
+                <td class="table-cell table-cell-question">
+                  <div class="table-cell-question-wrapper">
+                      <span class="highlight">Chapitre A :
+                      </span> Les chateaux fort
+                  </div>
+                </td>
+                <td class="table-cell table-cell-vote"><i class="fa fa-thumbs-up"></i> Vote</td>
+                <td class="table-cell table-cell-note"><i class="fa fa-comments"></i> Notes</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-waitforit"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ok"></span>A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              <tr class="table-line">
+                <td class="table-cell table-cell-question"><a href="#"><span class="icon icon-ko"></span> A l'intérieur d'un clocher, quel bâti en charpente supporte les cloches ?</a></td>
+                <td class="table-cell table-cell-vote">15</td>
+                <td class="table-cell table-cell-note">20</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <script>
+    var Point  = Isomer.Point;
+    var Path   = Isomer.Path;
+    var Shape  = Isomer.Shape;
+    var Vector = Isomer.Vector;
+    var Color  = Isomer.Color;
+
+    var iso = new Isomer(document.getElementById("stats"));
+
+    var red = new Color(160, 60, 50);
+    var blue = new Color(50, 60, 160);
+
+    iso.add(Shape.Prism(new Point(0, 0, -2), 4, 4, 1));
+    iso.add(Shape.Prism(new Point(0, 0, 0), 2, 2, 5), blue);
+    iso.add(Shape.Prism(new Point(0, 0, 5), 2, 2, 8), red);
+
+  </script>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="bower_components/isomer/dist/isomer.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+</body>
+</html>
+

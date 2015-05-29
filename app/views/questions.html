@@ -5,7 +5,7 @@
       <h1 class="title-header">{{exam.nom}}</h1>
     </div>
   </div>
-  <div class="wrapper-header-center col-lg-4">
+  <div class="wrapper-header-center col-lg-5">
     <div class="bloc-header-center">
       <div class="bloc-indications">
         <ul class="list-indications">
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <div class="wrapper-header-right col-lg-4">
+  <div class="wrapper-header-right col-lg-3">
     <div class="bloc-header-right">
     </div>
   </div>
@@ -66,9 +66,54 @@
         </ul>
       </div>
 
-      <div class="jumbotron fadein fadeout" ng-show="answerMode">
-        <p>{{solution}}</p>
-        <a class="btn btn-lg btn-success" ng-click="nextQuestion()">Question suivante<span class="glyphicon glyphicon-ok"></span></a>
+      <div class="wrapper-solution fadein fadeout" ng-show="answerMode">
+        <p class="text-solution">{{solution}}</p>
+
+        <div class="yin">
+
+          <div class="wrapper-editor">
+            <header contenteditable="true" class="header">
+              This is ZenPen
+            </header>
+
+            <article contenteditable="true" class="editor content">
+
+              <p>
+                A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+              </p>
+
+            </article>
+          </div>
+        </div>
+
+        <div class="wrapper-comments">
+          <ul class="list-comments">
+            <li class="item-comment">
+              <div class="header-comment">
+                <p class="title-comment">Jeremy Bokila</p>
+                <div class="wrapper-vote-comment">
+                </div>
+              </div>
+              <div class="wrapper-content-comment">
+                <p class="text-comment">
+                  Pour beaucoup de prospections, les enquêtes ethnographiques ont été d’un grand secours, mais pour la plupart des autres, seuls les indices archéologiques et les écrits des auteurs anciens, avec tous les aléas d’interprétation, pouvaient servir de sources. I
+                </p>
+              </div>
+            </li>
+            <li class="item-comment">
+              <div class="header-comment">
+                <p class="title-comment">Jeremy Bokila</p>
+                <div class="wrapper-vote-comment">
+                </div>
+              </div>
+              <div class="wrapper-content-comment">
+                <p class="text-comment">
+                  Pour beaucoup de prospections, les enquêtes ethnographiques ont été d’un grand secours, mais pour la plupart des autres, seuls les indices archéologiques et les écrits des auteurs anciens, avec tous les aléas d’interprétation, pouvaient servir de sources. I
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
 

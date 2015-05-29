@@ -13,7 +13,8 @@
     "firebase": "~2.2.4",
     "angularfire": "~1.1.1",
     "isomer": "~0.2.4",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.3.0",
+    "zenpen": "tholman/zenpen"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
