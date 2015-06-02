@@ -8,7 +8,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
     getExams: function() {
 
-      var query = config.BDD + "exams";
+      var query = config.BDD + 'exams';
       var result = new Firebase(query);
       return $firebaseArray(result);
 
@@ -22,7 +22,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
     getExam: function(id) {
 
-      var query = config.BDD + "exams/" + id;
+      var query = config.BDD + 'exams/' + id;
       var result = new Firebase(query);
       return $firebaseObject(result);
 
@@ -36,7 +36,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
     getQuestions: function(id) {
 
-      var query = config.BDD + "exams/" + id + "/questions";
+      var query = config.BDD + 'exams/' + id + '/questions';
       var result = new Firebase(query);
       return $firebaseArray(result);
 
@@ -50,7 +50,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
     getChapters: function(id) {
 
-      var query = config.BDD + "exams/" + id + "/parties";
+      var query = config.BDD + 'exams/' + id + '/parties';
       var result = new Firebase(query);
       return $firebaseArray(result);
 
@@ -70,11 +70,11 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
     setQuestion: function(id, title, author, question, chapter, answers, answerok, solution) {
 
-      var query = config.BDD + "exams/" + id + "/questions";
+      var query = config.BDD + 'exams/' + id + '/questions';
       var result = new Firebase(query);
 
       result.push({
-          "titre": title, "autheur": author, "question": question, "chapter": chapter, "reponses": answers, "reponseok": answerok, "solution": solution
+          'titre': title, 'autheur': author, 'question': question, 'chapter': chapter, 'reponses': answers, 'reponseok': answerok, 'solution': solution
         }).then(function(result) {
         return result.data;
       });
@@ -96,7 +96,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
         email: email,
         password: password
       }).then(function(userData) {
-        console.log("User created with uid: " + userData.uid);
+        console.log('User created with uid: ' + userData.uid);
         console.log(userData);
 
         var query = config.BDD;
@@ -105,9 +105,9 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
         var uid = userData.uid;
 
         var user = {exam: name,
-          "prenom": surname,
-          "photo": photo,
-          "exams": ""}
+          'prenom': surname,
+          'photo': photo,
+          'exams': ''}
 
         result.child('users/'+userData.uid).set(user);
 
@@ -115,10 +115,10 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
         /*
         result_array.$add({
           uid: {
-            "nom": name,
-            "prenom": surname,
-            "photo": photo,
-            "exams": ""
+            'nom': name,
+            'prenom': surname,
+            'photo': photo,
+            'exams': ''
           }
         }).then(function(result) {
           return result.data;
@@ -128,6 +128,18 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
         console.log(error);
         return 'coucou';
       });
+    },
+
+    /**
+     * Get user account
+     * @param {String} idUser Unique user id
+     * @return {Array}
+     */
+
+    getAccount : function(idUser){
+      var query = config.BDD + 'users/' + idUser;
+      var result = new Firebase(query);
+      return $firebaseObject(result);
     },
 
     /**
@@ -146,10 +158,22 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
         password: password
       }).then(function(authData) {
         $location.path('/hello');
-        console.log("Logged in as:", authData.uid);
+        console.log('Logged in as:', authData.uid);
       }).catch(function(error) {
-        console.error("Authentication failed:", error);
+        console.error('Authentication failed:', error);
       });
+    },
+
+    /**
+     * Log out
+     * @return {void}
+     */
+
+    logout : function(){
+
+      var ref = new Firebase(config.BDD);
+      ref.unauth();
+
     },
 
     /**
@@ -182,7 +206,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
     getUserQuestion: function(idUser, idExam) {
 
-      var query = config.BDD + "users/" + idUser + "/exams/" + idExam;
+      var query = config.BDD + 'users/' + idUser + '/exams/' + idExam;
       var result = new Firebase(query);
       return $firebaseArray(result);
 
@@ -198,7 +222,52 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
       var query = config.BDD;
       var result = new Firebase(query);
       var exam = ({question : answer});
-      result.child('users/'+idUser+'/exams/'+idExam+'/'+idQuestion).set(exam);
+      result.child('users/'+idUser+'/exams/'+idExam+'/'+idQuestion).update(exam);
+    },
+
+    /**
+     * Set user favorite questions
+     * @param {String} idUser Unique id of user
+     * @param {String} idExam Unique id of exam
+     * @param {String} idQuestion Unique id of question
+     */
+
+    setUserFavorite : function(idUser, idExam, idQuestion){
+      var query = config.BDD;
+      var result = new Firebase(query);
+      var favorite = ({favorite : 'true'});
+      result.child('users/'+idUser+'/exams/'+idExam+'/'+idQuestion).update(favorite);
+    },
+
+    /**
+     * Send comment about a question
+     * @param {String} idUser Unique id of user
+     * @param {String} idExam Unique id of exam
+     * @param {String} idQuestion Unique id of question
+     * @param {String} comment Unique id of question
+     */
+
+    setComment : function(idUser, idExam, idQuestion, comment){
+      var query = config.BDD;
+      var result = new Firebase(query);
+      var timestamp = new Date().getTime();
+      var comment = ({comment : comment, user : idUser, date : timestamp});
+      //result.child('users/'+idUser+'/exams/'+idExam+'/'+idQuestion+'/commentaires').push(comment);
+      result.child('exams/' + idExam + '/questions/' + idQuestion + '/commentaires').push(comment);
+    },
+
+    /**
+     * Get all comments by question
+     * @param {String} idUser Unique id of user
+     * @param {String} idExam Unique id of exam
+     * @param {String} idQuestion Unique id of question
+     * @param {String} comment Unique id of question
+     */
+
+    getComments : function(idExam, idQuestion){
+      var query = config.BDD + 'exams/' + idExam + '/questions/' + idQuestion + '/commentaires';
+      var result = new Firebase(query);
+      return $firebaseArray(result);
     }
 
 

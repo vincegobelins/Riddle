@@ -26,6 +26,11 @@ $font-style-1 : 'Gotham Rounded Bold';
 $font-style-2 : 'Gotham Rounded Light';
 
 /* Grid */
+.col-lg-2 {
+  display: block;
+  float: left;
+  width: percentage(2/12);
+}
 
 .col-lg-3 {
   display: block;
@@ -46,15 +51,20 @@ $font-style-2 : 'Gotham Rounded Light';
 }
 
 .col-lg-8 {
+   display: block;
+   float: left;
+   width: percentage(8/12);
+ }
+
+.col-lg-12 {
   display: block;
-  float: left;
-  width: percentage(8/12);
+  width: percentage(12/12);
 }
 /* Width */
 
 $header-height: 17em;
 $width-1 : 5em;
-$width-2 : 6.5em;
+$width-2 : 4.5em;
 
 /* Clearfix */
 .clearfix {
@@ -76,6 +86,50 @@ $width-2 : 6.5em;
 
 .elastic-transition {
   @include transition-property(all);
-  @include transition-duration(.5s);
+  @include transition-duration(.75s);
   @include transition-timing-function(cubic-bezier(.57, 0.4, .2, .98));
 }
+
+.list-transition {
+  @include transition-property(all);
+  @include transition-duration(.275s);
+  @include transition-timing-function(cubic-bezier(0.420, 0.000, 0.580, 1.000));
+}
+
+/* Animation */
+@include keyframes(list-animation-in) {
+  from { opacity:0; max-height: 0; top: -50px;}
+  to { opacity:1; max-height: 10em; top: 0px; }
+}
+
+@include keyframes(list-animation-out) {
+  from { opacity:1; max-height: 10em; top: 0px;}
+  to { opacity:0; max-height: 0; top: -50px; }
+}
+
+@include keyframes(wobble-vertical) {
+  16.65% {
+    @include transform(translateY(6px));
+  }
+
+  33.3% {
+    @include transform(translateY(-4px));
+  }
+
+  49.95% {
+    @include transform(translateY(0px));
+  }
+
+  66.6% {
+    @include transform(translateY(-2px));
+  }
+
+  83.25% {
+    @include transform(translateY(1px));
+  }
+
+  100% {
+    @include transform(translateY(0));
+  }
+}
+

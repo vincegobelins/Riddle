@@ -102,7 +102,7 @@ angular.module('RiddleApp')
         chapter = $('input[name=input-chapter]:checked').val();
         answers = [];
         answerok = $("#input-correct-answer").val();
-        solution = $('#textarea-solution').val();
+        solution = $('#textarea-solution').html();
 
         $('.input-answer').each(function () {
           answers.push($(this).val());

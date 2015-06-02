@@ -10,7 +10,7 @@
 angular.module('RiddleApp')
   .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory) {
 
-    var init, getExam, getQuestions, getQuestion, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
+    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
     var exam, data, answered, count;
 
     /**
@@ -73,23 +73,36 @@ angular.module('RiddleApp')
     },
 
     /**
+     * Get comments
+     */
+
+    getComments = function () {
+
+      $scope.comments = riddleFactory.getComments($scope.param, $scope.questionId);
+      console.log($scope.comments);
+
+    },
+
+    /**
      * Scope a new question
      */
 
-    getQuestion = function () {
+      getQuestion = function () {
 
-          $scope.quizzPosition++;
+        $scope.quizzPosition++;
 
-          var questionId = getRandomIdQuestion();
-          var question = data[questionId];
+        var questionId = getRandomIdQuestion();
+        var question = data[questionId];
 
-          $scope.title = question["titre"];
-          $scope.question = question["question"];
-          $scope.answers = question["reponses"];
-          $scope.answerOk = question["reponseok"];
-          $scope.solution = question["solution"];
+        $scope.title = question["titre"];
+        $scope.question = question["question"];
+        $scope.answers = question["reponses"];
+        $scope.answerOk = question["reponseok"];
+        $scope.solution = question["solution"];
 
-    },
+        getComments();
+
+      },
 
     /**
      * Get a random question column
@@ -202,6 +215,28 @@ angular.module('RiddleApp')
         }
 
         count++;
+
+    };
+
+    /**
+     * Check if answer is true
+     * @param {String} answer
+     */
+
+    $scope.addFavorite = function () {
+
+      riddleFactory.setUserFavorite($scope.user, $scope.param, $scope.questionId);
+
+    };
+
+    /**
+     * Send comment
+     * @param {String} answer
+     */
+
+    $scope.sendComment = function () {
+      var comment = $('.editor').html();
+      riddleFactory.setComment($scope.user, $scope.param, $scope.questionId, comment);
 
     };
 

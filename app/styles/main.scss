@@ -3,6 +3,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "variables.scss";
 @import "compass/css3/box-shadow";
 @import "compass/css3/user-interface";
+@import "compass/css3/animation";
 @import "icon.scss";
 @import "editor.scss";
 
@@ -14,6 +15,7 @@ body {
   @extend .transition;
   margin: 0; padding: 0;
   font-size: 10px; font-family: $font-style-1; font-family: $font-style-1;
+  overflow-y: scroll;
 }
 
 ul {
@@ -95,11 +97,11 @@ ul {
     background: $color-bg-3;
 
     .bloc-indications-header {
-      padding: 1em;
+      padding: 0 1em;
 
       .title-indications-header {
         margin: 0;
-        font-family: $font-style-2; color: $color-text-1; font-size: 2.3em; text-decoration: none;
+        font-family: $font-style-2; color: $color-text-1; font-size: 2em; text-decoration: none;
       }
 
       .tools-indications-header {
@@ -147,8 +149,8 @@ ul {
   @extend .transition;
   display: block;
   overflow: hidden;
-  margin: 1.75em auto 0;
-  width: 3.5em; height: 3.5em;
+  margin: 0.6em auto 0;
+  width: 2.5em; height: 3.5em;
   position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -161,7 +163,7 @@ ul {
   @extend .transition;
   display: block;
   position: absolute; left: 0;
-  width: 100%; height: 5px;
+  width: 100%; height: 3px;
   background: $color-bg-2;
   border-radius: 4px;
   opacity: 1;
@@ -171,19 +173,19 @@ ul {
   transform: rotate(0deg);
 
   &:nth-child(1) {
-    top: 0px;
+    top: 6px;
   }
 
   &:nth-child(2) {
-    top: 12px;
+    top: 14px;
   }
 
   &:nth-child(3) {
-    top: 12px;
+    top: 14px;
   }
 
   &:nth-child(4) {
-    top: 24px;
+    top: 22px;
   }
 }
 
@@ -253,6 +255,37 @@ ul {
 
 }
 
+.wrapper-header-right {
+
+  .bloc-header-right {
+    padding : $width-1/2 $width-1;
+  }
+  .icon {
+    color: $color-white;
+  }
+
+  img {
+    width: 70%;
+  }
+
+
+  .item-indication {
+    margin: 0 0 1em 0;
+    float: left;
+    font-family: $font-style-1; color: $color-text-1; font-size: 1.3em; text-transform: uppercase;
+
+    &.blue {
+      color: $color-text-1;
+    }
+
+    &.white {
+      text-indent: 6px;
+      color: $color-white;
+    }
+  }
+
+}
+
 /*
 ##############################
 # Sidebar                    #
@@ -306,6 +339,13 @@ ul {
     color: $color-white;
     background: $color-bg-1;
     @include border-radius(0px, 0px);
+
+
+      [class^="icon-"]::before, [class*=" icon-"]::before {
+        @include transform(translateZ(100));
+        @include animation(wobble-vertical .75s ease-in-out);
+      }
+
   }
 }
 
@@ -338,6 +378,38 @@ ul {
       width: 0%; height: 1em;
       background-color: $color-bg-1;
     }
+  }
+}
+
+.item-tool {
+  display: inline-block;
+  border: 1px solid $color-white;
+  @include border-radius(5px, 5px);
+}
+
+.content-tool {
+  float: left;
+  display: block;
+  margin: 0; padding: 0;
+
+  a {
+    @extend .transition;
+    display: block;
+    height: 25px; width: 25px;
+    padding: 5px;
+    font-size: 2em; color: $color-white;
+
+    &:hover {
+      background: $color-bg-1;
+    }
+  }
+
+  p {
+    display: block;
+    height: 25px; width: 25px;
+    margin: 0; padding: 5px;
+    border-left: 1px solid $color-white; border-right: 1px solid $color-white;
+    font-size: 2em; font-family: $font-style-2; color: $color-white;
   }
 }
 
@@ -403,6 +475,11 @@ ul {
 
   &:hover {
     color: $color-text-2;
+
+    [class^="icon-"]::before, [class*=" icon-"]::before {
+      @include transform(translateZ(100));
+      @include animation(wobble-vertical .75s ease-in-out);
+    }
   }
 
   &.active {
@@ -416,7 +493,7 @@ ul {
 .bloc-search {
 
   .wrapper-search-input {
-    @extend .transition;
+    @extend .elastic-transition;
     position: absolute; z-index: 1;
     right: 0;
     width: 0%;
@@ -451,8 +528,6 @@ ul {
 /* Table */
 
 .table {
-  border: 0;
-  width: 100%;
   padding: $width-1 0 0 0;
   font-family: $font-style-2; color: $color-text-1; font-size: 1.4em;
 
@@ -463,16 +538,30 @@ ul {
 
 .table-head {
 
+  @extend .clearfix;
+  display: block;
   text-transform: uppercase;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%; height: 1px;
+    margin: 0 5em;
+    background: $color-bg-1;
+    bottom: 0;
+    font-size: 1em;
+    overflow: hidden;
+  }
 
   .table-cell {
     padding: 1em 0;
-    border-bottom: 1px solid $color-bg-1;
   }
 
   .table-cell-question {
     display: block;
-    padding: 1em 0; margin-left: $width-1;
+    padding: 1em 0 1em $width-1;
+    box-sizing: border-box;
 
     &.active {
 
@@ -492,7 +581,7 @@ ul {
   }
 
   .table-cell-question-wrapper {
-    font-family: $font-style-2; color: $color-text-2; font-size: 1.5em;
+    font-family: $font-style-2; color: $color-text-2; font-size: 1.4em;
 
     .highlight {
       font-family: $font-style-1; color: $color-text-1;
@@ -505,14 +594,17 @@ ul {
 }
 
 .table-line {
-
+  position: relative;
+  @extend .clearfix;
   @extend .transition;
+  @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
 
   a {
     @extend .transition;
+    padding-left: 2em;
   }
 
-  &:nth-child(2n+2) {
+  &:nth-child(2n+1) {
    background-color: $color-bg-3;
   }
 
@@ -527,6 +619,7 @@ ul {
 
   .table-cell {
     padding: 1em 0;
+    box-sizing: border-box;
   }
 
   .table-cell-question,  {
@@ -536,22 +629,24 @@ ul {
   .table-cell-note, .table-cell-vote {
     text-align: center;
   }
-}
 
-/* Icon */
+  /* Icon */
 
-.icon {
-  display: inline-block;
-  width: 20px; height: 20px;
-  margin-right: .2em;
-  &.iconko {
-    background: url('design/sprite.png')0 0;
-  }
-  &.iconwaitforit {
-    background: url('design/sprite.png')-20px 0;
-  }
-  &.iconok {
-    background: url('design/sprite.png')-40px 0;
+  .icon {
+    position: absolute; top: 12px;
+    display: inline-block;
+    width: 20px; height: 20px;
+    margin-left: -2em;
+
+    &.iconko {
+      background: url('design/sprite.png')0 0;
+    }
+    &.iconlock {
+      background: url('design/sprite.png')-100px 0;
+    }
+    &.iconok {
+      background: url('design/sprite.png')-40px 0;
+    }
   }
 }
 
@@ -655,20 +750,51 @@ ul {
   }
 }
 
+.wrapper-cta-editor {
+  width: 170px;
+  margin: 0 auto;
+}
+
 /*
 ##############################
 # Generator content          #
 ##############################
 */
 
-.form-title {
-  padding: 0 $width-1;
-  background: $color-bg-3;
+.form-title-wrapper {
+  @extend .transition;
+  display: block;
+  text-transform: uppercase;
+  padding: 1em 0; margin: $width-1/2 $width-1;
+  border-bottom: 1px solid $color-bg-1;
+  font-size: 1.4em;
 
-  p {
-    display: inline-block;
-    padding: 0 1em;
-    font-family: $font-style-2; color: $color-text-1; font-size: 2em;
+  &.active {
+
+    &:before {
+      @extend .transition;
+      @include transform(rotate(0deg));
+      display: inline-block;
+      background: url('design/sprite.png')-80px 0;
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 20px; height: 20px;
+    margin-left: -2em; margin-top: 0.25em;
+    background: url('design/sprite.png')-60px 0;
+  }
+
+  .form-title {
+
+    font-family: $font-style-2; color: $color-text-2; font-size: 1.4em;
+
+    .highlight {
+      font-family: $font-style-1; color: $color-text-1;
+    }
   }
 }
 
@@ -702,6 +828,7 @@ ul {
   border: 2px solid $color-white;
   @include border-radius(5px, 5px);
   text-indent: 3px; line-height: 1;
+  cursor: pointer;
 
   &:hover {
     border: 2px solid $color-bg-1;
@@ -709,7 +836,9 @@ ul {
 }
 
 
-input[type="text"], textarea {
+.input {
+
+  box-sizing: border-box;
 
   @extend .transition;
   width: 100%;
@@ -829,6 +958,17 @@ input.radio:hover:not(:checked) ~ label {
 
 /* Transition */
 
+.table-line {
+
+  &.ng-enter {
+    @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
+  }
+
+  &.ng-leave {
+    @include animation(list-animation-out .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
+  }
+}
+/*
 .ng-leave {
   animation: my_fade_animation 0.5s linear;
   -webkit-animation: my_fade_animation 0.5s linear;
@@ -838,15 +978,18 @@ input.radio:hover:not(:checked) ~ label {
   animation: my_fade_inverse_animation 0.5s linear;
   -webkit-animation: my_fade_inverse_animation 0.5s linear;
 }
+*/
+
+
 
 @keyframes my_fade_animation {
   from { opacity:1; }
-  to { opacity:0; }
+  to { opacity:0;}
 }
 
 @-webkit-keyframes my_fade_animation {
   from { opacity:1; }
-  to { opacity:0; }
+  to { opacity:0;}
 }
 
 @keyframes my_fade_inverse_animation {

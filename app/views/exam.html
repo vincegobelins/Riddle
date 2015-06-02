@@ -1,4 +1,4 @@
-<section id="exam-header">
+<section id="exam-header" class="col-lg-12">
   <div class="wrapper-header-left col-lg-4">
     <div class="bloc-header-left">
       <span class="surtitle-header">Contrôle</span>
@@ -25,6 +25,13 @@
   </div>
   <div class="wrapper-header-right col-lg-3">
     <div class="bloc-header-right">
+      <div class="item-indication blue">
+        {{exam.groupe}} -
+      </div>
+      <div class="item-indication white">
+         Créé le 12/07/1994
+      </div>
+      <img src="styles/design/groupe-icon.png" alt=""/>
     </div>
   </div>
   </div>
@@ -58,17 +65,17 @@
           </div>
           <ul class="list-tabs">
             <a href="" ng-click="filters = ''">
-              <li class="item-tabs" ng-class="{active: !filters.autheur}">
+              <li class="item-tabs" ng-class="{active: !filters.autheur && !filters.user_favorite}">
                 <span class="icon icon-open-book"></span> Questions
               </li>
             </a>
-            <a href="#">
-              <li class="item-tabs">
+            <a href="" ng-click="filters.user_favorite = 'true'; filters.autheur = ''">
+              <li class="item-tabs" ng-class="{active: filters.user_favorite == 'true'}">
                 <span class="icon icon-heart"></span> Mes favoris
               </li>
             </a>
-            <a href="" ng-click="filters.autheur = 'simplelogin:22'">
-              <li class="item-tabs" ng-class="{active: filters.autheur == 'simplelogin:22'}">
+            <a href="" ng-click="filters.user_favorite = ''; filters.autheur = auth">
+              <li class="item-tabs" ng-class="{active: filters.autheur == auth}">
                 <span class="icon icon-chat"></span> Mes questions (10)
               </li>
             </a>
@@ -76,29 +83,24 @@
         </div>
       </div>
       <div class="bloc-table">
-        <table ng-repeat="partie in parties" class="table" cellspacing="0" cellpadding="0">
-          <thead>
-          <tr class="table-head">
-            <td class="table-cell table-cell-question">
+        <div ng-repeat="partie in parties" class="table" cellspacing="0" cellpadding="0">
+          <div class="table-head">
+            <div class="table-cell table-cell-question col-lg-8">
               <div class="table-cell-question-wrapper">
                       <span class="highlight">Chapitre {{$index+1}} :
                       </span> {{partie.titre}}
               </div>
-            </td>
-            <td class="table-cell table-cell-vote"><span class="icon icon-thumbs-up"></span> Vote</td>
-            <td class="table-cell table-cell-note"><span class="icon icon-new-message"></span> Commentaires</td>
-          </tr>
-          </thead>
-          <tbody>
+            </div>
+            <div class="table-cell table-cell-vote col-lg-2"><span class="icon icon-thumbs-up"></span> Vote</div>
+            <div class="table-cell table-cell-note col-lg-2"><span class="icon icon-new-message"></span> Commentaires</div>
+          </div>
 
-          <tr ng-repeat="question in questions| filter: { question : query, chapter : partie.id } | filter : filters" class="table-line">
-            <td class="table-cell table-cell-question"><a href="#"><span class="icon" ng-class="{iconko: question.user_reponse == 'false', iconok: question.user_reponse == 'true'}"></span>{{question.question}}</a></td>
-            <td class="table-cell table-cell-vote">15</td>
-            <td class="table-cell table-cell-note">20</td>
-          </tr>
-
-          </tbody>
-        </table>
+          <div ng-repeat="question in questions| filter: { question : query, chapter : partie.id } | filter : filters" class="table-line col-lg-12">
+            <div class="table-cell table-cell-question col-lg-8"><a href="#"><span class="icon" ng-class="{iconko: question.user_reponse == 'false', iconok: question.user_reponse == 'true', iconlock: !question.user_reponse}"></span>{{question.question | limitTo: 90 }}{{question.question.length > 100 ? '...' : ''}}</a></div>
+            <div class="table-cell table-cell-vote col-lg-2">15</div>
+            <div class="table-cell table-cell-note col-lg-2">20</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

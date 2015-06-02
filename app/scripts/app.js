@@ -30,9 +30,40 @@ angular
       }
     });
   }])
-  .controller('AppCtrl', function($scope, $routeParams, riddleFactory) {
+  .controller('AppCtrl', function($scope, $routeParams, riddleFactory, $location) {
+
+    var getUser, getUserId;
+    var userId;
+
+    getUserId = function(){
+      var auth = riddleFactory.getAuth();
+      return auth;
+    }
+
+    /**
+     * Get User details
+     * @return {void}
+     */
+
+    getUser = function(){
+      $scope.user = riddleFactory.getAccount(getUserId());
+      console.log($scope.user);
+    }
+
+    /**
+     * Logout
+     * @return {void}
+     */
+
+    $scope.logout = function(){
+      riddleFactory.logout();
+      $location.path('#/login');
+    }
+
+    getUser();
 
     $( ".navigation-icon-wrapper" ).on( "click", function(e) {
+
       e.preventDefault();
       $(this).parent('.navigation-wrapper-slide').toggleClass( 'active' );
     });

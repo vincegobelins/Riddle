@@ -1,4 +1,4 @@
-<section id="exam-header">
+<section id="exam-header" class="col-lg-12">
   <div class="wrapper-header-left col-lg-4">
     <div class="bloc-header-left">
       <span class="surtitle-header">Contrôle</span>
@@ -25,6 +25,7 @@
   </div>
   <div class="wrapper-header-right col-lg-3">
     <div class="bloc-header-right">
+      <img src="styles/design/groupe-icon.png" alt=""/>
     </div>
   </div>
   </div>
@@ -43,7 +44,39 @@
           </div>
         </div>
       </div>
-
+      <div class="wrapper-tool">
+        <div class="item-tool">
+          <div class="content-tool">
+            <a href="">
+              <span class="icon icon-thumbs-down"></span>
+            </a>
+          </div>
+          <div class="content-tool">
+            <p>
+              10
+            </p>
+          </div>
+          <div class="content-tool">
+            <a href="">
+              <span class="icon icon-thumbs-up"></span>
+            </a>
+          </div>
+        </div>
+        <div class="item-tool">
+          <div class="content-tool">
+            <a href="" ng-click="addFavorite()">
+              <span class="icon icon-heart"></span>
+            </a>
+          </div>
+        </div>
+        <div class="item-tool">
+          <div class="content-tool">
+            <a href="">
+              <span class="icon icon-warning"></span>
+            </a>
+          </div>
+        </div>
+      </div>
 
 
       <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
@@ -67,7 +100,7 @@
       </div>
 
       <div class="wrapper-solution fadein fadeout" ng-show="answerMode">
-        <p class="text-solution">{{solution}}</p>
+        <div ng-bind-html="solution" class="text-solution"></div>
 
         <div class="yin">
 
@@ -83,32 +116,23 @@
               </p>
 
             </article>
+
+            <div class="wrapper-cta-editor">
+              <a href="" class="cta-generator" ng-click="sendComment()"><span class="icon icon-paper-plane"></span>Envoyer</a>
+            </div>
           </div>
         </div>
 
         <div class="wrapper-comments">
           <ul class="list-comments">
-            <li class="item-comment">
+            <li ng-repeat="comment in comments | orderBy: '-date'" class="item-comment">
               <div class="header-comment">
-                <p class="title-comment">Jeremy Bokila</p>
+                <p class="title-comment">{{user}}</p>
                 <div class="wrapper-vote-comment">
                 </div>
               </div>
               <div class="wrapper-content-comment">
-                <p class="text-comment">
-                  Pour beaucoup de prospections, les enquêtes ethnographiques ont été d’un grand secours, mais pour la plupart des autres, seuls les indices archéologiques et les écrits des auteurs anciens, avec tous les aléas d’interprétation, pouvaient servir de sources. I
-                </p>
-              </div>
-            </li>
-            <li class="item-comment">
-              <div class="header-comment">
-                <p class="title-comment">Jeremy Bokila</p>
-                <div class="wrapper-vote-comment">
-                </div>
-              </div>
-              <div class="wrapper-content-comment">
-                <p class="text-comment">
-                  Pour beaucoup de prospections, les enquêtes ethnographiques ont été d’un grand secours, mais pour la plupart des autres, seuls les indices archéologiques et les écrits des auteurs anciens, avec tous les aléas d’interprétation, pouvaient servir de sources. I
+                <p ng-bind-html="comment.comment" class="text-comment">
                 </p>
               </div>
             </li>

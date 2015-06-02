@@ -73,6 +73,8 @@ angular.module('RiddleApp')
 
         var questions = riddleFactory.getQuestions($scope.param);
 
+        $scope.userQuestionLength = 0;
+
         questions.$loaded().then(function () {
 
           var questionsUser = riddleFactory.getUserQuestion($scope.auth, $scope.param);
@@ -86,8 +88,16 @@ angular.module('RiddleApp')
                 for(var j =0; j<questionsUser.length; j++) {
 
                   if(questionsUser[j]['$id'] == questionId) {
-                    console.log("ok !");
-                    questions[i]["user_reponse"] = questionsUser[j]['question'];
+
+                    // Verifier s'il y a des données utilisateur, sinon verouiller la question
+
+                    if(questionsUser[j]['question']) {
+                      questions[i]["user_reponse"] = questionsUser[j]['question'];
+                    }
+                    else {
+                      questions[i]["question"] = 'Question vérouillée';
+                    }
+                    questions[i]["user_favorite"] = questionsUser[j]['favorite'];
                   }
                 }
               }
@@ -131,19 +141,18 @@ angular.module('RiddleApp')
       var Color  = Isomer.Color;
 
       var white = new Color(255, 255, 255, 0.5);
-      var red2 = new Color(215, 80, 50, 0.5);
-      var red = new Color(150, 85, 62, 0.5);
-      var green = new Color(100, 142, 60, 0.5);
+      var red2 = new Color(215, 80, 50);
+      var red = new Color(150, 85, 62);
+      var green = new Color(100, 142, 60);
 
       var Point  = Isomer.Point;
       var Shape  = Isomer.Shape;
       var test = 0;
 
         // fix render issue
-        context.fillStyle = "#2e3039";
-        context.fillRect (0, 0, 1200, 1400);
+        context.clearRect(0, 0, canvas.width, canvas.height);
         // draw base cube
-        canvasIso.add(Shape.Prism(new Point(-2, 2, -2), 4, 4, 1), green);
+        canvasIso.add(Shape.Prism(new Point(-2, 2, -1), 3, 3, 0.5), green);
 
         velocity = velocity * 0.85;
         distance = distance + (1*velocity);
@@ -177,12 +186,19 @@ angular.module('RiddleApp')
               context.fillText("50%", 900+distance*100, (1200/(blocArray.length/2)*i/2+280)-distance*100);
             }
 
-            canvasIso.add(blocArray[i].translate(0, 0, distance*i), color);
+            var blocOffset;
+
+            if(i&1){
+              blocOffset = i;
+            }
+            else {
+              blocOffset = i+1;
+            }
+
+            canvasIso.add(blocArray[i].translate(0, 0, distance*blocOffset), color);
 
           }
         }
-
-        console.log("refresh");
 
     },
 
@@ -204,7 +220,7 @@ angular.module('RiddleApp')
       width= 2;
 
       var lenght = statistics.length;
-      var questionsLenght = 9;
+      var questionsLenght = $scope.questions.length;
       var buildingHeight = 14;
       var offset  = 0;
 

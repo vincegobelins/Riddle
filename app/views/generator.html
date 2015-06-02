@@ -1,4 +1,4 @@
-<section id="exam-header">
+<section id="exam-header" class="col-lg-12">
   <div class="wrapper-header-left col-lg-4">
     <div class="bloc-header-left">
       <span class="surtitle-header">Contrôle</span>
@@ -46,7 +46,7 @@
 
 
 
-      <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
+      <a href="" class="cta" ng-click="sendQuestion()">Valider<span class="icon icon-chevron-thin-right"></span></a>
     </div>
   </div>
 </aside>
@@ -55,9 +55,11 @@
   <div class="wrapper-content col-lg-8">
     <div class="bloc-content">
 
-      <form ng-submit="sendQuestion()">
-        <div class="form-title">
-          <span class="icon iconko"></span><p>Choississez le type de question</p>
+      <form>
+        <div class="form-title-wrapper">
+          <div class="form-title">
+            <span class="highlight">Etape 1 : </span>Choisis le type de question
+          </div>
         </div>
         <div class="form-content">
           <div class="wrapper-cta col-lg-4">
@@ -76,8 +78,10 @@
             </a>
           </div>
         </div>
-        <div class="form-title">
-          <span class="icon iconko"></span><p>Séléctionnez le chapitre concerné</p>
+        <div class="form-title-wrapper">
+          <div class="form-title">
+            <span class="highlight">Etape 2 : </span>Choisis le chapitre
+          </div>
         </div>
         <div class="form-content">
           <div class="checkbox" ng-repeat="chapter in chapters">
@@ -89,8 +93,10 @@
             <label for="new">Nouveau chapitre</label>
           </div>
         </div>
-        <div class="form-title">
-          <span class="icon iconko"></span><p>Créer votre question</p>
+        <div class="form-title-wrapper">
+          <div class="form-title">
+            <span class="highlight">Etape 3 : </span>Créé ta question
+          </div>
         </div>
         <div class="form-content">
           <div class="form-group">
@@ -104,15 +110,30 @@
             <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
           </div>
           <div class="form-group">
-            <a href="" class="input-option"><span class="icon icon-image"></span></a>
-            <textarea class="form-control input" id="textarea-solution" rows="3">Explication</textarea>
+
+            <div class="yin">
+
+              <div class="wrapper-editor">
+                <header contenteditable="true" class="header">
+                  This is ZenPen
+                </header>
+
+                <article contenteditable="true" id="textarea-solution" class="editor content">
+
+                  <p>
+                    A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                  </p>
+
+                </article>
+              </div>
+            </div>
+
           </div>
           <div class="form-group" ng-repeat="answer in answers">
             <a ng-click="addAnswer()" class="input-option">+</a>
             <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <div class="alert alert-info" role="alert">{{callback}}</div>
 
