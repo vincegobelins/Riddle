@@ -136,10 +136,17 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
      * @return {Array}
      */
 
-    getAccount : function(idUser){
+    getAccount : function(idUser, callback){
       var query = config.BDD + 'users/' + idUser;
       var result = new Firebase(query);
-      return $firebaseObject(result);
+
+      result.on('value', function(snapshot) {
+        if(callback){
+          callback(snapshot.val());
+        }
+      }, function(errorObject) {
+          callback($firebaseObject(result));
+      });
     },
 
     /**

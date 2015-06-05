@@ -8,10 +8,10 @@
  * Controller of the RiddleApp
  */
 angular.module('RiddleApp')
-  .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory) {
+  .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory,$timeout) {
 
-    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt;
-    var exam, data, answered, count;
+    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt, getAuthor;
+    var exam, data, answered, count, degree;
 
     /**
      * Inisialize some data
@@ -100,6 +100,8 @@ angular.module('RiddleApp')
         $scope.answerOk = question["reponseok"];
         $scope.solution = question["solution"];
 
+        getAuthor(question["autheur"])
+
         getComments();
 
       },
@@ -186,7 +188,10 @@ angular.module('RiddleApp')
         getQuestion();
 
         var percentageProgression = $scope.quizzPosition * 100 / $scope.quizzLength;
-        $( ".line-progression").css('width', percentageProgression+"%")
+        $( ".line-progression").css('width', percentageProgression+"%");
+
+        degree = 180 * ($scope.quizzPosition+1);
+        $(".bloc-image").css({transform: 'rotateY(' + degree + 'deg)'})
       }
 
     },
@@ -196,7 +201,7 @@ angular.module('RiddleApp')
      * @param {String} answer
      */
 
-    $scope.checkAnswer = function (answer) {
+    $scope.checkAnswer = function (answer, index) {
 
         if (answer == $scope.answerOk) {
           $scope.answerMode = true;
@@ -211,6 +216,8 @@ angular.module('RiddleApp')
 
 
         } else {
+          $('.item-answer:eq('+index+')').addClass('false');
+          console.log(index);
           $scope.answerMode = false;
         }
 
@@ -239,6 +246,34 @@ angular.module('RiddleApp')
       riddleFactory.setComment($scope.user, $scope.param, $scope.questionId, comment);
 
     };
+
+    /**
+     * Get User details
+     * @return {Object}
+     */
+
+    getAuthor = function(userId){
+
+      var author;
+
+      riddleFactory.getAccount(userId, function(result) {
+
+        if(result != null){
+          author = result;
+        }
+        else {
+          author = {prenom : 'Autheur', nom: 'Inconnu'};
+        }
+
+        $timeout(function() {
+            $scope.author = author;
+        });
+
+
+
+      });
+
+    }
 
     init();
   }

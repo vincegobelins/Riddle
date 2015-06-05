@@ -19,17 +19,19 @@
             <span class="icon icon-clock"></span> {{exam.duree}}
           </li>
         </ul>
-        <p class="text-indication">{{exam.description}}</p>
+        <p class="text-indication fade">{{exam.description}}</p>
       </div>
     </div>
   </div>
   <div class="wrapper-header-right col-lg-3">
     <div class="bloc-header-right">
-      <div class="item-indication blue">
-        {{exam.groupe}} -
-      </div>
-      <div class="item-indication white">
-         Créé le 12/07/1994
+      <div class="list-indications">
+        <div class="item-indication blue">
+          {{exam.groupe}} -
+        </div>
+        <div class="item-indication white">
+           Créé le 12/07/1994
+        </div>
       </div>
       <img src="styles/design/groupe-icon.png" alt=""/>
     </div>
@@ -83,7 +85,7 @@
         </div>
       </div>
       <div class="bloc-table">
-        <div ng-repeat="partie in parties" class="table" cellspacing="0" cellpadding="0">
+        <div ng-repeat="partie in parties" class="table">
           <div class="table-head">
             <div class="table-cell table-cell-question col-lg-8">
               <div class="table-cell-question-wrapper">

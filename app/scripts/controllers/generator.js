@@ -11,7 +11,7 @@
 angular.module('RiddleApp')
   .controller('GeneratorCtrl', function($scope, $routeParams, riddleFactory, $compile) {
 
-    var init, getExam, clearForm, checkForm;
+    var init, getExam, clearForm, checkForm, nextStep;
     var param;
     var title, question, author, chapter, answers, answerok, solution, exam;
 
@@ -27,6 +27,11 @@ angular.module('RiddleApp')
       $scope.answers = [{ questionPlaceholder : "foo"}];
 
       getExam();
+
+      $( ".cta-generator" ).on( "click", function(e) {
+        $(this).toggleClass( 'active' );
+      });
+
     },
 
     /**
@@ -44,6 +49,17 @@ angular.module('RiddleApp')
           $scope.parties = $scope.exam["parties"];
 
         });
+
+      },
+
+    /**
+     * Show next step form
+     * @return {void}
+     */
+
+      $scope.nextStep = function(offset){
+
+        $scope.step = offset;
 
       },
 

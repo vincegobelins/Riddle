@@ -9,8 +9,9 @@ $color-bg-1 : #f26744; /* orange */
 $color-bg-2 : #2e3039; /* deep blue */
 $color-bg-3 : #f5f0ea; /* light grey */
 $color-bg-4 : #4DCB6D; /* green */
+$color-bg-5 : #e74c3c; /* red */
 
-$color-border-1 : #525564; /* drak blue */
+$color-border-1 : #525564; /* dark blue */
 $color-border-2 : #b4b0af; /* grey */
 
 $color-text-1 : #2e3039; /* deep blue */
@@ -72,6 +73,13 @@ $width-2 : 4.5em;
 }
 
 /* Transition */
+
+@mixin transition($transition-property, $transition-time, $method) {
+  @include transition-property($transition-property);
+  @include transition-duration($transition-time);
+  @include transition-timing-function($method);
+}
+
 .transition {
    @include transition-property(all);
    @include transition-duration(.2s);
@@ -90,6 +98,12 @@ $width-2 : 4.5em;
   @include transition-timing-function(cubic-bezier(.57, 0.4, .2, .98));
 }
 
+.image-transition {
+  @include transition-property(all);
+  @include transition-duration(.75s);
+  @include transition-timing-function(cubic-bezier(.58,.01,0,1));
+}
+
 .list-transition {
   @include transition-property(all);
   @include transition-duration(.275s);
@@ -103,9 +117,79 @@ $width-2 : 4.5em;
 }
 
 @include keyframes(list-animation-out) {
-  from { opacity:1; max-height: 10em; top: 0px;}
+  from { max-height: 10em; top: 0px;}
   to { opacity:0; max-height: 0; top: -50px; }
 }
+
+@include keyframes(rotateY) {
+  0% {
+    @include transform(rotateY(0deg));
+  }
+
+  100% {
+    @include transform(rotateY(360deg));
+  }
+}
+
+@include keyframes(width) {
+  0% {
+    width: 25%;
+    opacity: 0;
+  }
+
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@include keyframes(indent) {
+  0% {
+    text-indent: 100px;
+    opacity: 0;
+  }
+
+  100% {
+    text-indent: 0;
+    opacity: 1;
+  }
+}
+
+@include keyframes(rotate-wing) {
+  0% {
+    opacity: 1;
+    margin-left: -4em;
+    @include transform(rotateX(90deg));
+  }
+
+  100% {
+    opacity: 1;
+    @include transform(rotateX(180deg));
+    margin-left: -2em;
+  }
+}
+
+@include keyframes(fade-in) {
+  0% {
+    opacity: 0;
+    position: absolute;
+  }
+
+  100% {
+    opacity : 1;
+  }
+}
+
+@include keyframes(fade-out) {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity : 0;
+  }
+}
+
 
 @include keyframes(wobble-vertical) {
   16.65% {
@@ -133,3 +217,43 @@ $width-2 : 4.5em;
   }
 }
 
+@include keyframes(wobble-horizontal) {
+  0% {
+    @include transform(translateX(0px));
+  }
+  16.65% {
+    @include transform(translateX(8px));
+  }
+
+  33.3% {
+    @include transform(translateX(-6px));
+  }
+
+  49.95% {
+    @include transform(translateX(4px));
+  }
+
+  66.6% {
+    @include transform(translateX(-2px));
+  }
+
+  83.25% {
+    @include transform(translateX(1px));
+  }
+
+  100% {
+    @include transform(translateX(0px));
+  }
+}
+
+@include keyframes(false-animation) {
+  0% {
+    opacity: 1;
+    background: $color-bg-5;
+  }
+
+  100% {
+    opacity: 0.25;
+    background: none;
+  }
+}

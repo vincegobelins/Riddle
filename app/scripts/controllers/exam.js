@@ -25,7 +25,6 @@ angular.module('RiddleApp')
 
       initCanvas();
       setEventListener();
-      renderCanvas();
 
       $( ".search-submit" ).on( "click", function(e) {
         e.preventDefault();
@@ -111,6 +110,7 @@ angular.module('RiddleApp')
               // @todo cette fonction doit être appelé en verifiant que exam est chargé également
               var statistics = getStatistics();
               blocArray = buildTower(statistics);
+              renderCanvas();
             });
 
 
@@ -141,61 +141,72 @@ angular.module('RiddleApp')
       var Color  = Isomer.Color;
 
       var white = new Color(255, 255, 255, 0.5);
-      var red2 = new Color(215, 80, 50);
-      var red = new Color(150, 85, 62);
+      var red = new Color(215, 80, 50);
       var green = new Color(100, 142, 60);
 
       var Point  = Isomer.Point;
       var Shape  = Isomer.Shape;
-      var test = 0;
 
-        // fix render issue
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        // draw base cube
-        canvasIso.add(Shape.Prism(new Point(-2, 2, -1), 3, 3, 0.5), green);
+      var canvasHeight = 1200;
 
-        velocity = velocity * 0.85;
-        distance = distance + (1*velocity);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      // draw base cube
+      canvasIso.add(Shape.Prism(new Point(-2, 2, -1), 3, 3, 0.5), green);
 
-        //  iso.add(blocArray[1].translate(-2, 2, test), red2);
+      velocity = velocity * 0.85;
+      distance = Math.max(0, Math.min((distance + (1*velocity)), 0.28));
+
 
         if (blocArray){
 
           for (var i=0; i<blocArray.length; i++) {
 
-            var color;
+            var color, blocOffset;
 
             if(i&1){
               color = white;
+              blocOffset = i;
+
+              if(blocArray[i]['height'] != 0) {
+                canvasIso.add(blocArray[i]['bloc'].translate(0, 0, distance*blocOffset), color);
+              }
             }
             else {
-              color = red2;
+              color = red;
+              blocOffset = i +1;
+
+              context.fillStyle = 'white';
+              context.beginPath();
+              context.moveTo(15 + 700 + distance * 100, 0 + ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 125) ) - distance * 100 );
+              context.lineTo(30 + 700 + distance * 100, 25 + ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 125) ) - distance * 100 );
+              context.lineTo(0 + 700 + distance * 100, 25 + ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 125) ) - distance * 100 );
+              context.closePath();
+              context.fill();
 
               context.strokeStyle = 'white';
-              context.beginPath();
-              context.moveTo(400, (1200/(blocArray.length/2)*i/2+200)-distance*100);
-              context.lineTo(690, (1200/(blocArray.length/2)*i/2+200)-distance*100);
-              context.stroke();
               context.fillStyle = "white";
-              context.font = "bold 70px Gotham Rounded Bold";
-              context.fillText("CHAPITRE "+(i), 700 + distance * 100, ( 1200 / ( blocArray.length / 2 ) * i/2 + 200)-distance* 100);
+              context.font = "bold 45px Gotham Rounded Bold";
+              context.fillText("CHAPITRE : "+blocArray[i]['chapter'], 750 + distance * 100, ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 100) ) - distance * 100 );
               context.font = "bold 30px Gotham Rounded Light";
-              context.fillText("REUSSITE :", 700 + distance *100, (1200 / ( blocArray.length / 2 ) * i/2 + 240 ) - distance * 100);
+              context.fillText("ACQUIS :", 700 + distance *100, ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 55) ) - distance * 100 );
+              context.fillStyle = "#ffffff";
+              context.font = "bold 70px Gotham Rounded Light";
+              context.fillText(blocArray[i]['percentage'], 870+distance*100, ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 25) ) - distance * 100 );
               context.fillStyle = "#f26744";
-              context.font = "bold 100px Gotham Rounded Light";
-              context.fillText("50%", 900+distance*100, (1200/(blocArray.length/2)*i/2+280)-distance*100);
-            }
+              context.fillText("%", 1010 + distance*100, ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 25) ) - distance * 100 );
 
-            var blocOffset;
+              if(blocArray[i]['height'] != 0) {
+                canvasIso.add(blocArray[i]['bloc'].translate(0, 0, distance*blocOffset), color);
+              }
 
-            if(i&1){
-              blocOffset = i;
-            }
-            else {
-              blocOffset = i+1;
-            }
 
-            canvasIso.add(blocArray[i].translate(0, 0, distance*blocOffset), color);
+              context.lineWidth = 3;
+              context.beginPath();
+              context.moveTo(400, ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 100) ) - distance * 100 );
+              context.lineTo(680, ( canvasHeight - ( canvasHeight / ( blocArray.length / 2) * i / 2 + 100) ) - distance * 100 );
+              context.stroke();
+              context.lineWidth = 1;
+            }
 
           }
         }
@@ -226,18 +237,29 @@ angular.module('RiddleApp')
 
       for (var i=0; i<lenght; i++) {
 
+        var itemArray = [];
+
         var blocOkHeight = (statistics[i]["answerLength"]) * buildingHeight / questionsLenght;
         var bloc = Shape.Prism(new Point(xOrigin, yOrigin, offset), width, width, blocOkHeight);
-        blocArray.push(bloc);
+        var percentage = Math.round(statistics[i]["answerLength"] * 100 / statistics[i]["questionLength"]);
+
+        itemArray = {'bloc' : bloc, 'percentage' : percentage, 'chapter' : i+1, 'height' : blocOkHeight};
+
+        blocArray.push(itemArray);
         offset = offset + blocOkHeight;
 
         var blocKoHeight = ((statistics[i]["questionLength"]) - (statistics[i]["answerLength"])) * buildingHeight / questionsLenght;
         var bloc = Shape.Prism(new Point(xOrigin, yOrigin, offset), width, width, blocKoHeight);
-        blocArray.push(bloc);
+
+        itemArray = {'bloc' : bloc, 'height' : blocKoHeight};
+
         offset = offset + blocKoHeight;
+
+        blocArray.push(itemArray);
       }
 
       return blocArray;
+
     },
 
     /**

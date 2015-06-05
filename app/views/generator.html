@@ -19,12 +19,21 @@
             <span class="icon icon-clock"></span> {{exam.duree}}
           </li>
         </ul>
-        <p class="text-indication">{{exam.description}}</p>
+        <p class="text-indication fade">{{exam.description}}</p>
       </div>
     </div>
   </div>
   <div class="wrapper-header-right col-lg-3">
     <div class="bloc-header-right">
+      <div class="list-indications">
+        <div class="item-indication blue">
+          {{exam.groupe}} -
+        </div>
+        <div class="item-indication white">
+          Créé le 12/07/1994
+        </div>
+      </div>
+      <img src="styles/design/groupe-icon.png" alt=""/>
     </div>
   </div>
   </div>
@@ -56,82 +65,97 @@
     <div class="bloc-content">
 
       <form>
-        <div class="form-title-wrapper">
-          <div class="form-title">
-            <span class="highlight">Etape 1 : </span>Choisis le type de question
-          </div>
-        </div>
-        <div class="form-content">
-          <div class="wrapper-cta col-lg-4">
-            <a ng-click="" class="cta-generator" href="">
-              <span class="icon icon-list"></span>Textuel
-            </a>
-          </div>
-          <div class="wrapper-cta col-lg-4">
-            <a ng-click="" class="cta-generator" href="">
-              <span class="icon icon-image"></span>Image
-            </a>
-          </div>
-          <div class="wrapper-cta col-lg-4">
-            <a ng-click="" class="cta-generator" href="">
-              <span class="icon icon-key"></span>Mot clé
-            </a>
-          </div>
-        </div>
-        <div class="form-title-wrapper">
-          <div class="form-title">
-            <span class="highlight">Etape 2 : </span>Choisis le chapitre
-          </div>
-        </div>
-        <div class="form-content">
-          <div class="checkbox" ng-repeat="chapter in chapters">
-              <input type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
-              <label for="input-chapter-{{$index+1}}"><strong>Chapitre {{$index+1}}</strong> : {{chapter.titre}}</label>
-          </div>
-          <div class="checkbox">
-            <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
-            <label for="new">Nouveau chapitre</label>
-          </div>
-        </div>
-        <div class="form-title-wrapper">
-          <div class="form-title">
-            <span class="highlight">Etape 3 : </span>Créé ta question
-          </div>
-        </div>
-        <div class="form-content">
-          <div class="form-group">
-            <a href="" class="input-option"><span class="icon icon-image"></span></a>
-            <input placeholder="Titre de la question" type="text" class="form-control input" id="input-title" placeholder="Enter titre">
-          </div>
-          <div class="form-group">
-            <input placeholder="Intitulé de la question" type="text" class="form-control input" id="input-question" placeholder="Enter question">
-          </div>
-          <div class="form-group">
-            <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
-          </div>
-          <div class="form-group">
-
-            <div class="yin">
-
-              <div class="wrapper-editor">
-                <header contenteditable="true" class="header">
-                  This is ZenPen
-                </header>
-
-                <article contenteditable="true" id="textarea-solution" class="editor content">
-
-                  <p>
-                    A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
-                  </p>
-
-                </article>
+        <div class="form-caption">
+          <div class="table-head form-title">
+            <div class="table-cell table-cell-question col-lg-12">
+              <div class="table-cell-question-wrapper">
+                        <span class="highlight">Etape 1 :
+                        </span>Choisis le type de question
               </div>
             </div>
-
           </div>
-          <div class="form-group" ng-repeat="answer in answers">
-            <a ng-click="addAnswer()" class="input-option">+</a>
-            <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
+          <div class="form-content">
+            <div class="wrapper-cta col-lg-4">
+              <a ng-click="nextStep(2)" class="cta-generator" href="">
+                <span class="icon icon-list"></span>Textuel
+              </a>
+            </div>
+            <div class="wrapper-cta col-lg-4">
+              <a ng-click="nextStep(2)" class="cta-generator" href="">
+                <span class="icon icon-image"></span>Image
+              </a>
+            </div>
+            <div class="wrapper-cta col-lg-4">
+              <a ng-click="nextStep(2)" class="cta-generator" href="">
+                <span class="icon icon-key"></span>Mot clé
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="form-caption" ng-show="step >= 2">
+          <div class="table-head form-title">
+            <div class="table-cell table-cell-question col-lg-12">
+              <div class="table-cell-question-wrapper">
+                        <span class="highlight">Etape 2 :
+                        </span>Choisis le chapitre
+              </div>
+            </div>
+          </div>
+          <div class="form-content">
+            <div class="checkbox" ng-repeat="chapter in chapters">
+                <input ng-click="nextStep(3)" type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
+                <label for="input-chapter-{{$index+1}}"><strong>Chapitre {{$index+1}}</strong> : {{chapter.titre}}</label>
+            </div>
+            <div class="checkbox">
+              <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
+              <label for="new">Nouveau chapitre</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-caption" ng-show="step >= 3">
+          <div class="table-head form-title">
+            <div class="table-cell table-cell-question col-lg-12">
+              <div class="table-cell-question-wrapper">
+                        <span class="highlight">Etape 3 :
+                        </span>Créer ta question
+              </div>
+            </div>
+          </div>
+          <div class="form-content">
+            <div class="form-group">
+              <a href="" class="input-option"><span class="icon icon-image"></span></a>
+              <input placeholder="Titre de la question" type="text" class="form-control input" id="input-title" placeholder="Enter titre">
+            </div>
+            <div class="form-group">
+              <input placeholder="Intitulé de la question" type="text" class="form-control input" id="input-question" placeholder="Enter question">
+            </div>
+            <div class="form-group">
+              <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
+            </div>
+            <div class="form-group">
+
+              <div class="yin">
+
+                <div class="wrapper-editor">
+                  <header contenteditable="true" class="header">
+                    This is ZenPen
+                  </header>
+
+                  <article contenteditable="true" id="textarea-solution" class="editor content">
+
+                    <p>
+                      A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                    </p>
+
+                  </article>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group" ng-repeat="answer in answers">
+              <a ng-click="addAnswer()" class="input-option">+</a>
+              <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
+            </div>
           </div>
         </div>
       </form>

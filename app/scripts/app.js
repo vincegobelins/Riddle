@@ -42,12 +42,20 @@ angular
 
     /**
      * Get User details
-     * @return {void}
+     * @return {Object}
      */
 
     getUser = function(){
-      $scope.user = riddleFactory.getAccount(getUserId());
-      console.log($scope.user);
+
+      riddleFactory.getAccount(getUserId(), function(result) {
+        console.log('test');
+        if(result != null){
+          $scope.user = result;
+          console.log('user'+$scope.user);
+        }
+
+      });
+
     }
 
     /**

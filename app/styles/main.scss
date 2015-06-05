@@ -204,11 +204,24 @@ ul {
   background: $color-bg-1;
 }
 
-.wrapper-header-left {
+.wrapper-header-left, .wrapper-header-center, .wrapper-header-right {
 
-  .bloc-header-left {
-    padding : $width-1/2 $width-1;
+  display: table;
+  height : $header-height;
+
+  .icon {
+    color: $color-white;
   }
+
+}
+
+.bloc-header-left, .bloc-header-center, .bloc-header-right {
+  display: table-cell;
+  vertical-align: bottom;
+  padding : 0 $width-1 4em;
+}
+
+.wrapper-header-left {
 
   .title-header {
     display: block;
@@ -228,13 +241,6 @@ ul {
 
 .wrapper-header-center {
 
-  .bloc-header-center {
-    padding : $width-1/2 $width-1;
-  }
-  .icon {
-    color: $color-white;
-  }
-
   .list-indications {
     @extend .clearfix;
     display: block;
@@ -250,22 +256,21 @@ ul {
   .text-indication {
     display: block;
     margin: 0;
-    font-family: $font-style-2; color: $color-white; font-size: 1.4em;
+    font-family: $font-style-2; color: $color-white; font-size: 1.4em; line-height: 1.4;
   }
 
 }
 
 .wrapper-header-right {
 
-  .bloc-header-right {
-    padding : $width-1/2 $width-1;
-  }
-  .icon {
-    color: $color-white;
-  }
-
   img {
     width: 70%;
+    float: right;
+  }
+
+  .list-indications {
+    display: block;
+    float: right;
   }
 
 
@@ -312,7 +317,7 @@ ul {
 }
 
 .title-sidebar {
-  margin: 0;
+  margin: .5em 0;
   font-family: $font-style-2; color: $color-text-2; font-size: 2.8em; text-transform: uppercase;
   text-align: center;
 }
@@ -324,12 +329,12 @@ ul {
 .cta {
   @extend .transition;
   display: inline-block;
-  width: 35%;
-  padding: .5em; margin: 1em;
-  border: 3px solid $color-bg-1;
-  font-family: $font-style-2; color: $color-text-2; font-size: 2em; text-decoration: none;
+  min-width: 35%;
+  padding: 1em; margin: 1em;
+  border: 1px solid $color-bg-1;
+  font-family: $font-style-2; color: $color-white; font-size: 1.5em; text-decoration: none;
   background: $color-bg-2;
-  @include border-radius(7px, 7px);
+  @include border-radius(3px, 3px);
 
   .icon {
     color: $color-white;
@@ -370,7 +375,7 @@ ul {
 
     display: inline-block;
     width: 50%; height: 1em;
-    background-color: black;
+    background-color: $color-border-1;
 
     .line-progression {
       @extend .elastic-transition;
@@ -413,6 +418,32 @@ ul {
   }
 }
 
+.wrapper-author-question {
+  display: block;
+  text-align: center;
+}
+
+.bloc-author-question {
+
+  display: inline-block;
+  padding: 1em;
+  border-bottom : 1px solid $color-border-1;
+
+  .author-question {
+    margin: 0;
+    font-size: 2em; font-family: $font-style-2; color: $color-white;
+  }
+
+  .author-date {
+    margin: 0;
+    font-size: 1.5em; font-family: $font-style-2; color: $color-text-2; font-style: italic;
+  }
+
+  .highlight {
+    font-style: italic;
+  }
+}
+
 /*
 ##############################
 # Main content               #
@@ -420,6 +451,7 @@ ul {
 */
 
 .wrapper-content {
+  position: absolute;
   margin-top: $header-height +  $width-2;
   margin-left: percentage(4/12);
 }
@@ -543,15 +575,35 @@ ul {
   text-transform: uppercase;
   overflow: hidden;
 
+  .ng-hide & {
+    @include animation(none);
+
+    &:before, &:after {
+      @include animation(none);
+    }
+
+    .table-cell-question {
+
+      &:before {
+        @include animation(none);
+      }
+    }
+
+    .table-cell-question-wrapper {
+      @include animation(none);
+    }
+  }
+
   &:after {
     content: '';
     display: block;
-    width: 100%; height: 1px;
+    width: 0%; height: 1px;
     margin: 0 5em;
     background: $color-bg-1;
     bottom: 0;
     font-size: 1em;
     overflow: hidden;
+    @include animation(width 1s ease-in-out 0.5s forwards);
   }
 
   .table-cell {
@@ -563,14 +615,9 @@ ul {
     padding: 1em 0 1em $width-1;
     box-sizing: border-box;
 
-    &.active {
-
-      &:before {
-        background: url('design/sprite.png')-80px 0;
-      }
-    }
-
     &:before {
+      @include animation(rotate-wing 1s cubic-bezier(.33,1,.42,.96) 1s forwards);
+      opacity: 0;
       content: '';
       position: absolute;
       display: block;
@@ -581,7 +628,8 @@ ul {
   }
 
   .table-cell-question-wrapper {
-    font-family: $font-style-2; color: $color-text-2; font-size: 1.4em;
+    @include animation(indent 1s ease-in-out 0.5s forwards);
+    font-family: $font-style-2; color: $color-text-2; font-size: 1.4em; opacity: 0;
 
     .highlight {
       font-family: $font-style-1; color: $color-text-1;
@@ -589,6 +637,8 @@ ul {
   }
 
   .table-cell-note, .table-cell-vote {
+    opacity: 0;
+    @include animation(fade-in 1s ease-in-out 1s forwards);
     text-align: center;
   }
 }
@@ -597,7 +647,6 @@ ul {
   position: relative;
   @extend .clearfix;
   @extend .transition;
-  @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
 
   a {
     @extend .transition;
@@ -670,7 +719,7 @@ ul {
 .wrapper-answer {
   .list-answer {
     .item-answer {
-      @extend .transition;
+      @include transition(background-color, .25s, ease-in-out);
       padding: 0 $width-1;
       text-align: center;
       cursor: pointer;
@@ -688,11 +737,20 @@ ul {
       }
 
       &.hide {
-        height: 0;
-        opacity: 0;
+        @include animation(list-animation-out .5s cubic-bezier(0.420, 0.000, 0.580, 1.000) forwards);
+      }
+
+      &.false {
+        @include transition(opacity, .5s, ease-in-out);
+        opacity: 0.5;
+
         .link-item-answer {
-          padding: 0;
+          @include animation(wobble-horizontal 1s ease-in-out forwards);
         }
+      }
+
+      &.ng-leave {
+        @include transition(none, none, none);
       }
 
       &.active {
@@ -751,8 +809,17 @@ ul {
 }
 
 .wrapper-cta-editor {
-  width: 170px;
-  margin: 0 auto;
+  position: absolute; right: $width-1; margin-top: -4.5em;
+  padding: 2em;
+  font-size: 1.4em;
+
+  &:hover {
+      @include animation(wobble-vertical .75s ease-in-out);
+  }
+}
+
+.cta-editor {
+  font-family: $font-style-2; color: $color-text-1; font-size: 1.5em;
 }
 
 /*
@@ -761,47 +828,26 @@ ul {
 ##############################
 */
 
-.form-title-wrapper {
-  @extend .transition;
-  display: block;
-  text-transform: uppercase;
-  padding: 1em 0; margin: $width-1/2 $width-1;
-  border-bottom: 1px solid $color-bg-1;
-  font-size: 1.4em;
-
-  &.active {
-
-    &:before {
-      @extend .transition;
-      @include transform(rotate(0deg));
-      display: inline-block;
-      background: url('design/sprite.png')-80px 0;
-    }
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 20px; height: 20px;
-    margin-left: -2em; margin-top: 0.25em;
-    background: url('design/sprite.png')-60px 0;
-  }
-
-  .form-title {
-
-    font-family: $font-style-2; color: $color-text-2; font-size: 1.4em;
-
-    .highlight {
-      font-family: $font-style-1; color: $color-text-1;
-    }
-  }
+.form-caption {
+  margin: $width-1 0;
 }
+
+.form-title {
+    font-size: 1.4em;
+}
+
 
 .form-content {
   @extend .clearfix;
+  @include animation(fade-in 1s ease-in-out 1s forwards);
+  opacity: 0;
   font-family: $font-style-2; color: $color-text-1;
   padding: 1em $width-1*1.4;
+
+  .ng-hide & {
+    @include animation(none);
+  }
+
 }
 
 .form-group {
@@ -939,7 +985,7 @@ ul {
     margin-right: 1em;
   }
 
-  &:hover, &:focus {
+  &:hover, &:focus, &.active {
     color: $color-white;
     background: $color-bg-1;
     @include border-radius(0px, 0px);
@@ -956,51 +1002,66 @@ input.radio:hover:not(:checked) ~ label {
   color: $color-text-2;
 }
 
+/*
+##############################
+# Flipping image             #
+##############################
+*/
+
+.bloc-image  {
+
+  @extend .image-transition;
+  display: block;
+  width: 30em; height: 35em;
+  margin: $width-1 auto;
+  transform-style: preserve-3d;
+  transform: perspective(500px);
+
+  .img {
+    display: block;
+    width: 100%; height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+
+    //-webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 49% 100%, 0% 75%, 0% 25%);
+    //clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 49% 100%, 0% 75%, 0% 25%);
+    clip-path: url(#myClip);
+  }
+
+  .img-hover {
+    transform: rotateY( 180deg );
+  }
+}
+
 /* Transition */
 
-.table-line {
+.table-line, .item-answer {
+
+  @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
 
   &.ng-enter {
-    @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
+    @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000) forwards);
   }
 
   &.ng-leave {
-    @include animation(list-animation-out .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
+    @include animation(list-animation-out .5s cubic-bezier(0.420, 0.000, 0.580, 1.000) forwards);
   }
 }
-/*
-.ng-leave {
-  animation: my_fade_animation 0.5s linear;
-  -webkit-animation: my_fade_animation 0.5s linear;
-}
-
-.ng-enter {
-  animation: my_fade_inverse_animation 0.5s linear;
-  -webkit-animation: my_fade_inverse_animation 0.5s linear;
-}
-*/
 
 
 
-@keyframes my_fade_animation {
-  from { opacity:1; }
-  to { opacity:0;}
-}
 
-@-webkit-keyframes my_fade_animation {
-  from { opacity:1; }
-  to { opacity:0;}
-}
 
-@keyframes my_fade_inverse_animation {
-  from { opacity:0; }
-  to { opacity:1; }
-}
+  .ng-leave {
+    @include animation(fade-out .5s ease-in-out forwards);
+  }
 
-@-webkit-keyframes my_fade_inverse_animation {
-  from { opacity:0; }
-  to { opacity:1; }
-}
+  .ng-enter {
+    @include animation(fade-in .5s ease-in-out backwards);
+  }
+
+
+
 
 .fadein,
 .fadeout {

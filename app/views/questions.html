@@ -44,6 +44,12 @@
           </div>
         </div>
       </div>
+      <div class="wrapper-image">
+        <div class="bloc-image">
+          <img class="img" src="http://cdn.designrfix.com/wp-content/uploads/2011/06/ipad-wallpaper-free-30.jpg" alt="" style="clip-path: url(#myClip);"/>
+          <img class="img img-hover" src="http://dc754.4shared.com/img/aoXExv__/s3/137c47be538/Nature-Wallpaper-6-500x500" alt="" style="clip-path: url(#myClip);"/>
+        </div>
+      </div>
       <div class="wrapper-tool">
         <div class="item-tool">
           <div class="content-tool">
@@ -78,8 +84,22 @@
         </div>
       </div>
 
+      <svg width="0" height="0">
+        <defs>
+          <clipPath id="myClip" clipPathUnits="objectBoundingBox">
+            <polygon points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
+          </clipPath>
+        </defs>
+      </svg>
+
 
       <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
+      <div class="wrapper-author-question">
+        <div class="bloc-author-question">
+          <p class="author-question">Par <span class="highlight">{{author.prenom}} {{author.nom}}</span></p>
+          <div class="author-date">Le 16/02/15</div>
+        </div>
+      </div>
     </div>
   </div>
 </aside>
@@ -93,8 +113,8 @@
 
       <div class="wrapper-answer">
         <ul class="list-answer">
-          <li ng-repeat="answer in answers" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fadeout">
-            <a class="link-item-answer" ng-click="checkAnswer(answer)">{{answer}}<span class="glyphicon"></span></a>
+          <li ng-repeat="answer in answers" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fade">
+            <a class="link-item-answer" ng-click="checkAnswer(answer, $index)">{{answer}}<span class="glyphicon"></span></a>
           </li>
         </ul>
       </div>
@@ -118,7 +138,7 @@
             </article>
 
             <div class="wrapper-cta-editor">
-              <a href="" class="cta-generator" ng-click="sendComment()"><span class="icon icon-paper-plane"></span>Envoyer</a>
+              <a href="" class="cta-editor" ng-click="sendComment()"><span class="icon icon-paper-plane"></span></a>
             </div>
           </div>
         </div>
