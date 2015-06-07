@@ -78,8 +78,12 @@ angular.module('RiddleApp')
 
     getComments = function () {
 
-      $scope.comments = riddleFactory.getComments($scope.param, $scope.questionId);
-      console.log($scope.comments);
+
+      riddleFactory.getComments($scope.param, $scope.questionId, function(result) {
+        $scope.comments = result;
+      });
+
+      console.log('commentaires : '+$scope.comments);
 
     },
 
@@ -100,7 +104,14 @@ angular.module('RiddleApp')
         $scope.answerOk = question["reponseok"];
         $scope.solution = question["solution"];
 
-        getAuthor(question["autheur"])
+        getAuthor(question["autheur"]);
+
+        if($scope.quizzPosition&1){
+          $scope.imgfront = question["image"];
+        }
+        else {
+          $scope.imgback = question["image"];
+        }
 
         getComments();
 

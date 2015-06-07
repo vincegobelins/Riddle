@@ -809,8 +809,7 @@ ul {
 }
 
 .wrapper-cta-editor {
-  position: absolute; right: $width-1; margin-top: -4.5em;
-  padding: 2em;
+  position: absolute; right: 0; margin-top: -2em;
   font-size: 1.4em;
 
   &:hover {
@@ -898,7 +897,7 @@ ul {
   }
 
   &:focus {
-    border-bottom: 3px solid $color-bg-2;
+    border-bottom: 1px solid $color-bg-2;
   }
 }
 
@@ -1017,6 +1016,32 @@ input.radio:hover:not(:checked) ~ label {
   transform-style: preserve-3d;
   transform: perspective(500px);
 
+  .img-add {
+    @extend .transition;
+    opacity: 0;
+    z-index: 10;
+    display: table;
+    width: 100%; height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background: $color-bg-1;
+    clip-path: url(#myClip);
+
+    .img-add-content {
+      display: table-cell;
+      vertical-align: middle;
+      font-family: $font-style-2; color: $color-white; text-decoration: none; font-size: 14em; text-align: center;
+    }
+
+    &:hover {
+      opacity: 0.75;
+
+      .img-add-content {
+        @include animation(wobble-horizontal .75s ease-in-out);
+      }
+    }
+  }
+
   .img {
     display: block;
     width: 100%; height: 100%;
@@ -1035,7 +1060,7 @@ input.radio:hover:not(:checked) ~ label {
 
 /* Transition */
 
-.table-line, .item-answer {
+.table-line, .item-answer, .item-comment {
 
   @include animation(list-animation-in .5s cubic-bezier(0.420, 0.000, 0.580, 1.000));
 

@@ -202,7 +202,9 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
       var ref = new Firebase(config.BDD);
       var authData = ref.getAuth();
 
-      return authData.uid;
+      if(authData){
+        return authData.uid;
+      }
     },
 
     /**
@@ -271,10 +273,49 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
      * @param {String} comment Unique id of question
      */
 
-    getComments : function(idExam, idQuestion){
+    getComments : function(idExam, idQuestion, callback){
       var query = config.BDD + 'exams/' + idExam + '/questions/' + idQuestion + '/commentaires';
       var result = new Firebase(query);
-      return $firebaseArray(result);
+      var resultArray = $firebaseArray(result);
+
+      console.log('get comments')
+      /*
+      for (var i=0; i<resultArray.length; i++){
+        console.log('result array : ');
+        console.log(resultArray[i]);
+        console.log('fin result array');
+      }*/
+
+      var _self = this;
+      var comments = [];
+
+      result.on('value', function(snapshot) {
+        if(callback){
+          //console.log('callback :'+$firebaseArray(result));
+          snapshot.forEach(function(data) {
+            var authorId =  data.val().user;
+            _self.getAccount(authorId, function(result2){
+              /*
+              var comment = data.val();
+              console.log(result2);
+              console.log(data);
+              console.log(data.val());
+              console.log("The " + data.key() + " dinosaur's score is " + data.val().user);*/
+
+              comments.push({'author' : result2, 'comment' : data.val()});
+            });
+          });
+
+          console.log(comments.length);
+          callback(comments);
+        }
+      }, function(errorObject) {
+        callback($firebaseObject(result));
+      });
+
+      //return resultArray;
+
+
     }
 
 

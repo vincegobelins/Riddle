@@ -46,8 +46,8 @@
       </div>
       <div class="wrapper-image">
         <div class="bloc-image">
-          <img class="img" src="http://cdn.designrfix.com/wp-content/uploads/2011/06/ipad-wallpaper-free-30.jpg" alt="" style="clip-path: url(#myClip);"/>
-          <img class="img img-hover" src="http://dc754.4shared.com/img/aoXExv__/s3/137c47be538/Nature-Wallpaper-6-500x500" alt="" style="clip-path: url(#myClip);"/>
+          <img class="img" src="{{imgfront}}" alt="" style="clip-path: url(#myClip);"/>
+          <img class="img img-hover" src="{{imgback}}" alt="" style="clip-path: url(#myClip);"/>
         </div>
       </div>
       <div class="wrapper-tool">
@@ -147,12 +147,12 @@
           <ul class="list-comments">
             <li ng-repeat="comment in comments | orderBy: '-date'" class="item-comment">
               <div class="header-comment">
-                <p class="title-comment">{{user}}</p>
+                <p class="title-comment">{{comment.author.prenom}}</p>
                 <div class="wrapper-vote-comment">
                 </div>
               </div>
               <div class="wrapper-content-comment">
-                <p ng-bind-html="comment.comment" class="text-comment">
+                <p ng-bind-html="comment.comment.comment" class="text-comment">
                 </p>
               </div>
             </li>

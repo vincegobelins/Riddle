@@ -8,12 +8,13 @@
 
 .form-content {
   .wrapper-editor {
-    padding: 0
+    margin: 0
   }
 }
 
 .wrapper-editor {
-  padding: $width-1 $width-1*2;
+  position: relative;
+  margin: $width-1 $width-1*2;
 
   .header {
     display: none;
@@ -26,11 +27,12 @@
   .editor {
     @extend .transition;
     display: block;
-    border-bottom: 1px solid $color-bg-2;
-    font-family: $font-style-2; color: $color-text-1; font-size: 1.5em;
+    border-bottom: 1px solid $color-border-2;
+    font-family: $font-style-2; color: $color-text-3; font-size: 1.5em;
 
     &:focus {
-      border-bottom: 1px solid $color-bg-1;
+      border-bottom: 1px solid $color-border-1;
+      color: $color-text-1;
     }
   }
 }
@@ -88,9 +90,10 @@
   border: 0px;
 }
 
-a {
+.editor a, .text-comment a {
   text-decoration: none;
-  color: deepskyblue;
+  color: $color-text-1;
+  border-bottom: 1px dotted $color-border-1;
 }
 
 .overlay {
@@ -308,9 +311,8 @@ a {
 }
 
 .options {
-  background-color: rgba(0,0,0,0.9);
+  background-color: $color-bg-2;
   position: absolute;
-  border-radius: 5px;
   margin-left: -63px;
   margin-top: -46px;
   z-index: 1000;
@@ -318,15 +320,11 @@ a {
   width: 125px;
   height: 40px;
 
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -ms-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  @extend .transition;
 }
 
 .options.url-mode {
-  width: 275px;
+  width: 290px;
   margin-left: -137px;
 }
 
@@ -383,7 +381,6 @@ a {
 }
 
 .options button.active {
-  background-color: rgba(255,255,255,0.4);
   opacity: 1;
 }
 
@@ -397,7 +394,7 @@ a {
 
 .options:before {
   content: "";
-  border-top: 5px solid rgba(0,0,0,0.9);
+  border-top: 5px solid $color-bg-2;
   border-bottom: 5px solid transparent;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;

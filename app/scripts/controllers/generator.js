@@ -61,6 +61,9 @@ angular.module('RiddleApp')
 
         $scope.step = offset;
 
+        var percentageProgression = (offset-1) * 100 / 3;
+        $( ".line-progression").css('width', percentageProgression+"%");
+
       },
 
     /**
@@ -70,7 +73,7 @@ angular.module('RiddleApp')
 
     clearForm = function(){
 
-      $('#input-title').val("");
+      //$('#input-title').val("");
       $('#input-question').val("");
       $("#input-correct-answer").val("");
       $('#textarea-solution').val("");
@@ -112,7 +115,7 @@ angular.module('RiddleApp')
 
       if(checkForm() == true) {
 
-        title = $('#input-title').val();
+        //title = $('#input-title').val();
         question = $('#input-question').val();
         author = riddleFactory.getAuth();
         chapter = $('input[name=input-chapter]:checked').val();
@@ -124,7 +127,7 @@ angular.module('RiddleApp')
           answers.push($(this).val());
         });
 
-        var sendQuestion = riddleFactory.setQuestion($scope.param, title, author, question, chapter, answers, answerok, solution);
+        var sendQuestion = riddleFactory.setQuestion($scope.param, 'title', author, question, chapter, answers, answerok, solution);
 
         if(sendQuestion == true){
             clearForm();
