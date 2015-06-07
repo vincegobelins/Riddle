@@ -145,14 +145,14 @@
 
         <div class="wrapper-comments">
           <ul class="list-comments">
-            <li ng-repeat="comment in comments | orderBy: '-date'" class="item-comment">
+            <li ng-repeat="comment in comments | orderBy: 'content.date':true" class="item-comment">
               <div class="header-comment">
-                <p class="title-comment">{{comment.author.prenom}}</p>
+                <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}} {{comment.content.date}}</p>
                 <div class="wrapper-vote-comment">
                 </div>
               </div>
               <div class="wrapper-content-comment">
-                <p ng-bind-html="comment.comment.comment" class="text-comment">
+                <p ng-bind-html="comment.content.comment" class="text-comment">
                 </p>
               </div>
             </li>

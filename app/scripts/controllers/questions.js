@@ -80,7 +80,9 @@ angular.module('RiddleApp')
 
 
       riddleFactory.getComments($scope.param, $scope.questionId, function(result) {
-        $scope.comments = result;
+          $timeout(function() {
+            $scope.comments = result;
+          });
       });
 
       console.log('commentaires : '+$scope.comments);

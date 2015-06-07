@@ -278,31 +278,38 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
       var result = new Firebase(query);
       var resultArray = $firebaseArray(result);
 
-      console.log('get comments')
-      /*
-      for (var i=0; i<resultArray.length; i++){
-        console.log('result array : ');
-        console.log(resultArray[i]);
-        console.log('fin result array');
-      }*/
-
       var _self = this;
+
+      // Declaration du tableau de commentaires
       var comments = [];
 
       result.on('value', function(snapshot) {
         if(callback){
           //console.log('callback :'+$firebaseArray(result));
           snapshot.forEach(function(data) {
-            var authorId =  data.val().user;
-            _self.getAccount(authorId, function(result2){
-              /*
-              var comment = data.val();
-              console.log(result2);
-              console.log(data);
-              console.log(data.val());
-              console.log("The " + data.key() + " dinosaur's score is " + data.val().user);*/
 
-              comments.push({'author' : result2, 'comment' : data.val()});
+            // Pour chacun des résultats, on garde en mémoire l'id de l'utilisateur et l'id du commentaire
+            var authorId =  data.val().user;
+            var commentKey = data.key();
+
+            // Requête pour récupérer l'utilisateur associé à l'id utilisateur
+            _self.getAccount(authorId, function(result2){
+
+              // On test si le commentaire n'est pas déjà présent dans le tableau avec l'id commentaire
+              var isInArray = false;
+
+              for (var i=0; i<comments.length; i++){
+                if(comments[i].key == commentKey) {
+                  isInArray = true;
+                }
+              }
+
+              console.log(isInArray);
+
+              // S'il n'existe pas, on le pousse dans le tableau
+              if(isInArray == false) {
+                comments.push({'author' : result2, 'content' : data.val(), 'key':data.key()});
+              }
             });
           });
 
