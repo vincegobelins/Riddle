@@ -6,6 +6,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "compass/css3/animation";
 @import "icon.scss";
 @import "editor.scss";
+@import "map.scss";
 
 *:focus {
   outline: none;
@@ -38,7 +39,7 @@ ul {
 */
 
 #header {
-  z-index: 4;
+  z-index: 4; top: 0;
   position: fixed;
   display: block;
   height: $width-2; width: 100%;

@@ -1,0 +1,87 @@
+@import "variables.scss";
+
+/*
+##############################
+# Map styles                 #
+##############################
+*/
+
+$color-border-grid : #e6e6e6;
+
+$screen-width : 1920px;
+$box-row-length : 20;
+$box-width : $screen-width / $box-row-length;
+
+.wrapper-map {
+
+  .bloc-map {
+    position: absolute;
+    width: $screen-width;
+    overflow: hidden;
+  }
+}
+
+.box {
+  @include transition(all, .6s, ease-out);
+  display: block;
+  position: relative;
+  width: $box-width; height: $box-width;
+  float: left;
+  border-bottom: 1px solid $color-border-grid;
+  border-right: 1px solid $color-border-grid;
+  box-sizing: border-box;
+
+  &:hover {
+    background: $color-border-2;
+    @include box-shadow(-10px 10px 0px 0px #656565 inset);
+    .inbox {
+      @include box-shadow(-10px 10px 0px 0px #656565);
+    }
+  }
+
+  &.show {
+    .inbox {
+      @include transition(all, .6s, ease-out);
+      display: block;
+    }
+  }
+
+  &.green {
+    .inbox {
+      @include transition(all, .6s, ease-out);
+      background: $color-bg-4;
+    }
+  }
+
+  &.orange {
+    .inbox {
+      @include transition(all, .6s, ease-out);
+      background: $color-bg-1;
+    }
+  }
+
+}
+
+.inbox {
+  display: none;
+  position: absolute; top : 50%; left : 50%;
+  width: $box-width/4; height: $box-width/4;
+  margin-top: -$box-width/8; margin-left: -$box-width/8;
+  background: $color-bg-1;
+}
+
+.matrix {
+  -webkit-transform:matrix(1,-0.6, 1,0.6, 0,0);
+  -moz-transform:matrix(1,-0.6, 1,0.6, 0,0);
+  -o-transform:matrix(1,-0.6, 1,0.6, 0,0);
+  transform:matrix(1,-0.6, 1,0.6, 0,0);
+
+}
+
+.title-map {
+  position: absolute; z-index: 100;
+  display: block;
+  height: $box-width;
+  font-family: $font-style-1; color: $color-white; font-size: 2em; text-transform: uppercase;
+  background: $color-bg-1;
+}
