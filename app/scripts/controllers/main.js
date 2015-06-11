@@ -21,9 +21,26 @@ angular.module('RiddleApp')
     },
 
     initMap = function(){
-      drawLine(1, 'orange');
-      drawLine(4, 'green');
-      drawLine(8, 'orange');
+      drawLine(2, 'orange');
+      drawLine(6, 'green');
+      drawLine(10, 'orange');
+
+      $('.bloc-map').mousemove(function( event ) {
+
+        var blocWidth = 115;
+
+        var step = Math.floor(event.pageY / blocWidth);
+        var value = ( blocWidth + 0.3 ) * step;
+
+        $('#cta-new').css('top', value);
+
+      });
+
+      $(".box").each(function(index) {
+        $(this).delay(20 * (Math.random()*100)).fadeIn(function() {
+          $(this).addClass('anim-box');
+        });
+      });
     },
 
     getExams = function() {
@@ -35,6 +52,11 @@ angular.module('RiddleApp')
     drawLine = function(offset, color){
 
       iterate++;
+
+      var cube = document.getElementById('test');
+      var position = cube.getBoundingClientRect();
+      console.log(position.top);
+
 
       $( '.box:nth-child(21n+' + offset + ')').addClass('show ' + color );
       var top = $( '.box:nth-child(' + offset + ')').position().top - 230;

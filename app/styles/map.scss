@@ -23,13 +23,15 @@ $box-width : $screen-width / $box-row-length;
 
 .box {
   @include transition(all, .6s, ease-out);
+  opacity: 0;
   display: block;
   position: relative;
   width: $box-width; height: $box-width;
   float: left;
-  border-bottom: 1px solid $color-border-grid;
-  border-right: 1px solid $color-border-grid;
+  border: 1px solid $color-border-grid;
+  //border-right: 1px solid $color-border-grid;
   box-sizing: border-box;
+  background: $color-white;
 
   &:hover {
     background: $color-border-2;
@@ -75,13 +77,53 @@ $box-width : $screen-width / $box-row-length;
   -moz-transform:matrix(1,-0.6, 1,0.6, 0,0);
   -o-transform:matrix(1,-0.6, 1,0.6, 0,0);
   transform:matrix(1,-0.6, 1,0.6, 0,0);
-
 }
 
+/*
+##############################
+# Bloc title                 #
+##############################
+*/
+
 .title-map {
+  @include transition(top, .6s, ease-out);
   position: absolute; z-index: 100;
-  display: block;
-  height: $box-width;
+  display: table;
+  height: $box-width * 1.2; width: 287px;
   font-family: $font-style-1; color: $color-white; font-size: 2em; text-transform: uppercase;
   background: $color-bg-1;
+
+  p {
+    padding: 2em;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &:after {
+    content: ''; z-index: -1;
+    position: absolute; top:50%; right: 0;
+    display: block;
+    width: $box-width; height: $box-width;
+    background: $color-bg-1;
+    transform:matrix(1,-0.6, 1,0.6, 0,0);
+    transform-origin: left top;
+  }
+}
+
+#cta-new {
+  background: $color-bg-2;
+
+  &:after {
+    background: $color-bg-2;
+  }
+}
+
+
+/* Animation */
+.anim-box {
+  @include animation(cube-in 0.6s ease-out forwards);
+}
+@include keyframes(cube-in) {
+  0% { opacity:0; @include transform(translate(400px, -400px));}
+  100% { opacity:1; @include transform(translate(0px 0px)); }
 }
