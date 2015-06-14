@@ -17,13 +17,11 @@ $box-width : $screen-width / $box-row-length;
   .bloc-map {
     position: absolute;
     width: $screen-width;
-    overflow: hidden;
   }
 }
 
 .box {
-  @include transition(all, .6s, ease-out);
-  opacity: 0;
+  opacity: 1;
   display: block;
   position: relative;
   width: $box-width; height: $box-width;
@@ -60,6 +58,10 @@ $box-width : $screen-width / $box-row-length;
       @include transition(all, .6s, ease-out);
       background: $color-bg-1;
     }
+  }
+
+  &.animate {
+    @include transition(all, .6s, ease-out);
   }
 
 }
@@ -118,12 +120,20 @@ $box-width : $screen-width / $box-row-length;
   }
 }
 
+/*
+##############################
+# Bloc header                #
+##############################
+*/
 
-/* Animation */
-.anim-box {
-  @include animation(cube-in 0.6s ease-out forwards);
-}
-@include keyframes(cube-in) {
-  0% { opacity:0; @include transform(translate(400px, -400px));}
-  100% { opacity:1; @include transform(translate(0px 0px)); }
+.exam-header-home {
+  @include transition(margin-top, 0.75s, ease-out);
+  position: absolute!important; z-index: 100!important;
+  margin-top: 0;
+  top : 100%;
+
+  &.show {
+    margin-top : -$header-height!important;
+  }
+
 }

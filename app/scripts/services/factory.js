@@ -6,11 +6,19 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
      * @return {Array}
      */
 
-    getExams: function() {
+    getExams: function(callback) {
 
       var query = config.BDD + 'exams';
       var result = new Firebase(query);
-      return $firebaseArray(result);
+      //return $firebaseArray(result);
+
+      result.on('value', function(snapshot) {
+        if(callback){
+          callback(snapshot.val());
+        }
+      }, function(errorObject) {
+        callback($firebaseObject(result));
+      });
 
     },
 

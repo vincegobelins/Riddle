@@ -389,3 +389,45 @@
     <div class="box"><div class="inbox"></div></div>
   </div>
 </div>
+<a ng-click="goToExam()">
+  <section id="exam-header" class="exam-header-home col-lg-12">
+    <div class="wrapper-header-left col-lg-4">
+      <div class="bloc-header-left">
+        <span class="surtitle-header">Contrôle</span>
+        <h1 class="title-header">{{exam.nom}}</h1>
+      </div>
+    </div>
+    <div class="wrapper-header-center col-lg-5">
+      <div class="bloc-header-center">
+        <div class="bloc-indications">
+          <ul class="list-indications">
+            <li class="item-indication">
+              <span class="icon icon-users"></span> {{exam.groupe}}
+            </li>
+            <li class="item-indication">
+              <span class="icon icon-calendar"></span> {{exam.date}}
+            </li>
+            <li class="item-indication">
+              <span class="icon icon-clock"></span> {{exam.duree}}
+            </li>
+          </ul>
+          <p class="text-indication fade">{{exam.description}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper-header-right col-lg-3">
+      <div class="bloc-header-right">
+        <div class="list-indications">
+          <div class="item-indication blue">
+            {{exam.groupe}} -
+          </div>
+          <div class="item-indication white">
+            Créé le 12/07/1994
+          </div>
+        </div>
+        <img src="styles/design/groupe-icon.png" alt=""/>
+      </div>
+    </div>
+    </div>
+  </section>
+</a>

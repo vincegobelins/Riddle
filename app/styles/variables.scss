@@ -169,6 +169,16 @@ $width-2 : 4.5em;
   }
 }
 
+@include keyframes(fake) {
+  0% {
+    visibility: visible;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
+
 @include keyframes(fade-in) {
   0% {
     opacity: 0;

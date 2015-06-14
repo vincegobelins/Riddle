@@ -30,139 +30,140 @@
   </div>
   </div>
 </section>
+<div class="fader">
+  <aside id="sidebar" class="col-lg-4">
+    <div class="wrapper-sidebar">
+      <div class="bloc-sidebar">
+        <p class="chapitre-sidebar">Chapitre 1</p>
+        <h2 class="title-sidebar">Question n°{{quizzPosition}}</h2>
+        <div class="wrapper-progression">
+          {{quizzPosition}} / {{quizzLength}}
+          <div class="bloc-progression">
+            <div class="line-progression">
 
-<aside id="sidebar" class="col-lg-4">
-  <div class="wrapper-sidebar">
-    <div class="bloc-sidebar">
-      <p class="chapitre-sidebar">Chapitre 1</p>
-      <h2 class="title-sidebar">Question n°{{quizzPosition}}</h2>
-      <div class="wrapper-progression">
-        {{quizzPosition}} / {{quizzLength}}
-        <div class="bloc-progression">
-          <div class="line-progression">
-
+            </div>
           </div>
         </div>
-      </div>
-      <div class="wrapper-image">
-        <div class="bloc-image">
-          <img class="img" src="{{imgfront}}" alt="" style="clip-path: url(#myClip);"/>
-          <img class="img img-hover" src="{{imgback}}" alt="" style="clip-path: url(#myClip);"/>
-        </div>
-      </div>
-      <div class="wrapper-tool">
-        <div class="item-tool">
-          <div class="content-tool">
-            <a href="">
-              <span class="icon icon-thumbs-down"></span>
-            </a>
-          </div>
-          <div class="content-tool">
-            <p>
-              10
-            </p>
-          </div>
-          <div class="content-tool">
-            <a href="">
-              <span class="icon icon-thumbs-up"></span>
-            </a>
+        <div class="wrapper-image">
+          <div class="bloc-image">
+            <img class="img" src="{{imgfront}}" alt="" style="clip-path: url(#myClip);"/>
+            <img class="img img-hover" src="{{imgback}}" alt="" style="clip-path: url(#myClip);"/>
           </div>
         </div>
-        <div class="item-tool">
-          <div class="content-tool">
-            <a href="" ng-click="addFavorite()">
-              <span class="icon icon-heart"></span>
-            </a>
-          </div>
-        </div>
-        <div class="item-tool">
-          <div class="content-tool">
-            <a href="">
-              <span class="icon icon-warning"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <svg width="0" height="0">
-        <defs>
-          <clipPath id="myClip" clipPathUnits="objectBoundingBox">
-            <polygon points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
-          </clipPath>
-        </defs>
-      </svg>
-
-
-      <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
-      <div class="wrapper-author-question">
-        <div class="bloc-author-question">
-          <p class="author-question">Par <span class="highlight">{{author.prenom}} {{author.nom}}</span></p>
-          <div class="author-date">Le 16/02/15</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</aside>
-
-<article id="content">
-  <div class="wrapper-content col-lg-8">
-    <div class="bloc-content">
-      <div class="question-title-wrapper">
-        <h3 class="question-title">{{question}}</h3>
-      </div>
-
-      <div class="wrapper-answer">
-        <ul class="list-answer">
-          <li ng-repeat="answer in answers" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fade">
-            <a class="link-item-answer" ng-click="checkAnswer(answer, $index)">{{answer}}<span class="glyphicon"></span></a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="wrapper-solution fadein fadeout" ng-show="answerMode">
-        <div ng-bind-html="solution" class="text-solution"></div>
-
-        <div class="yin">
-
-          <div class="wrapper-editor">
-            <header contenteditable="true" class="header">
-              This is ZenPen
-            </header>
-
-            <article contenteditable="true" class="editor content">
-
+        <div class="wrapper-tool">
+          <div class="item-tool">
+            <div class="content-tool">
+              <a href="">
+                <span class="icon icon-thumbs-down"></span>
+              </a>
+            </div>
+            <div class="content-tool">
               <p>
-                A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                10
               </p>
-
-            </article>
-
-            <div class="wrapper-cta-editor">
-              <a href="" class="cta-editor" ng-click="sendComment()"><span class="icon icon-paper-plane"></span></a>
+            </div>
+            <div class="content-tool">
+              <a href="">
+                <span class="icon icon-thumbs-up"></span>
+              </a>
+            </div>
+          </div>
+          <div class="item-tool">
+            <div class="content-tool">
+              <a href="" ng-click="addFavorite()">
+                <span class="icon icon-heart"></span>
+              </a>
+            </div>
+          </div>
+          <div class="item-tool">
+            <div class="content-tool">
+              <a href="">
+                <span class="icon icon-warning"></span>
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="wrapper-comments">
-          <ul class="list-comments">
-            <li ng-repeat="comment in comments | orderBy: 'content.date':true" class="item-comment">
-              <div class="header-comment">
-                <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}} {{comment.content.date}}</p>
-                <div class="wrapper-vote-comment">
-                </div>
-              </div>
-              <div class="wrapper-content-comment">
-                <p ng-bind-html="comment.content.comment" class="text-comment">
-                </p>
-              </div>
+        <svg width="0" height="0">
+          <defs>
+            <clipPath id="myClip" clipPathUnits="objectBoundingBox">
+              <polygon points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
+            </clipPath>
+          </defs>
+        </svg>
+
+
+        <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
+        <div class="wrapper-author-question">
+          <div class="bloc-author-question">
+            <p class="author-question">Par <span class="highlight">{{author.prenom}} {{author.nom}}</span></p>
+            <div class="author-date">Le 16/02/15</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <article id="content">
+    <div class="wrapper-content col-lg-8">
+      <div class="bloc-content">
+        <div class="question-title-wrapper">
+          <h3 class="question-title">{{question}}</h3>
+        </div>
+
+        <div class="wrapper-answer">
+          <ul class="list-answer">
+            <li ng-repeat="answer in answers" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fade">
+              <a class="link-item-answer" ng-click="checkAnswer(answer, $index)">{{answer}}<span class="glyphicon"></span></a>
             </li>
           </ul>
         </div>
+
+        <div class="wrapper-solution fadein fadeout" ng-show="answerMode">
+          <div ng-bind-html="solution" class="text-solution"></div>
+
+          <div class="yin">
+
+            <div class="wrapper-editor">
+              <header contenteditable="true" class="header">
+                This is ZenPen
+              </header>
+
+              <article contenteditable="true" class="editor content">
+
+                <p>
+                  A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                </p>
+
+              </article>
+
+              <div class="wrapper-cta-editor">
+                <a href="" class="cta-editor" ng-click="sendComment()"><span class="icon icon-paper-plane"></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrapper-comments">
+            <ul class="list-comments">
+              <li ng-repeat="comment in comments | orderBy: 'content.date':true" class="item-comment">
+                <div class="header-comment">
+                  <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}} {{comment.content.date}}</p>
+                  <div class="wrapper-vote-comment">
+                  </div>
+                </div>
+                <div class="wrapper-content-comment">
+                  <p ng-bind-html="comment.content.comment" class="text-comment">
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
       </div>
-
-
     </div>
-  </div>
-</article>
+  </article>
+</div>
 </main>
 

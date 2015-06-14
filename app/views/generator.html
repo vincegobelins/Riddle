@@ -38,153 +38,154 @@
   </div>
   </div>
 </section>
+<div class="fader">
+  <aside id="sidebar" class="col-lg-4">
+    <div class="wrapper-sidebar">
+      <div class="bloc-sidebar">
+        <h2 class="title-sidebar">Créer une question</h2>
+        <div class="wrapper-progression">
+          <div class="bloc-progression">
+            <div class="line-progression">
 
-<aside id="sidebar" class="col-lg-4">
-  <div class="wrapper-sidebar">
-    <div class="bloc-sidebar">
-      <h2 class="title-sidebar">Créer une question</h2>
-      <div class="wrapper-progression">
-        <div class="bloc-progression">
-          <div class="line-progression">
-
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="wrapper-image">
-        <div class="bloc-image bloc-image-hover">
-          <div class="img-add" style="clip-path: url(#myClip);"><div class="img-add-content">+</div></div>
-          <img class="img" src="http://cdn.designrfix.com/wp-content/uploads/2011/06/ipad-wallpaper-free-30.jpg" alt="" style="clip-path: url(#myClip);"/>
-          <img class="img img-hover" src="http://dc754.4shared.com/img/aoXExv__/s3/137c47be538/Nature-Wallpaper-6-500x500" alt="" style="clip-path: url(#myClip);"/>
+        <div class="wrapper-image">
+          <div class="bloc-image bloc-image-hover">
+            <div class="img-add" style="clip-path: url(#myClip);"><div class="img-add-content">+</div></div>
+            <img class="img" src="http://cdn.designrfix.com/wp-content/uploads/2011/06/ipad-wallpaper-free-30.jpg" alt="" style="clip-path: url(#myClip);"/>
+            <img class="img img-hover" src="http://dc754.4shared.com/img/aoXExv__/s3/137c47be538/Nature-Wallpaper-6-500x500" alt="" style="clip-path: url(#myClip);"/>
+          </div>
         </div>
+
+        <svg width="0" height="0">
+          <defs>
+            <clipPath fill="none" id="myClip" clipPathUnits="objectBoundingBox">
+              <polygon stroke="#140063" stroke-width="3" stroke-miterlimit="10" points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
+            </clipPath>
+          </defs>
+        </svg>
+
+
+        <a href="" class="cta" ng-click="sendQuestion()">Valider<span class="icon icon-chevron-thin-right"></span></a>
       </div>
-
-      <svg width="0" height="0">
-        <defs>
-          <clipPath fill="none" id="myClip" clipPathUnits="objectBoundingBox">
-            <polygon stroke="#140063" stroke-width="3" stroke-miterlimit="10" points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
-          </clipPath>
-        </defs>
-      </svg>
-
-
-      <a href="" class="cta" ng-click="sendQuestion()">Valider<span class="icon icon-chevron-thin-right"></span></a>
     </div>
-  </div>
-</aside>
+  </aside>
 
-<article id="content">
-  <div class="wrapper-content col-lg-8">
-    <div class="bloc-content">
+  <article id="content">
+    <div class="wrapper-content col-lg-8">
+      <div class="bloc-content">
 
-      <form>
-        <div class="form-caption">
-          <div class="table-head form-title">
-            <div class="table-cell table-cell-question col-lg-12">
-              <div class="table-cell-question-wrapper">
-                        <span class="highlight">Etape 1 :
-                        </span>Choisis le type de question
-              </div>
-            </div>
-          </div>
-          <div class="form-content">
-            <div class="wrapper-cta col-lg-4">
-              <a ng-click="nextStep(2)" class="cta-generator" href="">
-                <span class="icon icon-list"></span>Textuel
-              </a>
-            </div>
-            <div class="wrapper-cta col-lg-4">
-              <a ng-click="nextStep(2)" class="cta-generator" href="">
-                <span class="icon icon-image"></span>Image
-              </a>
-            </div>
-            <div class="wrapper-cta col-lg-4">
-              <a ng-click="nextStep(2)" class="cta-generator" href="">
-                <span class="icon icon-key"></span>Mot clé
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="form-caption" ng-show="step >= 2">
-          <div class="table-head form-title">
-            <div class="table-cell table-cell-question col-lg-12">
-              <div class="table-cell-question-wrapper">
-                        <span class="highlight">Etape 2 :
-                        </span>Choisis le chapitre
-              </div>
-            </div>
-          </div>
-          <div class="form-content">
-            <div class="checkbox" ng-repeat="chapter in chapters">
-                <input ng-click="nextStep(3)" type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
-                <label for="input-chapter-{{$index+1}}"><strong>Chapitre {{$index+1}}</strong> : {{chapter.titre}}</label>
-            </div>
-            <div class="checkbox">
-              <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
-              <label for="new">Nouveau chapitre</label>
-            </div>
-          </div>
-        </div>
-        <div class="form-caption" ng-show="step >= 3">
-          <div class="table-head form-title">
-            <div class="table-cell table-cell-question col-lg-12">
-              <div class="table-cell-question-wrapper">
-                        <span class="highlight">Etape 3 :
-                        </span>Créer ta question
-              </div>
-            </div>
-          </div>
-          <div class="form-content">
-            <!--
-            <div class="form-group">
-              <a href="" class="input-option"><span class="icon icon-image"></span></a>
-              <input placeholder="Titre de la question" type="text" class="form-control input" id="input-title" placeholder="Enter titre">
-            </div>
-            -->
-            <div class="form-group">
-              <input placeholder="Intitulé de la question" type="text" class="form-control input" id="input-question" placeholder="Enter question">
-            </div>
-            <div class="form-group">
-              <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
-            </div>
-            <div class="form-group">
-
-              <div class="yin">
-
-                <div class="wrapper-editor">
-                  <header contenteditable="true" class="header">
-                    This is ZenPen
-                  </header>
-
-                  <article contenteditable="true" id="textarea-solution" class="editor content">
-
-                    <p>
-                      A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
-                    </p>
-
-                  </article>
-
-                  <div class="wrapper-cta-editor">
-                    <a href="" class="cta-editor" ng-click="sendComment()"><span class="icon icon-image"></span></a>
-                  </div>
-
+        <form>
+          <div class="form-caption">
+            <div class="table-head form-title">
+              <div class="table-cell table-cell-question col-lg-12">
+                <div class="table-cell-question-wrapper">
+                          <span class="highlight">Etape 1 :
+                          </span>Choisis le type de question
                 </div>
               </div>
-
             </div>
-            <div class="form-group" ng-click="nextStep(4)" ng-repeat="answer in answers">
-              <a ng-click="addAnswer()" class="input-option">+</a>
-              <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
+            <div class="form-content">
+              <div class="wrapper-cta col-lg-4">
+                <a ng-click="nextStep(2)" class="cta-generator" href="">
+                  <span class="icon icon-list"></span>Textuel
+                </a>
+              </div>
+              <div class="wrapper-cta col-lg-4">
+                <a ng-click="nextStep(2)" class="cta-generator" href="">
+                  <span class="icon icon-image"></span>Image
+                </a>
+              </div>
+              <div class="wrapper-cta col-lg-4">
+                <a ng-click="nextStep(2)" class="cta-generator" href="">
+                  <span class="icon icon-key"></span>Mot clé
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-      <div class="alert alert-info" role="alert">{{callback}}</div>
+          <div class="form-caption" ng-show="step >= 2">
+            <div class="table-head form-title">
+              <div class="table-cell table-cell-question col-lg-12">
+                <div class="table-cell-question-wrapper">
+                          <span class="highlight">Etape 2 :
+                          </span>Choisis le chapitre
+                </div>
+              </div>
+            </div>
+            <div class="form-content">
+              <div class="checkbox" ng-repeat="chapter in chapters">
+                  <input ng-click="nextStep(3)" type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
+                  <label for="input-chapter-{{$index+1}}"><strong>Chapitre {{$index+1}}</strong> : {{chapter.titre}}</label>
+              </div>
+              <div class="checkbox">
+                <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
+                <label for="new">Nouveau chapitre</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-caption" ng-show="step >= 3">
+            <div class="table-head form-title">
+              <div class="table-cell table-cell-question col-lg-12">
+                <div class="table-cell-question-wrapper">
+                          <span class="highlight">Etape 3 :
+                          </span>Créer ta question
+                </div>
+              </div>
+            </div>
+            <div class="form-content">
+              <!--
+              <div class="form-group">
+                <a href="" class="input-option"><span class="icon icon-image"></span></a>
+                <input placeholder="Titre de la question" type="text" class="form-control input" id="input-title" placeholder="Enter titre">
+              </div>
+              -->
+              <div class="form-group">
+                <input placeholder="Intitulé de la question" type="text" class="form-control input" id="input-question" placeholder="Enter question">
+              </div>
+              <div class="form-group">
+                <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
+              </div>
+              <div class="form-group">
+
+                <div class="yin">
+
+                  <div class="wrapper-editor">
+                    <header contenteditable="true" class="header">
+                      This is ZenPen
+                    </header>
+
+                    <article contenteditable="true" id="textarea-solution" class="editor content">
+
+                      <p>
+                        A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                      </p>
+
+                    </article>
+
+                    <div class="wrapper-cta-editor">
+                      <a href="" class="cta-editor" ng-click="sendComment()"><span class="icon icon-image"></span></a>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group" ng-click="nextStep(4)" ng-repeat="answer in answers">
+                <a ng-click="addAnswer()" class="input-option">+</a>
+                <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="alert alert-info" role="alert">{{callback}}</div>
 
 
+      </div>
     </div>
-  </div>
-</article>
+  </article>
+</div>
 </main>
 
 
