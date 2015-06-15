@@ -66,6 +66,8 @@ $font-style-2 : 'Gotham Rounded Light';
 $header-height: 17em;
 $width-1 : 5em;
 $width-2 : 4.5em;
+$width-3 : 13em;
+$width-4 : 29.1em;
 
 /* Clearfix */
 .clearfix {
@@ -265,5 +267,41 @@ $width-2 : 4.5em;
   100% {
     opacity: 0.25;
     background: none;
+  }
+}
+
+@include keyframes(move-right) {
+  0% {
+    margin-left: -1200px;
+    opacity: 0;
+  }
+
+  100% {
+    margin-left: 0px;
+    opacity: 1;
+  }
+}
+
+@include keyframes(born-city) {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: - $width-3*25 0;
+  }
+}
+
+@include keyframes(born-logo) {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: - $width-4*25 0;
   }
 }

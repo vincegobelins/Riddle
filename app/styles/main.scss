@@ -40,12 +40,19 @@ ul {
 */
 
 #header {
-  z-index: 4; top: 0;
+  @include transition(all, .25s, ease-in-out);
+  z-index: 5; top: 0;
   position: fixed;
   display: block;
   height: $width-2; width: 100%;
   background: $color-white;
+
+  &.custom-header {
+    @include transition(all, .5s, ease-in-out);
+    background: $color-bg-2 !important;
+  }
 }
+
 .header-wrapper {
   @extend .clearfix;
   display: block;
@@ -191,6 +198,7 @@ ul {
   }
 }
 
+
 /*
 ##############################
 # Exam header                #
@@ -326,6 +334,8 @@ ul {
 
 #stats {
   width: 100%;
+  opacity: 0;
+  @include animation(move-right 1s ease-out 1s forwards);
 }
 
 .cta {
@@ -976,6 +986,7 @@ ul {
 
 .cta-generator {
   @extend .transition;
+  cursor: pointer;
   display: inline-block;
   width: 90%;
   padding: .5em;
@@ -1060,6 +1071,48 @@ input.radio:hover:not(:checked) ~ label {
 
   .img-hover {
     transform: rotateY( 180deg );
+  }
+}
+
+/*
+##############################
+# Logo                       #
+##############################
+*/
+.background-login {
+
+}
+.wrapper-logo {
+  display: block;
+  width: $width-4; height: 32em;
+  margin: 0 auto;
+  animation : born-logo 1s steps(25, end) 1s forwards;
+  background: url('design/logo.png')0 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.wrapper-login {
+  display: block;
+  width: $width-4;
+  margin: 0 auto;
+
+  .form-group {
+    margin: 1em 0;
+  }
+
+  .login-link {
+    font-family: $font-style-2; color: $color-text-2; font-size: 1.5em;
+  }
+
+  label {
+    font-family: $font-style-1; color: $color-text-1; font-size: 1.5em; text-transform: uppercase;
+  }
+
+  .cta-generator {
+    width: $width-4/2;
+    display: block;
+    margin: 0 auto;
   }
 }
 

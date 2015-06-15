@@ -1,16 +1,23 @@
 <h2>Login</h2>
-<form ng-submit="login()">
-  <div class="form-group">
-    <label >Email</label>
-    <input type="text" class="form-control input" id="input-email" placeholder="Enter titre">
+<div id="login" class="fader">
+  <div class="wrapper-logo">
+
   </div>
-  <div class="form-group">
-    <label >Password</label>
-    <input type="text" class="form-control input" id="input-password" placeholder="Enter question">
+  <div class="wrapper-login">
+    <form>
+      <div class="form-group">
+        <label >Email</label>
+        <input type="text" class="form-control input" id="input-email" placeholder="Enter titre">
+      </div>
+      <div class="form-group">
+        <label >Password</label>
+        <input type="text" class="form-control input" id="input-password" placeholder="Enter question">
+      </div>
+      <a class="cta-generator" ng-click="login()">Connexion</a>
+      <p>
+        <a class="login-link" href="#/register">Pas encore inscrit ? Créer un compte</a>
+      </p>
+    </form>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-  <p>
-    <a href="#/register">Pas encore inscrit ? Créer un compte</a>
-  </p>
-</form>
-<div class="alert alert-info" role="alert">{{result}}</div>
+  <div class="alert alert-info" role="alert">{{result}}</div>
+</div>

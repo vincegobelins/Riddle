@@ -21,8 +21,9 @@ $box-width : $screen-width / $box-row-length;
 }
 
 .box {
-  opacity: 1;
   display: block;
+  visibility: hidden;
+  opacity: 1;
   position: relative;
   width: $box-width; height: $box-width;
   float: left;
@@ -32,10 +33,10 @@ $box-width : $screen-width / $box-row-length;
   background: $color-white;
 
   &:hover {
-    background: $color-border-2;
-    @include box-shadow(-10px 10px 0px 0px #656565 inset);
+    background: #DBDBDB;
+    @include box-shadow(-.5em .5em 0em 0em #656565 inset);
     .inbox {
-      @include box-shadow(-10px 10px 0px 0px #656565);
+      @include box-shadow(-.5em .5em 0em 0em #656565);
     }
   }
 
@@ -89,11 +90,12 @@ $box-width : $screen-width / $box-row-length;
 
 .title-map {
   @include transition(top, .6s, ease-out);
-  position: absolute; z-index: 100;
+  position: absolute; z-index: 4;
   display: table;
   height: $box-width * 1.2; width: 287px;
   font-family: $font-style-1; color: $color-white; font-size: 2em; text-transform: uppercase;
   background: $color-bg-1;
+  opacity: 0;
 
   p {
     padding: 2em;
@@ -136,4 +138,89 @@ $box-width : $screen-width / $box-row-length;
     margin-top : -$header-height!important;
   }
 
+}
+
+/*
+##############################
+# Ville                      #
+##############################
+*/
+.item-wrapper {
+  position: absolute;
+  z-index: 10;
+  height: $width-3*3;
+  text-align: center; text-transform: uppercase;
+  font-size: 1em;
+
+  &.item-wrapper-1 {
+    left: 606px; top: 238px;
+
+    .map-title{
+      color: $color-bg-1;
+    }
+  }
+
+  &.item-wrapper-2 {
+    left: 991px; top: 468px;
+
+    .map-title{
+      color: $color-bg-4;
+    }
+  }
+
+  .map-title{
+    display: none;
+    font-family: $font-style-1;
+  }
+
+  .map-date {
+    display: none;
+    font-family: $font-style-2; color: $color-text-1;
+    margin-bottom: 2em;
+  }
+}
+.item {
+  position: absolute;
+  animation : born-city 2.5s steps(25, end);
+  display: none;
+  width: $width-3; height: $width-3;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  @include transition(margin-top,.5s, ease-out);
+
+  &:before {
+    //@include transition(opacity,.5s, ease-out);
+    content: '';
+    z-index: 11;
+    opacity: 0;
+    position: absolute; left: 0;
+    width: $width-3; height: $width-3;
+    //background: url('design/ville1.png') -$width-3*25 0;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+  }
+
+  &:hover {
+    margin-top: -2em; padding-bottom: 2em;
+    background: none;
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.item-1 {
+  background: url('design/ville1.png') -$width-3*25 0;
+
+  &:before {
+    background: url('design/ville1.png') -$width-3*26 0;
+  }
+}
+
+.item-2 {
+  background: url('design/ville2.png') -$width-3*25 0;
+
+  &:before {
+    background: url('design/ville2.png') -$width-3*26 0;
+  }
 }
