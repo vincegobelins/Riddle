@@ -66,6 +66,15 @@ angular
     $scope.logout = function(){
       riddleFactory.logout();
       $location.path('#/login');
+    },
+
+    /**
+     * Go to the previous view
+     * @return {void}
+     */
+
+    $scope.goBack = function(){
+      history.go(-1);
     }
 
     getUser();

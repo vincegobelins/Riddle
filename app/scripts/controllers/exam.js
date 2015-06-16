@@ -10,7 +10,7 @@
 angular.module('RiddleApp')
   .controller('ExamCtrl', function($scope, $routeParams, riddleFactory) {
 
-    var init, exam, getExam, getQuestions, initCanvas, renderCanvas, buildTower, moveTowerUp, moveTowerDown, getStatistics, getChapterStatistics, setEventListener;
+    var init, exam, getExam, getUserId, getQuestions, countUserQuestion, initCanvas, renderCanvas, buildTower, moveTowerUp, moveTowerDown, getStatistics, getChapterStatistics, setEventListener;
     var param, velocity, distance, canvas, canvasIso, context, blocArray;
 
     init = function(){
@@ -41,7 +41,7 @@ angular.module('RiddleApp')
 
 
 
-    }
+    },
 
     /**
      * Get information relative to exam
@@ -78,6 +78,8 @@ angular.module('RiddleApp')
 
           var questionsUser = riddleFactory.getUserQuestion($scope.auth, $scope.param);
 
+            console.log('question User :'+questionsUser);
+
             questionsUser.$loaded().then(function () {
 
               for(var i =0; i<questions.length; i++) {
@@ -85,29 +87,27 @@ angular.module('RiddleApp')
                 var questionId = questions[i]['$id'];
 
                 for(var j =0; j<questionsUser.length; j++) {
-
                   if(questionsUser[j]['$id'] == questionId) {
-
                     // Verifier s'il y a des données utilisateur, sinon verouiller la question
 
                     if(questionsUser[j]['question']) {
                       questions[i]["user_reponse"] = questionsUser[j]['question'];
                     }
-                    else {
-                      questions[i]["question"] = 'Question vérouillée';
-                    }
                     questions[i]["user_favorite"] = questionsUser[j]['favorite'];
                   }
+                }
+
+                if(!questions[i]["user_reponse"]){
+                  questions[i]["question"] = 'Question vérouillée';
                 }
               }
 
               // init every variable and method which need loaded questions from database
-              console.log("question chargés");
               $scope.questions = questions;
               $scope.filters = { };
-              console.log(questions);
 
               // @todo cette fonction doit être appelé en verifiant que exam est chargé également
+              countUserQuestion();
               var statistics = getStatistics();
               blocArray = buildTower(statistics);
               renderCanvas();
@@ -130,6 +130,23 @@ angular.module('RiddleApp')
       context = canvas.getContext("2d");
 
     },
+
+    /**
+     * Count the number of user questions
+     * @return {void}
+     */
+
+    countUserQuestion = function(){
+
+      $scope.userQuestionLength = 0;
+
+      for(var i = 0; i<$scope.questions.length; i++){
+
+        if($scope.questions[i]['autheur'] == $scope.auth){
+          $scope.userQuestionLength++;
+        }
+      }
+    }
 
     /**
      * Render and animate canvas

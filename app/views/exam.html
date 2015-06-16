@@ -57,6 +57,15 @@
   <article id="content">
     <div class="wrapper-content col-lg-8">
       <div class="bloc-content">
+
+        <!-- Debut overlay -->
+
+        <div ng-show="userQuestionLength == 0" class="wrapper-overlay col-lg-8">
+          Je suis le overlay
+        </div>
+
+        <!-- Fin overlay -->
+
         <div class="wrapper-bloc-tabs col-lg-8">
           <div class="bloc-tabs">
             <div class="bloc-search">
@@ -78,7 +87,7 @@
               </a>
               <a href="" ng-click="filters.user_favorite = ''; filters.autheur = auth">
                 <li class="item-tabs" ng-class="{active: filters.autheur == auth}">
-                  <span class="icon icon-chat"></span> Mes questions (10)
+                  <span class="icon icon-chat"></span> Mes questions ({{userQuestionLength}})
                 </li>
               </a>
             </ul>

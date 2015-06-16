@@ -58,6 +58,46 @@ ul {
   display: block;
 }
 
+.wrapper-back-button {
+  .bloc-back-button {
+    font-size : 1em; line-height: 0.2;
+
+    a {
+      display: inline-block;
+      font-family: $font-style-2; color: $color-text-1; font-size: 2em; text-decoration: none;
+    }
+
+    p {
+      @extend .transition;
+      display: inline-block;
+      opacity: 0;
+      text-indent: -7em;
+    }
+
+    &:hover {
+
+      p {
+        opacity: 1;
+        text-indent: 0px;
+      }
+
+    }
+  }
+}
+
+.wrapper-logo-header {
+  height: $width-2;
+  margin: 0 auto;
+  .bloc-logo-header {
+    text-align: center;
+    img {
+      padding: 1em 0;
+      box-sizing: border-box;
+      max-height: $width-2;
+    }
+  }
+}
+
 .navigation-wrapper-slide {
   @extend .elastic-transition;
   z-index: 5;
@@ -454,6 +494,19 @@ ul {
   .highlight {
     font-style: italic;
   }
+}
+
+/*
+##############################
+# Overlay                    #
+##############################
+*/
+
+.wrapper-overlay {
+  position: fixed; bottom: 0; top: $header-height +  $width-2;
+  background: $color-bg-2-opacity;
+  font-family: $font-style-2; color: $color-white; font-style: italic;
+  z-index: 2;
 }
 
 /*
