@@ -103,9 +103,13 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/questions/:param', {
+      .when('/exam/:param/questions', {
         templateUrl: 'views/questions.html',
         controller: 'QuestionsCtrl'
+      })
+      .when('/exam/:param/question/:param2', {
+        templateUrl: 'views/question.html',
+        controller: 'QuestionCtrl'
       })
       .when('/exam/:param', {
         templateUrl: 'views/exam.html',

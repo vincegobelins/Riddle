@@ -10,7 +10,7 @@
 angular.module('RiddleApp')
   .controller('ExamCtrl', function($scope, $routeParams, riddleFactory) {
 
-    var init, exam, getExam, getUserId, getQuestions, countUserQuestion, initCanvas, renderCanvas, buildTower, moveTowerUp, moveTowerDown, getStatistics, getChapterStatistics, setEventListener;
+    var init, exam, getExam, getUserId, getQuestions, countUserQuestion, initCanvas, renderCanvas, buildTower, moveTowerUp, moveTowerDown, getStatistics, getChapterStatistics, setEventListener, showTuto;
     var param, velocity, distance, canvas, canvasIso, context, blocArray;
 
     init = function(){
@@ -38,6 +38,9 @@ angular.module('RiddleApp')
           $('.wrapper-bloc-tabs').addClass( 'sliding' );
         }
       });
+
+      // hide tuto
+      $('.tuto-animate').hide();
 
 
 
@@ -106,11 +109,14 @@ angular.module('RiddleApp')
               $scope.questions = questions;
               $scope.filters = { };
 
+              console.log($scope.questions);
+
               // @todo cette fonction doit être appelé en verifiant que exam est chargé également
               countUserQuestion();
               var statistics = getStatistics();
               blocArray = buildTower(statistics);
               renderCanvas();
+              TweenMax.delayedCall(2, showTuto);
             });
 
 
@@ -351,7 +357,17 @@ angular.module('RiddleApp')
 
       return chapterStatistics;
 
-    }
+    },
+
+    /**
+     * Anim and show tutorial
+     * @return {void}
+     */
+
+      showTuto = function(){
+        $('.tuto-animate').show();
+        TweenMax.staggerFrom(".tuto-animate", 1, { y: -200, opacity: 0, ease: Back.easeOut.config(1.7)}, 0.5);
+      },
 
 
 

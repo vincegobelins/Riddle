@@ -505,8 +505,35 @@ ul {
 .wrapper-overlay {
   position: fixed; bottom: 0; top: $header-height +  $width-2;
   background: $color-bg-2-opacity;
-  font-family: $font-style-2; color: $color-white; font-style: italic;
+  font-family: $font-style-2; color: $color-white;
   z-index: 2;
+}
+
+.title-overlay {
+  font-family: $font-style-2; color: $color-white; font-size: 3em; text-transform: uppercase;
+  padding: 5em 0;
+  text-align: center;
+}
+
+.bloc-tuto {
+  text-align: center;
+}
+
+.iterate-tuto {
+  font-size: 3em;
+}
+
+.wrapper-picto-tuto {
+  margin: 5em auto;
+}
+
+.title-tuto {
+  font-family: $font-style-2;font-size: 2em; text-transform: uppercase;
+
+  strong {
+    font-weight: normal;
+    font-family: $font-style-1;
+  }
 }
 
 /*
