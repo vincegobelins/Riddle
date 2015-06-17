@@ -10,7 +10,7 @@
 angular.module('RiddleApp')
   .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory,$timeout) {
 
-    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt, getAuthor;
+    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt, getAuthor, loadSprite;
     var exam, data, answered, count, degree, malusLimit, bonusLimit;
 
     /**
@@ -97,12 +97,15 @@ angular.module('RiddleApp')
         bonusLimit = 1;
 
         $scope.quizzPosition++;
+        var percentageProgression = $scope.quizzPosition * 100 / $scope.quizzLength;
+        $( ".line-progression").css('width', percentageProgression+"%");
 
         var questionId = getRandomIdQuestion();
         var question = data[questionId];
 
         $scope.title = question["titre"];
         $scope.question = question["question"];
+        $scope.chapter = parseInt(question["chapter"]) + 1;
         $scope.answers = question["reponses"];
         $scope.answerOk = question["reponseok"];
         $scope.solution = question["solution"];
@@ -111,13 +114,19 @@ angular.module('RiddleApp')
         getAuthor(question["autheur"]);
 
         if($scope.quizzPosition&1){
-          $scope.imgfront = question["image"];
+          $scope.imgback = question["image"];
         }
         else {
-          $scope.imgback = question["image"];
+          $scope.imgfront = question["image"];
         }
 
         getComments();
+
+        loadSprite(question["image"], function() {
+
+          degree = 180 * ($scope.quizzPosition+2);
+          $(".bloc-image").css({transform: 'rotateY(' + degree + 'deg)'})
+        });
 
       },
 
@@ -203,12 +212,6 @@ angular.module('RiddleApp')
 
         $scope.answerMode = false;
         getQuestion();
-
-        var percentageProgression = $scope.quizzPosition * 100 / $scope.quizzLength;
-        $( ".line-progression").css('width', percentageProgression+"%");
-
-        degree = 180 * ($scope.quizzPosition+1);
-        $(".bloc-image").css({transform: 'rotateY(' + degree + 'deg)'})
       }
 
     },
@@ -320,6 +323,17 @@ angular.module('RiddleApp')
       }
 
       malusLimit --;
+    },
+
+    /**
+     * Load image
+     * @return {Callback}
+     */
+
+    loadSprite = function(src, callback){
+      var sprite = new Image();
+      sprite.onload = callback;
+      sprite.src = src;
     }
 
     init();

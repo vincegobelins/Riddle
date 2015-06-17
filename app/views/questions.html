@@ -34,7 +34,7 @@
   <aside id="sidebar" class="col-lg-4">
     <div class="wrapper-sidebar fader">
       <div class="bloc-sidebar">
-        <p class="chapitre-sidebar">Chapitre 1</p>
+        <p class="chapitre-sidebar">Chapitre {{chapter}}</p>
         <h2 class="title-sidebar">Question n°{{quizzPosition}}</h2>
         <div class="wrapper-progression">
           {{quizzPosition}} / {{quizzLength}}
@@ -46,7 +46,7 @@
         </div>
         <div class="wrapper-image">
           <div class="bloc-image">
-            <img class="img" src="{{imgfront}}" alt="" style="clip-path: url(#myClip);"/>
+            <img ng-show="imgfront" class="img" src="{{imgfront}}" alt="" style="clip-path: url(#myClip);"/>
             <img class="img img-hover" src="{{imgback}}" alt="" style="clip-path: url(#myClip);"/>
           </div>
         </div>

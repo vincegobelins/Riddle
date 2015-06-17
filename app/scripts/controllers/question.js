@@ -10,8 +10,8 @@
 angular.module('RiddleApp')
   .controller('QuestionCtrl', function ($scope, $routeParams, riddleFactory,$timeout) {
 
-    var init, getExam, getQuestions, getQuestion, getComments, getAuthor;
-    var exam, data, malusLimit, bonusLimit;
+    var init, getExam, getQuestions, getQuestion, getComments, getAuthor, loadSprite;
+    var exam, data, malusLimit, degree, bonusLimit;
 
     /**
      * Inisialize some data
@@ -107,6 +107,7 @@ angular.module('RiddleApp')
         $scope.questionId = $scope.param2;
         $scope.title = question["titre"];
         $scope.question = question["question"];
+        $scope.chapter = parseInt(question["chapter"]) + 1;
         $scope.answers = question["reponses"];
         $scope.answerOk = question["reponseok"];
         $scope.solution = question["solution"];
@@ -114,7 +115,12 @@ angular.module('RiddleApp')
 
         getAuthor(question["autheur"]);
 
-        $scope.imgfront = question["image"];
+        $scope.imgback = question["image"];
+
+        loadSprite(question["image"], function() {
+          degree = 180;
+          $(".bloc-image").css({transform: 'rotateY(' + degree + 'deg)'})
+        });
 
 
         getComments();
@@ -199,7 +205,18 @@ angular.module('RiddleApp')
       }
 
       malusLimit --;
-    }
+    },
+
+    /**
+     * Load image
+     * @return {Callback}
+     */
+
+      loadSprite = function(src, callback){
+        var sprite = new Image();
+        sprite.onload = callback;
+        sprite.src = src;
+      }
 
     init();
   }
