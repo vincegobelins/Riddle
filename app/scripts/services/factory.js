@@ -83,9 +83,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
 
       result.push({
           'titre': title, 'autheur': author, 'question': question, 'chapter': chapter, 'reponses': answers, 'reponseok': answerok, 'solution': solution
-        }).then(function(result) {
-        return result.data;
-      });
+        });
 
     },
 
@@ -331,6 +329,21 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
       //return resultArray;
 
 
+    },
+
+    /**
+     * Indent or decrement the score of a question
+     * @param {String} idExam Unique id of exam
+     * @param {String} idQuestion Unique id of question
+     * @param {Integer} New score value
+     */
+
+    updateQuestionScore : function(idExam, idQuestion, newScore){
+      var query = config.BDD;
+      var result = new Firebase(query);
+      var score = ({score : newScore});
+      result.child('exams/' + idExam + '/questions/' + idQuestion).update(score);
+      console.log('updated wtf');
     }
 
 

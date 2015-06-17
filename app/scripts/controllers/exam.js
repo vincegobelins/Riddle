@@ -152,7 +152,18 @@ angular.module('RiddleApp')
           $scope.userQuestionLength++;
         }
       }
-    }
+    },
+
+      $scope.countObject = function(obj) {
+
+        var length = 0;
+
+        if(obj) {
+          length = Object.keys(obj).length;
+        }
+
+        return length;
+      }
 
     /**
      * Render and animate canvas

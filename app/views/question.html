@@ -30,9 +30,8 @@
   </div>
   </div>
 </section>
-<div class="fader">
   <aside id="sidebar" class="col-lg-4">
-    <div class="wrapper-sidebar">
+    <div class="wrapper-sidebar fader">
       <div class="bloc-sidebar">
         <p class="chapitre-sidebar">Chapitre 1</p>
         <h2 class="title-sidebar">Mode correction</h2>
@@ -45,23 +44,23 @@
         <div class="wrapper-tool">
           <div class="item-tool">
             <div class="content-tool">
-              <a href="">
+              <a href="" ng-click="giveMalus()">
                 <span class="icon icon-thumbs-down"></span>
               </a>
             </div>
             <div class="content-tool">
               <p>
-                10
+                {{score}}
               </p>
             </div>
             <div class="content-tool">
-              <a href="">
+              <a href="" ng-click="giveBonus()">
                 <span class="icon icon-thumbs-up"></span>
               </a>
             </div>
           </div>
           <div class="item-tool">
-            <div class="content-tool">
+            <div class="content-tool content-favorite">
               <a href="" ng-click="addFavorite()">
                 <span class="icon icon-heart"></span>
               </a>
@@ -85,7 +84,7 @@
         </svg>
 
 
-        <a href="" class="cta" ng-click="nextQuestion()">Question suivante<span class="icon icon-chevron-thin-right"></span></a>
+        <a href="" class="cta" ng-click="goBack()"><span class="icon icon-chevron-thin-left"></span>Retour aux questions</a>
         <div class="wrapper-author-question">
           <div class="bloc-author-question">
             <p class="author-question">Par <span class="highlight">{{author.prenom}} {{author.nom}}</span></p>
@@ -97,7 +96,7 @@
   </aside>
 
   <article id="content">
-    <div class="wrapper-content col-lg-8">
+    <div class="wrapper-content col-lg-8 fader">
       <div class="bloc-content">
         <div class="question-title-wrapper">
           <h3 class="question-title">{{question}}</h3>
@@ -112,7 +111,7 @@
         </div>
 
         <div class="wrapper-solution fadein fadeout" ng-show="answerMode">
-          <div ng-bind-html="solution" class="text-solution"></div>
+          <div ng-bind-html="solution" class="text-solution editor"></div>
 
           <div class="yin">
 
@@ -121,10 +120,10 @@
                 This is ZenPen
               </header>
 
-              <article contenteditable="true" class="editor content">
+              <article id="comment" contenteditable="true" class="editor content">
 
                 <p>
-                  A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                  Poster un commentaire
                 </p>
 
               </article>
@@ -156,6 +155,5 @@
       </div>
     </div>
   </article>
-</div>
 </main>
 

@@ -38,9 +38,8 @@
   </div>
   </div>
 </section>
-<div class="fader">
   <aside id="sidebar" class="col-lg-4">
-    <div class="wrapper-sidebar">
+    <div class="wrapper-sidebar fader">
       <div class="bloc-sidebar">
         <h2 class="title-sidebar">Créer une question</h2>
         <div class="wrapper-progression">
@@ -74,7 +73,7 @@
   </aside>
 
   <article id="content">
-    <div class="wrapper-content col-lg-8">
+    <div class="wrapper-content col-lg-8 fader">
       <div class="bloc-content">
 
         <form>
@@ -145,7 +144,7 @@
                 <input placeholder="Intitulé de la question" type="text" class="form-control input" id="input-question" placeholder="Enter question">
               </div>
               <div class="form-group">
-                <input placeholder="Réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
+                <input placeholder="La réponse" type="text" class="form-control input-answer input" id="input-correct-answer" placeholder="Enter réponse">
               </div>
               <div class="form-group">
 
@@ -159,7 +158,7 @@
                     <article contenteditable="true" id="textarea-solution" class="editor content">
 
                       <p>
-                        A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
+                        Expliciter la solution (minimum 140 caractères)
                       </p>
 
                     </article>
@@ -174,7 +173,7 @@
               </div>
               <div class="form-group" ng-click="nextStep(4)" ng-repeat="answer in answers">
                 <a ng-click="addAnswer()" class="input-option">+</a>
-                <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Enter réponse">
+                <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Entrer une réponse éronnée">
               </div>
             </div>
           </div>
@@ -185,7 +184,6 @@
       </div>
     </div>
   </article>
-</div>
 </main>
 
 

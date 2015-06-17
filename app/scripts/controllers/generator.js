@@ -76,7 +76,7 @@ angular.module('RiddleApp')
       //$('#input-title').val("");
       $('#input-question').val("");
       $("#input-correct-answer").val("");
-      $('#textarea-solution').val("");
+      $('#textarea-solution').find('p').html('Expliciter la solution (minimum 140 caractères)');
 
       $('.input-answer').each(function() {
         $(this).val("");
@@ -129,13 +129,7 @@ angular.module('RiddleApp')
 
         var sendQuestion = riddleFactory.setQuestion($scope.param, 'title', author, question, chapter, answers, answerok, solution);
 
-        if(sendQuestion == true){
-            clearForm();
-            $scope.callback = "la question a été ajoutée";
-        }
-        else {
-            $scope.callback = "il y'a une erreur";
-        }
+        clearForm();
       }
       else {
 

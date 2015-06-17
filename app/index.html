@@ -53,6 +53,9 @@
         <div class="navigation-wrapper-slide">
           <div class="wrapper-indications-header">
             <div class="bloc-indications-header">
+              <div class="bloc-photo-header col-lg-2">
+                <img ng-src="{{user.photo}}" alt=""/>
+              </div>
               <p class="title-indications-header">{{user.prenom}} {{user.nom}}</p>
               <p class="tools-indications-header">
                 <a href="" ng-click="logout()">Log Out</a>

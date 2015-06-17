@@ -13,7 +13,7 @@ angular.module('RiddleApp')
     var init, register, email, password;
 
     init = function() {
-
+      $('#header').addClass('custom-header');
     },
 
     $scope.login = function(){

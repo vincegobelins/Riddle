@@ -11,7 +11,7 @@ angular.module('RiddleApp')
   .controller('QuestionCtrl', function ($scope, $routeParams, riddleFactory,$timeout) {
 
     var init, getExam, getQuestions, getQuestion, getComments, getAuthor;
-    var exam, data;
+    var exam, data, malusLimit, bonusLimit;
 
     /**
      * Inisialize some data
@@ -30,6 +30,8 @@ angular.module('RiddleApp')
 
       // init zenpen
       ZenPen.editor.init();
+
+      $('#comment').html('<p>Poster un commentaire</p>');
 
     },
 
@@ -93,18 +95,22 @@ angular.module('RiddleApp')
 
       getQuestion = function (questionId) {
 
+        malusLimit = 1;
+        bonusLimit = 1;
+
         for (var i = 0; i<data.length; i++){
           if(data[i]['$id'] == questionId) {
             var question = data[i];
           }
         }
 
-
+        $scope.questionId = $scope.param2;
         $scope.title = question["titre"];
         $scope.question = question["question"];
         $scope.answers = question["reponses"];
         $scope.answerOk = question["reponseok"];
         $scope.solution = question["solution"];
+        $scope.score = question["score"];
 
         getAuthor(question["autheur"]);
 
@@ -121,7 +127,7 @@ angular.module('RiddleApp')
      */
 
     $scope.addFavorite = function () {
-
+      $('.content-favorite').addClass('active');
       riddleFactory.setUserFavorite($scope.user, $scope.param, $scope.questionId);
 
     };
@@ -134,6 +140,8 @@ angular.module('RiddleApp')
     $scope.sendComment = function () {
       var comment = $('.editor').html();
       riddleFactory.setComment($scope.user, $scope.param, $scope.questionId, comment);
+
+      $('#comment').html('<p>Poster un commentaire</p>');
 
     };
 
@@ -163,6 +171,34 @@ angular.module('RiddleApp')
 
       });
 
+    },
+
+    /**
+     * Add +1 once per question to score
+     * @return {Object}
+     */
+
+      $scope.giveBonus = function() {
+        if(bonusLimit > 0){
+          $scope.score ++;
+          riddleFactory.updateQuestionScore($scope.param, $scope.questionId, $scope.score);
+        }
+
+        bonusLimit --;
+      },
+
+    /**
+     * Add -1 once per question to score
+     * @return {Object}
+     */
+
+    $scope.giveMalus = function() {
+      if(malusLimit > 0){
+        $scope.score --;
+        riddleFactory.updateQuestionScore($scope.param, $scope.questionId, $scope.score);
+      }
+
+      malusLimit --;
     }
 
     init();

@@ -152,7 +152,13 @@ angular.module('RiddleApp')
      */
 
     $scope.goToExam = function(){
-      TweenMax.to('.exam-header-home', 1, {top: '21.5%', ease: Power4.easeOut, onComplete:$scope.changeLocation});
+      var windowsHeight = $(window).height();
+      var navHeight = 45;
+      var headerOffset = 170;
+      var newPosition = ( navHeight + headerOffset ) * 100 / windowsHeight;
+      var newPositionPercentage = newPosition+'%';
+      console.log('wh :'+windowsHeight);
+      TweenMax.to('.exam-header-home', 1, {top: newPositionPercentage, ease: Power4.easeOut, onComplete:$scope.changeLocation});
     },
 
     /**
