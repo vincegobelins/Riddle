@@ -76,13 +76,13 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
      * @return {Boolean}
      */
 
-    setQuestion: function(id, title, author, question, chapter, answers, answerok, solution) {
+    setQuestion: function(id, title, author, question, chapter, answers, answerok, solution, image) {
 
       var query = config.BDD + 'exams/' + id + '/questions';
       var result = new Firebase(query);
 
       result.push({
-          'titre': title, 'autheur': author, 'question': question, 'chapter': chapter, 'reponses': answers, 'reponseok': answerok, 'solution': solution, 'score': 0
+          'titre': title, 'autheur': author, 'question': question, 'chapter': chapter, 'reponses': answers, 'reponseok': answerok, 'solution': solution, 'image': image, 'score': 0
         });
 
     },

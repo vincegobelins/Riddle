@@ -51,17 +51,19 @@
         </div>
 
         <div class="wrapper-image">
-          <div class="bloc-image bloc-image-hover">
-            <div class="img-add" style="clip-path: url(#myClip);"><div class="img-add-content">+</div></div>
-            <img class="img" src="http://cdn.designrfix.com/wp-content/uploads/2011/06/ipad-wallpaper-free-30.jpg" alt="" style="clip-path: url(#myClip);"/>
-            <img class="img img-hover" src="http://dc754.4shared.com/img/aoXExv__/s3/137c47be538/Nature-Wallpaper-6-500x500" alt="" style="clip-path: url(#myClip);"/>
-          </div>
+          <a href="" ng-click="updateNotification('upload')">
+            <div class="bloc-image bloc-image-hover">
+              <div class="img-add" style="clip-path: url(#myClip);"><div class="img-add-content">+</div></div>
+              <img class="img" src="http://cdn.designrfix.com/wp-content/uploads/2011/06/ipad-wallpaper-free-30.jpg" alt="" style="clip-path: url(#myClip);"/>
+              <img class="img img-hover" ng-src="{{imgback}}" alt="" style="clip-path: url(#myClip);"/>
+            </div>
+          </a>
         </div>
 
         <svg width="0" height="0">
           <defs>
             <clipPath fill="none" id="myClip" clipPathUnits="objectBoundingBox">
-              <polygon stroke="#140063" stroke-width="3" stroke-miterlimit="10" points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
+              <polygon points="0.5, 0 0,0.25 0,0.75 0.5,1 1,0.75 1,0.25" />
             </clipPath>
           </defs>
         </svg>
@@ -102,6 +104,30 @@
             <div class="wrapper-cta">
               <a ng-click="updateNotification('ko')" class="cta-generator" href="">
                 <span class="icon icon-chevron-thin-left"></span>Revenir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="notification-upload" class="wrapper-full-notification col-lg-8">
+        <div class="wrapper-notification">
+          <h2 class="title-notification"><span class="icon icon-red icon-download"></span>Illustration de la question</h2>
+          <p class="chapo-notification">Choisis une photo puis dépose la par drag and drop ou par son URL.</p>
+          <div class="wrapper-form-upload">
+            <div class="form-group">
+              <input placeholder="URL de la photo" type="text" class="form-control input" id="input-upload" placeholder="Enter question">
+            </div>
+          </div>
+          <div class="wrapper-action-notification">
+            <div class="wrapper-cta">
+              <a ng-click="updateNotification('upload')" class="cta-generator" href="">
+                <span class="icon icon-chevron-thin-left"></span>Revenir
+              </a>
+            </div>
+            <div class="wrapper-cta">
+              <a ng-click="displayImg()" class="cta-generator" href="">
+                <span class="icon icon-check"></span>Valider
               </a>
             </div>
           </div>

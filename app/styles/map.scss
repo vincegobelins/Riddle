@@ -50,7 +50,7 @@ $box-width : $screen-width / $box-row-length;
   &.green {
     .inbox {
       @include transition(all, .6s, ease-out);
-      background: $color-bg-4;
+      background: $color-topic-1;
     }
   }
 
@@ -103,6 +103,14 @@ $box-width : $screen-width / $box-row-length;
     vertical-align: middle;
   }
 
+  &.title-map-green {
+    background: $color-topic-1;
+
+    &:after {
+      background: $color-topic-1;
+    }
+  }
+
   &:after {
     content: ''; z-index: -1;
     position: absolute; top:50%; right: 0;
@@ -148,7 +156,6 @@ $box-width : $screen-width / $box-row-length;
 .item-wrapper {
   position: absolute;
   z-index: 1;
-  height: $width-3*3;
   text-align: center; text-transform: uppercase;
   font-size: 1em;
 
@@ -161,7 +168,31 @@ $box-width : $screen-width / $box-row-length;
   }
 
   &.item-wrapper-2 {
+    left: 799px; top: 238px;
+
+    .map-title{
+      color: $color-bg-1;
+    }
+  }
+
+  &.item-wrapper-3 {
+    left: 606px; top: 468px;
+
+    .map-title{
+      color: $color-bg-4;
+    }
+  }
+
+  &.item-wrapper-4 {
     left: 991px; top: 468px;
+
+    .map-title{
+      color: $color-bg-4;
+    }
+  }
+
+  &.item-wrapper-5 {
+    left: 1375px; top: 468px;
 
     .map-title{
       color: $color-bg-4;
@@ -181,7 +212,7 @@ $box-width : $screen-width / $box-row-length;
 }
 .item {
   position: absolute;
-  animation : born-city 2.5s steps(25, end);
+  animation : born-city 2.5s steps(25, start) 4s forwards;
   display: none;
   width: $width-3; height: $width-3;
   background-repeat: no-repeat;
@@ -209,16 +240,16 @@ $box-width : $screen-width / $box-row-length;
   }
 }
 
-.item-1 {
-  background: url('design/ville1.png') -$width-3*25 0;
+.item-1, .item-2 {
+  background: url('design/ville1.png') 0 0;
 
   &:before {
     background: url('design/ville1.png') -$width-3*26 0;
   }
 }
 
-.item-2 {
-  background: url('design/ville2.png') -$width-3*25 0;
+.item-3, .item-4, .item-5 {
+  background: url('design/ville2.png') 0 0;
 
   &:before {
     background: url('design/ville2.png') -$width-3*26 0;

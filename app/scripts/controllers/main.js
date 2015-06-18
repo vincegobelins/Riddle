@@ -132,7 +132,7 @@ angular.module('RiddleApp')
 
       var top = $( '.box:nth-child(' + offset + ')').position().top - 230;
       console.log(top);
-      $('.wrapper-map').append('<div style="top : ' + top + 'px" id="title-map-' + iterate + '" class="title-map"><p>Histoire de lart</p></div>');
+      $('.wrapper-map').append('<div style="top : ' + top + 'px" id="title-map-' + iterate + '" class="title-map title-map-' + color + '"><p>Histoire de lart</p></div>');
     },
 
     /**

@@ -1178,13 +1178,11 @@ input.radio:hover:not(:checked) ~ label {
   transform: perspective(500px);
 
   .img-add {
-    @extend .transition;
     opacity: 0;
     z-index: 10;
     display: table;
     width: 100%; height: 100%;
     position: absolute;
-    backface-visibility: hidden;
     background: $color-bg-1;
     clip-path: url(#myClip);
 
@@ -1195,11 +1193,7 @@ input.radio:hover:not(:checked) ~ label {
     }
 
     &:hover {
-      opacity: 0.75;
-
-      .img-add-content {
-        @include animation(wobble-horizontal .75s ease-in-out);
-      }
+      opacity: 0.8;
     }
   }
 
@@ -1237,7 +1231,7 @@ input.radio:hover:not(:checked) ~ label {
     .wrapper-notification {
       visibility: visible;
       opacity: 1;
-      top: 48%;
+      top: 45em;
     }
   }
 }
@@ -1245,7 +1239,7 @@ input.radio:hover:not(:checked) ~ label {
 .wrapper-notification {
   @extend .transition;
   opacity: 0;  visibility: hidden;
-  position: relative; top: 45%; z-index: 200;
+  position: relative; top: 40em; z-index: 200;
   display: block;
   margin: 0 auto; padding: $width-1/2;
   width: 50em;
@@ -1280,6 +1274,10 @@ input.radio:hover:not(:checked) ~ label {
     text-align: center;
   }
 
+  .wrapper-form-upload {
+    margin: 1em 0;
+  }
+
   .wrapper-cta {
     display: inline-block !important;
     width: 40%;
@@ -1299,7 +1297,7 @@ input.radio:hover:not(:checked) ~ label {
 .wrapper-logo {
   display: block;
   width: $width-4; height: 32em;
-  margin: 0 auto;
+  margin: $width-1 auto;
   animation : born-logo 1s steps(25, end) 1s forwards;
   background: url('design/logo.png')0 0;
   background-repeat: no-repeat;
@@ -1309,14 +1307,18 @@ input.radio:hover:not(:checked) ~ label {
 .wrapper-login {
   display: block;
   width: $width-4;
-  margin: 0 auto;
+  margin: $width-1 auto;
 
   .form-group {
-    margin: 1em 0;
+    margin: 2em 0;
+  }
+
+  .login-detail {
+    font-family: $font-style-2; color: $color-text-2; font-size: 1.5em; text-align: center;
   }
 
   .login-link {
-    font-family: $font-style-2; color: $color-text-2; font-size: 1.5em;
+    font-family: $font-style-2; color: $color-text-2;
   }
 
   label {
@@ -1326,7 +1328,7 @@ input.radio:hover:not(:checked) ~ label {
   .cta-generator {
     width: $width-4/2;
     display: block;
-    margin: 0 auto;
+    margin: 5em auto 2.5em;
   }
 }
 
