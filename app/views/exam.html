@@ -47,7 +47,7 @@
           <canvas width="1200" height="1400" id="stats"></canvas>
         </div>
         <div class="bloc-cta">
-          <a class="cta" ng-href="#/exam/{{param}}/questions/"><span class="icon icon-cycle"></span> Rejouer</a>
+          <a class="cta" href="" ng-class="{locked : userQuestionLength == 0}" ng-click="updateNotification('ok')"><span class="icon icon-cycle"></span> Rejouer</a>
           <a class="cta" ng-href="#/exam/{{param}}/generator/"><span class="icon icon-feather"></span> Questionner</a>
         </div>
       </div>
@@ -56,6 +56,36 @@
 
   <article id="content">
     <div class="wrapper-content col-lg-8 fader">
+
+      <div id="notification-ok" class="wrapper-full-notification col-lg-8">
+        <div class="wrapper-notification">
+          <h2 class="title-notification"><span class="icon icon-red icon-hand"></span>Sur quel chapitre s'entraîner ?</h2>
+          <p class="chapo-notification">Vous pouvez choisir de mesurer vos connaissances sur l'ensemble des questions ou sur un chapitre en particulier</p>
+          <div class="wrapper-checkbox">
+            <div class="checkbox" ng-repeat="chapter in parties">
+              <input type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
+              <label for="input-chapter-{{$index+1}}"><strong>{{$index+1}}.</strong>  {{chapter.titre}}</label>
+            </div>
+            <div class="checkbox">
+              <input type="radio" name="input-chapter" class="radio" id="input-chapter-999">
+              <label for="input-chapter-999">Tous les chapitres</label>
+            </div>
+          </div>
+          <div class="wrapper-action-notification">
+            <div class="wrapper-cta">
+              <a ng-click="updateNotification('ok')" class="cta-generator" href="">
+                <span class="icon icon-chevron-thin-left"></span>Revenir
+              </a>
+            </div>
+            <div class="wrapper-cta">
+              <a href="#/exam/{{param}}/questions/" class="cta-generator">
+                <span class="icon icon-game-controller"></span>Jouer
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="bloc-content">
 
         <!-- Debut overlay -->
@@ -65,18 +95,18 @@
           <div class="wrapper-tuto col-lg-12">
             <div class="bloc-tuto col-lg-4">
               <span class="iterate-tuto tuto-animate">1</span>
-              <div class="wrapper-picto-tuto tuto-animate"><img src="/styles/design/x3.png" alt=""/></div>
+              <div class="wrapper-picto-tuto tuto-animate"><img src="styles/design/x3.png" alt=""/></div>
               <div class="title-tuto tuto-animate">Proposez <strong>3 questions</strong></div>
             </div>
             <div class="bloc-tuto col-lg-4">
               <span class="iterate-tuto tuto-animate">2</span>
-              <div class="wrapper-picto-tuto tuto-animate"><img src="/styles/design/liste.png" alt=""/></div>
+              <div class="wrapper-picto-tuto tuto-animate"><img src="styles/design/liste.png" alt=""/></div>
               <div class="title-tuto tuto-animate">Accéder au <strong>quizz</strong></div>
 
             </div>
             <div class="bloc-tuto col-lg-4">
               <span class="iterate-tuto tuto-animate">3</span>
-              <div class="wrapper-picto-tuto tuto-animate"><img src="/styles/design/colonnes.png" alt=""/></div>
+              <div class="wrapper-picto-tuto tuto-animate"><img src="styles/design/colonnes.png" alt=""/></div>
               <div class="title-tuto tuto-animate">Progresser <strong>rapidement</strong></div>
             </div>
           </div>

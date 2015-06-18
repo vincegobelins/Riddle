@@ -74,6 +74,41 @@
 
   <article id="content">
     <div class="wrapper-content col-lg-8 fader">
+
+      <div id="notification-ok" class="wrapper-full-notification col-lg-8">
+        <div class="wrapper-notification">
+          <h2 class="title-notification"><span class="icon icon-green icon-check"></span>La question est validée !</h2>
+          <p class="chapo-notification">Vous pouvez désormais accéder au quizz ou inventer une nouvelle question.</p>
+          <div class="wrapper-action-notification">
+            <div class="wrapper-cta">
+              <a ng-click="updateNotification('ok')" class="cta-generator" href="">
+                <span class="icon icon-chevron-thin-left"></span>Inventer
+              </a>
+            </div>
+            <div class="wrapper-cta">
+              <a href="#/exam/{{param}}/questions/" class="cta-generator">
+                <span class="icon icon-game-controller"></span>Jouer
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="notification-ko" class="wrapper-full-notification col-lg-8">
+        <div class="wrapper-notification">
+          <h2 class="title-notification"><span class="icon icon-red icon-cross"></span>Oups ! Encore un effort ...</h2>
+          <p class="chapo-notification">Il semblerait que tous les champs de la questions ne soient pas remplis.</p>
+          <div class="wrapper-action-notification">
+            <div class="wrapper-cta">
+              <a ng-click="updateNotification('ko')" class="cta-generator" href="">
+                <span class="icon icon-chevron-thin-left"></span>Revenir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <div class="bloc-content">
 
         <form>

@@ -160,7 +160,6 @@ angular.module('RiddleApp')
      addAnsweredQuestion = function(id){
 
        answered.push(id);
-       console.log(answered);
 
      },
 
@@ -214,6 +213,10 @@ angular.module('RiddleApp')
         getQuestion();
       }
 
+      else {
+        $('#notification-ok').toggleClass('active');
+      }
+
     },
 
     /**
@@ -237,7 +240,6 @@ angular.module('RiddleApp')
 
         } else {
           $('.item-answer:eq('+index+')').addClass('false');
-          console.log(index);
           $scope.answerMode = false;
         }
 
@@ -262,7 +264,7 @@ angular.module('RiddleApp')
      */
 
     $scope.sendComment = function () {
-      var comment = $('.editor').html();
+      var comment = $('#comment').html();
       riddleFactory.setComment($scope.user, $scope.param, $scope.questionId, comment);
 
       $('#comment').html('<p>Poster un commentaire</p>');

@@ -82,7 +82,7 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
       var result = new Firebase(query);
 
       result.push({
-          'titre': title, 'autheur': author, 'question': question, 'chapter': chapter, 'reponses': answers, 'reponseok': answerok, 'solution': solution
+          'titre': title, 'autheur': author, 'question': question, 'chapter': chapter, 'reponses': answers, 'reponseok': answerok, 'solution': solution, 'score': 0
         });
 
     },

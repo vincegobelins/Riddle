@@ -144,7 +144,7 @@ angular.module('RiddleApp')
      */
 
     $scope.sendComment = function () {
-      var comment = $('.editor').html();
+      var comment = $('#comment').html();
       riddleFactory.setComment($scope.user, $scope.param, $scope.questionId, comment);
 
       $('#comment').html('<p>Poster un commentaire</p>');

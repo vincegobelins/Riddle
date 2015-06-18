@@ -106,6 +106,26 @@
 
   <article id="content">
     <div class="wrapper-content col-lg-8 fader">
+
+      <div id="notification-ok" class="wrapper-full-notification col-lg-8">
+        <div class="wrapper-notification">
+          <h2 class="title-notification"><span class="icon icon-green icon-check"></span>Le quizz est terminée !</h2>
+          <p class="chapo-notification">Tu peux accéder à tes statistiques, revoir chacunes des questions et les commentées.</p>
+          <div class="wrapper-action-notification">
+            <div class="wrapper-cta">
+              <a href="#/exam/{{param}}/questions/" class="cta-generator">
+                <span class="icon icon-cycle"></span>Rejouer
+              </a>
+            </div>
+            <div class="wrapper-cta">
+              <a href="#/exam/{{param}}/" class="cta-generator">
+                <span class="icon icon-line-graph"></span>Voir mes stats
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="bloc-content">
         <div class="question-title-wrapper">
           <h3 class="question-title">{{question}}</h3>

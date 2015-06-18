@@ -8,6 +8,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "editor.scss";
 @import "map.scss";
 
+::-moz-selection { color: $color-white;  background: $color-bg-1; }
+::selection      { color: $color-white;  background: $color-bg-1; }
+
 *:focus {
   outline: none;
 }
@@ -423,6 +426,23 @@ ul {
       }
 
   }
+
+  &.locked {
+    border: 1px solid $color-text-3;
+    color: $color-text-3;
+
+    .icon {
+      color: $color-text-3;
+    }
+
+    &:hover {
+      background: none;
+
+      [class^="icon-"]::before, [class*=" icon-"]::before {
+        @include animation(none);
+      }
+    }
+  }
 }
 
 /*
@@ -827,7 +847,7 @@ ul {
 
 /*
 ##############################
-# Question content             #
+# Question content           #
 ##############################
 */
 
@@ -1052,8 +1072,9 @@ ul {
     ~ label {
 
       &:before {
-        content: '+' !important;
-        text-indent: 2px; line-height: 1;
+        font-family: "riddle_font" !important;
+        content: '\e8fa' !important;
+        text-indent: 0 !important; line-height: 1;
         color: $color-text-2;
       }
     }
@@ -1079,7 +1100,8 @@ ul {
         display: block;
         width: 1em; height: 1em;
         border: 2px solid $color-bg-1;
-        @include border-radius(5px, 5px);
+        text-indent: .5em;
+        @include border-radius(3px, 3px);
       }
     }
   }
@@ -1090,8 +1112,9 @@ ul {
       color: $color-text-2;
 
       &:before {
-        content:'\2714';
-        line-height: 1em; text-indent: 2px;
+        font-family: "riddle_font";
+        content:'\e844';
+        line-height: 1em; text-indent: 0;
         color: $color-white;
         background-color: $color-bg-1;
       }
@@ -1111,10 +1134,10 @@ ul {
   display: inline-block;
   width: 90%;
   padding: .5em;
-  border: 2px solid $color-bg-1;
+  border: 1px solid $color-bg-1;
   font-family: $font-style-2; color: $color-text-2;text-decoration: none; font-size: 1.6em; text-align: center;
   box-sizing: border-box;
-  @include border-radius(7px, 7px);
+  @include border-radius(3px, 3px);
 
   .icon {
     color: $color-text-1;
@@ -1129,9 +1152,10 @@ ul {
 }
 /* toggle hover */
 input.radio:hover:not(:checked) ~ label:before {
-  content:'\2714';
-  line-height: 1em; text-indent: 2px;
-  color: $color-text-1;
+  font-family: "riddle_font";
+  content:'\e844';
+  line-height: 1em; text-indent: 0;
+  color: $color-text-3;
 }
 
 input.radio:hover:not(:checked) ~ label {
@@ -1191,6 +1215,77 @@ input.radio:hover:not(:checked) ~ label {
   .img-hover {
     transform: rotateY( 180deg );
   }
+}
+
+/*
+##############################
+# Notification               #
+##############################
+*/
+
+.wrapper-full-notification {
+  @extend .transition;
+  position: fixed; z-index: 2;
+  background-color: $color-white-opacity ;
+  top: 0; bottom: 0;
+  opacity: 0;  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+
+    .wrapper-notification {
+      visibility: visible;
+      opacity: 1;
+      top: 48%;
+    }
+  }
+}
+
+.wrapper-notification {
+  @extend .transition;
+  opacity: 0;  visibility: hidden;
+  position: relative; top: 45%; z-index: 200;
+  display: block;
+  margin: 0 auto; padding: $width-1/2;
+  width: 50em;
+  background: $color-white;
+  border-left: 5px $color-bg-1 solid;
+  @include box-shadow(0 0 1.5em 0em #ebebeb);
+
+
+
+  .title-notification {
+    font-family: $font-style-1; font-weight: normal; color: $color-text-1; text-decoration: none; font-size: 2em; text-transform: uppercase;
+  }
+
+  .icon-green {
+     color: $color-bg-4;
+   }
+
+  .icon-red {
+    color: $color-bg-1;
+  }
+
+  .chapo-notification {
+    font-family: $font-style-2; color: $color-text-1; text-decoration: none; font-size: 1.7em;
+  }
+
+  .wrapper-checkbox {
+    font-family: $font-style-2;
+  }
+
+  .wrapper-action-notification {
+    width: 100%;
+    text-align: center;
+  }
+
+  .wrapper-cta {
+    display: inline-block !important;
+    width: 40%;
+  }
+
+
 }
 
 /*

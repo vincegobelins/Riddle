@@ -130,15 +130,30 @@ angular.module('RiddleApp')
         var sendQuestion = riddleFactory.setQuestion($scope.param, 'title', author, question, chapter, answers, answerok, solution);
 
         clearForm();
+        $scope.updateNotification('ok');
       }
       else {
 
-        console.log("erreur remplissage");
-        $scope.callback = "Oups ! Tu es sur d'avoir tout remplis ?";
+        $scope.updateNotification('ko');
 
       }
 
     },
+
+    /**
+     * Manage notification
+     * @param {String}
+     * @return {void}
+     */
+
+    $scope.updateNotification = function(type){
+      if (type == 'ok'){
+        $('#notification-ok').toggleClass('active');
+      }
+      else {
+        $('#notification-ko').toggleClass('active');
+      }
+    }
 
     /**
      * Add new answer
