@@ -185,16 +185,24 @@ ul {
 
   }
 
+  .wrapper-logo-navigation {
+    padding: 6em 0; margin-top: $width-2;
+    text-align: center;
+  }
+
   .list-navigation {
 
-    padding-top: $width-2;
 
     .item-navigation {
       a {
         @extend .transition;
         display: block;
-        padding: 1em 2em;
+        padding: 1em 3em;
         font-family: $font-style-2; color: $color-white; font-size: 1.5em; text-decoration: none;
+
+        .icon {
+          padding-right: 2.5em;
+        }
 
         &:hover {
           color: $color-text-1;
@@ -466,6 +474,7 @@ ul {
 
     display: inline-block;
     width: 50%; height: 1em;
+    margin: -0.15em 1em;
     background-color: $color-border-1;
 
     .line-progression {
@@ -1297,7 +1306,7 @@ input.radio:hover:not(:checked) ~ label {
 .wrapper-logo {
   display: block;
   width: $width-4; height: 32em;
-  margin: $width-1 auto;
+  margin: $width-1*3 auto $width-1;
   animation : born-logo 1s steps(25, end) 1s forwards;
   background: url('design/logo.png')0 0;
   background-repeat: no-repeat;
@@ -1423,6 +1432,111 @@ input.radio:hover:not(:checked) ~ label {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+/*
+##############################
+# Mobile                      #
+##############################
+*/
+
+.wrapper-mobile {
+  margin-top: $width-2;
+}
+
+.wrapper-phone {
+  position: relative;
+  text-align: center;
+}
+
+.wrapper-video {
+  display: inline-block;
+  position: relative;
+  margin: $width-1*2 0;
+}
+
+.bloc-video {
+  display: inline;
+
+  &:before {
+    content: url('design/mockup.png');
+    left: -2em;
+    position: absolute;
+    top: -8em;
+  }
+}
+
+.bx-viewport {
+  height: 100% !important;
+}
+
+.bx-pager {
+  position: absolute; z-index: 10; top: 60%;
+  width: 50%;
+  text-align: center;
+}
+
+.bx-pager-item {
+  display: inline-block;
+  width: 2em;
+}
+
+.bx-pager-link {
+  @extend .transition;
+  display: block;
+  text-indent: -9999px;
+  width: 1em; height: 1em;
+  @include border-radius(50%, 50%);
+  border: 2px solid $color-bg-2;
+
+  &.active {
+    background: $color-bg-1;
+    border: 2px solid $color-bg-1;
+  }
+
+  &:hover {
+    border: 2px solid $color-bg-1;
+  }
+}
+
+.wrapper-explication {
+  position: relative;
+}
+
+.bloc-explication {
+  transform: translateY(-50%);
+  position: absolute;
+  margin-top: 40%;
+  text-align: center;
+  width: 100%;
+}
+
+.title-explication {
+  @include transition(all, 0.5s, ease-out);
+  opacity: 0;
+  font-size: 4em; font-family: $font-style-1; color: $color-text-1;
+  transform: translateY(-100px);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.chapo-explication {
+  @include transition(all, 0.5s, ease-out);
+  opacity: 0;
+  transform: translateY(50px);
+  font-size: 2em; font-family: $font-style-2; color: $color-text-1;
+
+  &.active {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+video {
+  display: block;
 }
 
 @import "responsive.scss";

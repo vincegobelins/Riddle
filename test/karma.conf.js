@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/firebase/firebase.js',
       'bower_components/angularfire/dist/angularfire.js',
       'bower_components/gsap/src/uncompressed/TweenMax.js',
+      'bower_components/bxslider/jquery.bxSlider.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

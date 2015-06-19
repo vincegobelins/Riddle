@@ -128,6 +128,10 @@ angular
         templateUrl: 'views/generator.html',
         controller: 'GeneratorCtrl'
       })
+      .when('/mobile', {
+        templateUrl: 'views/mobile.html',
+        controller: 'MobileCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

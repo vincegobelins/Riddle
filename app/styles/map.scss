@@ -212,7 +212,7 @@ $box-width : $screen-width / $box-row-length;
 }
 .item {
   position: absolute;
-  animation : born-city 2.5s steps(25, start) 4s forwards;
+  animation : born-city 2.5s steps(25, start) 2.5s forwards;
   display: none;
   width: $width-3; height: $width-3;
   background-repeat: no-repeat;

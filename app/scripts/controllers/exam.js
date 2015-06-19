@@ -377,7 +377,7 @@ angular.module('RiddleApp')
 
       showTuto = function(){
         $('.tuto-animate').show();
-        TweenMax.staggerFrom(".tuto-animate", 1, { y: -200, opacity: 0, ease: Back.easeOut.config(1.7)}, 0.5);
+        TweenMax.staggerFrom(".tuto-animate", 1, { y: -200, opacity: 0, ease: Back.easeOut.config(1.7)}, 0.35);
       },
 
     /**

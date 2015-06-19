@@ -55,6 +55,13 @@ $font-style-2 : 'Gotham Rounded Light';
   width: percentage(5/12);
 }
 
+.col-lg-6 {
+  display: block;
+  float: left;
+  width: percentage(6/12);
+}
+
+
 .col-lg-8 {
    display: block;
    float: left;
