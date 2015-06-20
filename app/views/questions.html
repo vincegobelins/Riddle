@@ -128,7 +128,9 @@
 
       <div class="bloc-content">
         <div class="question-title-wrapper">
-          <h3 class="question-title"><span class="question-icon" ng-class="{iconred: icon == 'red', icongreen: icon == 'green'}" ></span>{{question}}</h3>
+          <h3 class="question-title"><span class="question-icon" ng-class="{iconred: icon == 'red', icongreen: icon == 'green'}" ></span>
+            <span class="question-title-text" ng-class="{icon: icon == 'green' || icon == 'red'}">{{question}}</span>
+          </h3>
         </div>
 
         <div class="wrapper-answer">

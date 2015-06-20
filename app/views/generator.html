@@ -183,16 +183,37 @@
                 <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
                 <label for="new">Nouveau chapitre</label>
               </div>
-              <ul>
-                <li ng-repeat="intitule in intitules">1 - {{intitule.titre}}</li>
-              </ul>
             </div>
           </div>
+
           <div class="form-caption" ng-show="step >= 3">
             <div class="table-head form-title">
               <div class="table-cell table-cell-question col-lg-12">
                 <div class="table-cell-question-wrapper">
                           <span class="highlight">Etape 3 :
+                          </span>Choisir le thème de la question
+                </div>
+              </div>
+            </div>
+            <div class="form-content">
+              <div class="form-group">
+                <a href="" class="input-option"><span class="icon icon-image"></span></a>
+                <input ng-click="nextStep(4)" placeholder="Thème de la question" type="text" class="form-control input" id="input-title" placeholder="Enter titre">
+              </div>
+              <div class="form-tuto">
+                <h4 class="form-tuto-title">Les thèmes déjà abordés :</h4>
+                <ul>
+                  <li class="col-lg-4 item-form-tuto" ng-repeat="intitule in intitules">{{intitule.titre}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-caption" ng-show="step >= 4">
+            <div class="table-head form-title">
+              <div class="table-cell table-cell-question col-lg-12">
+                <div class="table-cell-question-wrapper">
+                          <span class="highlight">Etape 4 :
                           </span>Créer ta question
                 </div>
               </div>
@@ -235,7 +256,7 @@
                 </div>
 
               </div>
-              <div class="form-group" ng-click="nextStep(4)" ng-repeat="answer in answers">
+              <div class="form-group" ng-click="nextStep(5)" ng-repeat="answer in answers">
                 <a ng-click="addAnswer()" class="input-option">+</a>
                 <input type="text" class="form-control input-answer input" id="exampleInputEmail1" placeholder="Entrer une réponse éronnée">
               </div>

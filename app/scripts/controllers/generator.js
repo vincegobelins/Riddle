@@ -29,6 +29,7 @@ angular.module('RiddleApp')
       getExam();
 
       countUpload = 0;
+      $scope.step = 0;
 
       $( ".cta-generator" ).on( "click", function(e) {
         $(this).toggleClass( 'active' );
@@ -61,10 +62,12 @@ angular.module('RiddleApp')
 
       $scope.nextStep = function(offset){
 
-        $scope.step = offset;
-
-        var percentageProgression = (offset-1) * 100 / 3;
-        $( ".line-progression").css('width', percentageProgression+"%");
+        if (offset > $scope.step) {
+          $scope.step = offset;
+          
+          var percentageProgression = (offset - 1) * 100 / 4;
+          $(".line-progression").css('width', percentageProgression + "%");
+        }
 
       },
 
@@ -75,7 +78,7 @@ angular.module('RiddleApp')
 
     clearForm = function(){
 
-      //$('#input-title').val("");
+      $('#input-title').val("");
       $('#input-question').val("");
       $("#input-correct-answer").val("");
       $('#textarea-solution').find('p').html('Expliciter la solution (minimum 140 caractères)');
@@ -117,7 +120,7 @@ angular.module('RiddleApp')
 
       if(checkForm() == true) {
 
-        //title = $('#input-title').val();
+        title = $('#input-title').val();
         question = $('#input-question').val();
         author = riddleFactory.getAuth();
         chapter = $('input[name=input-chapter]:checked').val();
@@ -130,7 +133,7 @@ angular.module('RiddleApp')
           answers.push($(this).val());
         });
 
-        var sendQuestion = riddleFactory.setQuestion($scope.param, 'title', author, question, chapter, answers, answerok, solution, image);
+        var sendQuestion = riddleFactory.setQuestion($scope.param, title, author, question, chapter, answers, answerok, solution, image);
 
         clearForm();
         $scope.updateNotification('ok');
