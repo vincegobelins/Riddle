@@ -176,13 +176,16 @@
             </div>
             <div class="form-content">
               <div class="checkbox" ng-repeat="chapter in chapters">
-                  <input ng-click="nextStep(3)" type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
+                  <input ng-click="nextStep(3); getIntitules($index)" type="radio" name="input-chapter" id="input-chapter-{{$index+1}}" class="radio" value="{{chapter.id}}">
                   <label for="input-chapter-{{$index+1}}"><strong>Chapitre {{$index+1}}</strong> : {{chapter.titre}}</label>
               </div>
               <div class="checkbox">
                 <input type="radio" name="input-chapter" id="new" class="radio fake-radio">
                 <label for="new">Nouveau chapitre</label>
               </div>
+              <ul>
+                <li ng-repeat="intitule in intitules">1 - {{intitule.titre}}</li>
+              </ul>
             </div>
           </div>
           <div class="form-caption" ng-show="step >= 3">

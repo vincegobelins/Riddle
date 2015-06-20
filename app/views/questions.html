@@ -128,12 +128,12 @@
 
       <div class="bloc-content">
         <div class="question-title-wrapper">
-          <h3 class="question-title">{{question}}</h3>
+          <h3 class="question-title"><span class="question-icon" ng-class="{iconred: icon == 'red', icongreen: icon == 'green'}" ></span>{{question}}</h3>
         </div>
 
         <div class="wrapper-answer">
           <ul class="list-answer">
-            <li ng-repeat="answer in answers" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fade">
+            <li ng-repeat="answer in answers | orderBy:random" ng-class="{active: answerMode && answer==answerOk, hide: answerMode && answer!=answerOk}" class="item-answer fade">
               <a class="link-item-answer" ng-click="checkAnswer(answer, $index)">{{answer}}<span class="glyphicon"></span></a>
             </li>
           </ul>
@@ -168,7 +168,7 @@
               <li ng-repeat="comment in comments | orderBy: 'content.date':true" class="item-comment">
                 <div class="header-comment">
                   <div class="img-comment"><img ng-src="{{comment.author.photo}}" alt=""/></div>
-                  <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}} {{comment.content.date}}</p>
+                  <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}}</p>
                   <div class="wrapper-vote-comment">
                   </div>
                 </div>

@@ -16,8 +16,17 @@ angular.module('RiddleApp')
         speed : 1,
         controls : false,
         onSliderLoad: function(){
-          //jQuery('video').trigger('play');
-          console.log('fire 1');
+
+          var newIndex = 0;
+
+          $('.title-explication').click(function(){
+            $('video:eq(' + ( newIndex + 1 ) + ')').trigger('play');
+            return false;
+          });
+
+          $('.title-explication:eq(' + ( newIndex + 1 ) + ')').addClass('active');
+          $('.chapo-explication:eq(' + ( newIndex + 1 ) + ')').addClass('active');
+          console.log('loaded');
         },
         onSlideAfter: function(slider, index, newIndex){
           $('video:eq(' + ( newIndex + 1 ) + ')').trigger('play');

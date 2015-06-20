@@ -84,6 +84,10 @@ angular
       e.preventDefault();
       $(this).parent('.navigation-wrapper-slide').toggleClass( 'active' );
     });
+
+    $( "nav" ).on( "click", function() {
+      $('.navigation-wrapper-slide').toggleClass( 'active' );
+    });
   })
   .config(function ($routeProvider) {
     $routeProvider

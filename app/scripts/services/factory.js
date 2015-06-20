@@ -51,6 +51,41 @@ angular.module('RiddleApp').factory('riddleFactory', function($location, $fireba
     },
 
     /**
+     * Get questions of exam
+     * @param {number} id Id of exam
+     * @return {Array}
+     */
+
+    getIntitules: function(id, idChapter, callback) {
+
+      var intitules = [];
+
+      var query = config.BDD + 'exams/' + id + '/questions';
+      var result = new Firebase(query);
+
+      result.on('value', function(snapshot) {
+        if(callback){
+
+          snapshot.forEach(function(data) {
+
+            // Pour chacun des résultats, on garde en mémoire l'id de l'utilisateur et l'id du commentaire
+            var chapter =  data.val().chapter;
+
+            if (chapter == idChapter){
+              intitules.push(data.val());
+            }
+          });
+
+
+          callback(intitules);
+        }
+      }, function(errorObject) {
+        callback($firebaseObject(result));
+      });
+
+    },
+
+    /**
      * Get different part of exam
      * @param {number} id Id of exam
      * @return {Array}

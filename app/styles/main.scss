@@ -871,6 +871,27 @@ ul {
   font-weight: normal;
 }
 
+.question-icon {
+  @include transition(margin-right, 0.5s, ease-out);
+  display: inline-block;
+  width: 0; height: 0;
+  margin-right: 0;
+
+  &.iconred {
+    @include animation(icon-bounce 2s linear forwards);
+    width: 1em; height: 1em;
+    background: red;
+    margin-right: 1em;
+  }
+
+  &.icongreen {
+    @include animation(icon-bounce 2s linear forwards);
+    width: 1em; height: 1em;
+    background: $color-bg-4;
+    margin-right: 1em;
+  }
+}
+
 .wrapper-answer {
   .list-answer {
     .item-answer {

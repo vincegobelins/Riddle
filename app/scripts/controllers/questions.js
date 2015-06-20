@@ -10,7 +10,7 @@
 angular.module('RiddleApp')
   .controller('QuestionsCtrl', function ($scope, $routeParams, riddleFactory,$timeout) {
 
-    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt, getAuthor, loadSprite;
+    var init, getExam, getQuestions, getQuestion, getComments, addAnsweredQuestion, checkAnsweredQuestion, getRandomIdQuestion, getRandomInt, getAuthor, loadSprite, random;
     var exam, data, answered, count, degree, malusLimit, bonusLimit;
 
     /**
@@ -93,8 +93,11 @@ angular.module('RiddleApp')
 
       getQuestion = function () {
 
+        count = 0;
         malusLimit = 1;
         bonusLimit = 1;
+        $scope.answerMode = false;
+        $scope.icon = 'empty';
 
         $scope.quizzPosition++;
         var percentageProgression = $scope.quizzPosition * 100 / $scope.quizzLength;
@@ -106,7 +109,8 @@ angular.module('RiddleApp')
         $scope.title = question["titre"];
         $scope.question = question["question"];
         $scope.chapter = parseInt(question["chapter"]) + 1;
-        $scope.answers = question["reponses"];
+        $scope.answers = random(question["reponses"]);
+        console.log('answers');
         $scope.answerOk = question["reponseok"];
         $scope.solution = question["solution"];
         $scope.score = question["score"];
@@ -205,11 +209,7 @@ angular.module('RiddleApp')
 
       $('#comment').html('<p>Poster un commentaire</p>');
 
-      count = 0;
-
       if($scope.quizzPosition < $scope.quizzLength) {
-
-        $scope.answerMode = false;
         getQuestion();
       }
 
@@ -241,6 +241,15 @@ angular.module('RiddleApp')
         } else {
           $('.item-answer:eq('+index+')').addClass('false');
           $scope.answerMode = false;
+        }
+
+        // response icon
+
+        if($scope.answerMode && count == 0) {
+          $scope.icon = 'green';
+        }
+        else if(!$scope.answerMode && count == 0){
+          $scope.icon = 'red';
         }
 
         count++;
@@ -336,6 +345,30 @@ angular.module('RiddleApp')
       var sprite = new Image();
       sprite.onload = callback;
       sprite.src = src;
+    },
+
+    /**
+     * Randomize array
+     * @return {array}
+     */
+
+      random = function(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex ;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
     }
 
     init();

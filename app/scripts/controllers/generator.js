@@ -9,9 +9,9 @@
  */
 
 angular.module('RiddleApp')
-  .controller('GeneratorCtrl', function($scope, $routeParams, riddleFactory, $compile) {
+  .controller('GeneratorCtrl', function($scope, $routeParams, riddleFactory, $timeout) {
 
-    var init, getExam, clearForm, checkForm, nextStep, loadSprite;
+    var init, getExam, clearForm, checkForm, nextStep, loadSprite, getIntitules;
     var param;
     var title, question, author, chapter, answers, answerok, solution, exam, degree, image, countUpload;
 
@@ -210,6 +210,22 @@ angular.module('RiddleApp')
           questionPlaceholder: "foo"
         });
       }
+
+    /**
+     * Get intitulés
+     */
+
+    $scope.getIntitules = function (idChapter) {
+
+
+      riddleFactory.getIntitules($scope.param, idChapter, function(result) {
+        $timeout(function() {
+          $scope.intitules = result;
+          console.log('result ok')
+        });
+      });
+
+    },
 
 
 
