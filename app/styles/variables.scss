@@ -77,7 +77,7 @@ $font-style-2 : 'Gotham Rounded Light';
 $header-height: 17em;
 $width-1 : 5em;
 $width-2 : 4.5em;
-$width-3 : 13em;
+$width-3 : 130px;
 $width-4 : 29.1em;
 
 /* Clearfix */
@@ -313,7 +313,7 @@ $width-4 : 29.1em;
   }
 
   100% {
-    background-position: - $width-4*25 0;
+    background-position: - 291px*25 0;
   }
 }
 

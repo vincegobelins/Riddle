@@ -153,8 +153,8 @@ angular.module('RiddleApp')
 
     $scope.goToExam = function(){
       var windowsHeight = $(window).height();
-      var navHeight = 45;
-      var headerOffset = 170;
+      var navHeight = 36;
+      var headerOffset = 136;
       var newPosition = ( navHeight + headerOffset ) * 100 / windowsHeight;
       var newPositionPercentage = newPosition+'%';
       console.log('wh :'+windowsHeight);
@@ -167,7 +167,9 @@ angular.module('RiddleApp')
      */
 
     $scope.changeLocation = function(){
-      window.location = '#/exam/'+$scope.idExam;
+      //window.location = '#/exam/'+$scope.idExam;
+        $location.path('/exam/'+$scope.idExam);
+        $scope.$apply();
       $('#header').removeClass('custom-header');
     },
 

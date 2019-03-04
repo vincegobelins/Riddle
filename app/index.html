@@ -12,7 +12,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <!-- endbuild -->
   </head>
   <body ng-app="RiddleApp" ng-controller="AppCtrl">
@@ -126,7 +126,6 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/gsap/src/uncompressed/TweenMax.js"></script>
-    <script src="bower_components/bxslider/jquery.bxSlider.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -145,5 +144,18 @@
         <script src="scripts/services/factory.js"></script>
         <script src="scripts/controllers/mobile.js"></script>
         <!-- endbuild -->
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBwv45MY32v71yWGdp_KryNSiPQnBaDUkY",
+      authDomain: "riddle-app-learning.firebaseapp.com",
+      databaseURL: "https://riddle-app-learning.firebaseio.com",
+      projectId: "riddle-app-learning",
+      storageBucket: "riddle-app-learning.appspot.com",
+      messagingSenderId: "418091174638"
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
 </html>

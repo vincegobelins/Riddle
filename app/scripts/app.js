@@ -19,14 +19,14 @@ angular
     'firebase'
   ])
   .constant("config", {
-    "BDD": "https://torrid-inferno-6220.firebaseio.com/"
+    "BDD": "https://riddle-app-learning.firebaseio.com/"
   })
   .run(["$rootScope", "$location", function($rootScope, $location) {
     $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
       // We can catch the error thrown when the $requireAuth promise is rejected
       // and redirect the user back to the home page
       if (error === "AUTH_REQUIRED") {
-        $location.path("/home");
+        //$location.path("/home");
       }
     });
   }])
@@ -124,7 +124,7 @@ angular
           "currentAuth": ["riddleFactory", function(riddleFactory) {
             // $requireAuth returns a promise so the resolve waits for it to complete
             // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return riddleFactory.auth().$requireAuth();
+            return riddleFactory.auth().$requireSignIn();
           }]
         }
       })
@@ -139,4 +139,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.hashPrefix('');
+}]);

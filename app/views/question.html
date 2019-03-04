@@ -139,7 +139,7 @@
               <li ng-repeat="comment in comments | orderBy: 'content.date':true" class="item-comment">
                 <div class="header-comment">
                   <div class="img-comment"><img ng-src="{{comment.author.photo}}" alt=""/></div>
-                  <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}} {{comment.content.date}}</p>
+                  <p class="title-comment">{{comment.author.prenom}} {{comment.author.nom}} {{comment.content.date | date:'dd/MM/yyyy'}}</p>
                   <div class="wrapper-vote-comment">
                   </div>
                 </div>

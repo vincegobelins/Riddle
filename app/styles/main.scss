@@ -18,7 +18,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 body {
   @extend .transition;
   margin: 0; padding: 0;
-  font-size: 10px; font-family: $font-style-1; font-family: $font-style-1;
+  font-size: 8px; font-family: $font-style-1; font-family: $font-style-1;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -403,7 +403,7 @@ ul {
 }
 
 #stats {
-  width: 100%;
+  width: 85%;
   opacity: 0;
   @include animation(move-right 1s ease-out 1s forwards);
 }
@@ -1225,7 +1225,7 @@ input.radio:hover:not(:checked) ~ label {
 
   @extend .image-transition;
   display: block;
-  width: 30em; height: 35em;
+  width: 22em; height: 25em;
   margin: $width-1 auto;
   transform-style: preserve-3d;
   transform: perspective(500px);
@@ -1349,7 +1349,7 @@ input.radio:hover:not(:checked) ~ label {
 }
 .wrapper-logo {
   display: block;
-  width: $width-4; height: 32em;
+  width: 291px; height: 320px;
   margin: $width-1*3 auto $width-1;
   animation : born-logo 1s steps(25, end) 1s forwards;
   background: url('design/logo.png')0 0;

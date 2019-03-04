@@ -10,12 +10,11 @@
     "angular-route": "^1.3.0",
     "angular-sanitize": "^1.3.0",
     "angular-touch": "^1.3.0",
-    "firebase": "~2.2.4",
-    "angularfire": "~1.1.1",
+    "firebase": "~3.0.0",
+    "angularfire": "~2.2.0",
     "fontawesome": "~4.3.0",
     "zenpen": "tholman/zenpen",
-    "gsap": "~1.17.0",
-    "bxslider": "*"
+    "gsap": "~1.17.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
